@@ -13,17 +13,19 @@ mongoose.connect(
 );
 
 // handle sign-in
-app.get("/signin", (req, res) => {
-  UserModel.find({}, (err, result) => {
+app.get("/signIn", (req, res) => {
+  const user = req.body;
+  UserModel.findOne({username: user.username, password: user.password}, (err, result) => {
     if (err) {
       res.json(err);
     } else {
-      res.json(result);
+      console.log("found");
+      res.end();
     }
   });
 });
 // handle sign-in
-app.post("/signup", async (req, res) => {
+app.post("/signUp", async (req, res) => {
   const user = req.body;
   const newUser = new UserModel(user);
   await newUser.save();
