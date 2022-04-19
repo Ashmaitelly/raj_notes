@@ -19,18 +19,34 @@ app.get("/signIn", (req, res) => {
     if (err) {
       res.json(err);
     } else {
-      console.log("found");
-      res.end();
+      if(!result){
+        res.sendStatus(404);
+      }
+      else{
+        res.json(result);
+      } 
     }
   });
 });
 // handle sign-in
 app.post("/signUp", async (req, res) => {
   const user = req.body;
-  const newUser = new UserModel(user);
-  await newUser.save();
-
-  res.json(user);
+  
+  UserModel.findOne({username: user.username}, async (err, result) => {
+    if (err) {
+      res.json(err);
+    } else {
+      if(!result){
+        const newUser = new UserModel(user);
+        await newUser.save();
+        res.json(user);
+      }
+      else{
+        res.sendStatus(403);
+      } 
+    }
+  });
+  
 });
 
 app.listen(3001, () => {
