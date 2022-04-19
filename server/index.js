@@ -12,7 +12,8 @@ mongoose.connect(
   "mongodb+srv://Raj_notes:MEC-Horizons123@cluster0.vzwl8.mongodb.net/rajnotes?retryWrites=true&w=majority"
 );
 
-app.get("/getUsers", (req, res) => {
+// handle sign-in
+app.get("/signin", (req, res) => {
   UserModel.find({}, (err, result) => {
     if (err) {
       res.json(err);
@@ -21,8 +22,8 @@ app.get("/getUsers", (req, res) => {
     }
   });
 });
-
-app.post("/createUser", async (req, res) => {
+// handle sign-in
+app.post("/signup", async (req, res) => {
   const user = req.body;
   const newUser = new UserModel(user);
   await newUser.save();
