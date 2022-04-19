@@ -9,7 +9,7 @@ app.use(express.json());
 app.use(cors());
 
 mongoose.connect(
-  ""
+  "mongodb+srv://Raj_notes:MEC-Horizons123@cluster0.vzwl8.mongodb.net/rajnotes?retryWrites=true&w=majority"
 );
 
 app.get("/getUsers", (req, res) => {
