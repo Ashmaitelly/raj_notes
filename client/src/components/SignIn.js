@@ -10,7 +10,7 @@ function SignIn(){
       <div className="App">
         <div className="App-wrapper">
           <div>
-            <h2 className="title">Sign Up</h2>
+            <h2 className="title">Sign In</h2>
           </div>
           <form>
             
@@ -46,7 +46,7 @@ function SignIn(){
                     <br/>
             </InputGroup>
           </form>
-          <Button onClick={()=>{console.log(userName, password)}}>Submit</Button>
+          <Button onClick={()=>{console.log(userName, password)}}>Log In</Button>
         </div>
       </div>
       );
