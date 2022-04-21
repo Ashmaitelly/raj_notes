@@ -16,7 +16,7 @@ function SignIn(){
             
               <InputGroup className="mb-3">
 
-                {/* adding the username to the sign up */}
+                {/* adding the username to the sign-in */}
 
 
               <div className="username">
@@ -31,7 +31,7 @@ function SignIn(){
                 </div>
                     <br/>
 
-                    {/**adding the password to the sign-up */}
+                    {/**adding the password to the sign-in */}
                 <div className="password">
                 <InputGroup.Text id="Password">Password</InputGroup.Text>
                 <FormControl
