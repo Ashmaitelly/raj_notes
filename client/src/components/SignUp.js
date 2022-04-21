@@ -60,7 +60,7 @@ function SignUp(){
                 </div>
             </InputGroup>
           </form>
-          <Button onClick={()=>{console.log(userName, password)}}>Submit</Button>
+          <Button onClick={()=>{console.log(userName, password, confirmPassword)}}>Sign Up</Button>
         </div>
       </div>
       );
