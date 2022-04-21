@@ -1,13 +1,13 @@
 import './App.css';
 import React from 'react';
-import SignUp from './components/SignUp';
+import Account from './views/Account';
 
 
 function App() {
   return (
     <div className="App">
-      
-         <h2 className="title">R A J NOTES</h2>
+      <h2 className="title">R A J NOTES</h2>
+      <Account />
     </div>
   );
 }
