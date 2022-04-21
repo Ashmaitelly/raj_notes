@@ -7,10 +7,11 @@ const router = express.Router();
 // handle sign-in
 router.get("/signIn", (req, res) => {
     const user = req.body;
-    
+
     UserModel.findOne(user)
     .then(result => {
       if(!result){
+        //404 if user not found
         res.status(404).json();
       }
       else{
@@ -31,6 +32,7 @@ router.get("/signIn", (req, res) => {
         res.json(user);
       }
       else{
+        //403 if user already exists
         res.status(403).json();
       } 
     })
