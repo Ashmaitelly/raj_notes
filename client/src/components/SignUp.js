@@ -1,7 +1,7 @@
 import React from 'react';
 import { InputGroup, FormControl } from 'react-bootstrap';
 
-function signUp(){
+function SignUp(){
 
     return (
         <div className="App">
@@ -31,4 +31,4 @@ function signUp(){
       );
     }
     
-    export default signUp;
+    export default SignUp;
