@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { InputGroup, FormControl, Button } from 'react-bootstrap';
 
-function SignUp(){
+function SignIn(){
 
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
@@ -52,4 +52,4 @@ function SignUp(){
       );
     }
     
-    export default SignUp;
+    export default SignIn;
