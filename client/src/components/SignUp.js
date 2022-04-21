@@ -14,7 +14,9 @@ function SignUp(){
             <h2 className="title">Sign Up</h2>
           </div>
           <form>
+            
               <InputGroup className="mb-3">
+              <div className="username">
                 <InputGroup.Text id="Username">Username</InputGroup.Text>
                 <FormControl
                   placeholder="Username"
@@ -23,6 +25,9 @@ function SignUp(){
                   value={userName}
                   onChange={(e) => {setUserName(e.target.value)}}
                 />
+                </div>
+
+                <div className="password">
                 <InputGroup.Text id="Password">Password</InputGroup.Text>
                 <FormControl
                   type='password'
@@ -32,7 +37,7 @@ function SignUp(){
                   value={password}
                   onChange={(e) => {setPassword(e.target.value)}}
                 />
-                
+                </div>
             </InputGroup>
           </form>
           <Button onClick={()=>{console.log(userName, password)}}>Submit</Button>
