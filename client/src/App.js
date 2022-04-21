@@ -1,9 +1,11 @@
 import './App.css';
 
+
 function App() {
   return (
     <div className="App">
-      <h2>Test change 2</h2>
+      
+         <h2 className="title">Sign Up</h2>
     </div>
   );
 }
