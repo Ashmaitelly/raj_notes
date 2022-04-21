@@ -5,9 +5,9 @@ function Comments(){
 
     return (
 
-        <Stack gap={3}>
-  <div className="bg-light border">First item</div>
-</Stack>
+    <Stack gap={3}>
+       <div className="bg-light border">Comment</div>
+    </Stack>
 
     )
 }
