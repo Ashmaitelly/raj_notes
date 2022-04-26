@@ -14,13 +14,13 @@ function NavBar() {
                 <Nav.Link href="/home">Home</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-                 <Nav.Link eventKey="link-1">Shared</Nav.Link>
+                 <Nav.Link eventKey="Shared-Page">Shared</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-                <Nav.Link eventKey="link-2">Deleted</Nav.Link>
+                <Nav.Link eventKey="Trash-Page">Deleted</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-                <Nav.Link eventKey="disabled" >
+                <Nav.Link eventKey="Loging-Out" >
                 Log Out
                 </Nav.Link>
             </Nav.Item>

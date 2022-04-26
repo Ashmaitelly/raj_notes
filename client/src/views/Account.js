@@ -8,6 +8,7 @@ function Account(){
     return(
         <div className="account">
                <Button onClick={()=>{setHaveUser(true)}}>Log In</Button>
+               &nbsp; &nbsp; 
         <Button onClick={()=>{setHaveUser(false)}}>Sign Up</Button>
 
         { haveUser ?
