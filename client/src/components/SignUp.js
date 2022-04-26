@@ -21,7 +21,8 @@ function SignUp(){
 
 
               <div className="username">
-                <InputGroup.Text id="Username">Username</InputGroup.Text>
+                <InputGroup.Text id="Username">Username:</InputGroup.Text>
+                <br/>
                 <FormControl
                   placeholder="Username"
                   aria-label="Username"
@@ -34,7 +35,8 @@ function SignUp(){
 
                     {/**adding the password to the sign-up */}
                 <div className="password">
-                <InputGroup.Text id="Password">Password</InputGroup.Text>
+                <InputGroup.Text id="Password">Password:</InputGroup.Text>
+                <br/>
                 <FormControl
                   type='password'
                   placeholder="Password"
@@ -47,17 +49,19 @@ function SignUp(){
                     <br/>
 
                     {/**adding the confirm password to the sign-up */}
-                <div className="confirmPassword">
-                <InputGroup.Text id="confirmPassword">Confirm Password</InputGroup.Text>
+                <div className="confirm Password">
+                <InputGroup.Text id="confirm Password">Confirm Password:</InputGroup.Text>
+                <br/>
                 <FormControl
                   type='password'
-                  placeholder="confirmPassword"
-                  aria-label="confirmPassword"
-                  aria-describedby="confirmPassword"
+                  placeholder="confirm Password"
+                  aria-label="confirm Password"
+                  aria-describedby="confirm Password"
                   value={confirmPassword}
                   onChange={(e) => {setConfirmPassword(e.target.value)}}
                 />
                 </div>
+                <br/>
             </InputGroup>
           </form>
           <Button onClick={()=>{console.log(userName, password, confirmPassword)}}>Sign Up</Button>

@@ -20,7 +20,8 @@ function SignIn(){
 
 
               <div className="username">
-                <InputGroup.Text id="Username">Username</InputGroup.Text>
+                <InputGroup.Text id="Username">Username:</InputGroup.Text>
+                <br/>
                 <FormControl
                   placeholder="Username"
                   aria-label="Username"
@@ -33,7 +34,8 @@ function SignIn(){
 
                     {/**adding the password to the sign-in */}
                 <div className="password">
-                <InputGroup.Text id="Password">Password</InputGroup.Text>
+                <InputGroup.Text id="Password">Password:</InputGroup.Text>
+                <br/>
                 <FormControl
                   type='password'
                   placeholder="Password"
