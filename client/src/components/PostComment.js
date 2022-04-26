@@ -18,14 +18,13 @@ function PostComments (){
                   aria-label="insert comments"
                   aria-describedby="insert comments"
                   value={insertComments}
-                  style={{height: '50%',width: '75%'}}
+                  style={{height: '50%',width: '60%'}}
                   onChange={(e) => {setInsertComments(e.target.value)}}
                 />
                 </span>
                 <Button style={{height: '10%', width: '5%'}} onClick={()=>{console.log(insertComments)}}>Post</Button>
                 </InputGroup>
-                
-            </div>
+              </div>
     );
 }
 
