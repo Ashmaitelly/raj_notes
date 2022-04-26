@@ -7,7 +7,7 @@ function Account(){
     const [haveUser, setHaveUser] = useState(true);
     return(
         <div className="account">
-               <Button onClick={()=>{setHaveUser(true)}}>Sign In</Button>
+               <Button onClick={()=>{setHaveUser(true)}}>Log In</Button>
         <Button onClick={()=>{setHaveUser(false)}}>Sign Up</Button>
 
         { haveUser ?
