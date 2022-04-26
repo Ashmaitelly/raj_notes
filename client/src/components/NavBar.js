@@ -20,7 +20,7 @@ function NavBar() {
                 <Nav.Link eventKey="Trash-Page">Deleted</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-                <Nav.Link eventKey="Loging-Out" >
+                <Nav.Link eventKey="Logging-Out" >
                 Log Out
                 </Nav.Link>
             </Nav.Item>
