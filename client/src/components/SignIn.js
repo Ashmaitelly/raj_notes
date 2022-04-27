@@ -1,57 +1,38 @@
-import React, {useState} from 'react';
-import { InputGroup, FormControl, Button } from 'react-bootstrap';
+import React, { useState } from "react";
+import {Button, Form } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
-function SignIn(){
-
+function SignIn() {
+  const navigate= useNavigate();
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
 
-    return (
-      <div className="App">
-        <div className="App-wrapper">
-          <div>
-            <h2 className="title">Sign In</h2>
-          </div>
-          <form>
-            
-              <InputGroup className="mb-3">
+  return (
+    <div className="App">
+      <div className="App-wrapper">
+        <div>
+          <h2 className="title">Sign In</h2>
+        </div>
+        <div style={{width: "60%", marginLeft: "20%"}}>
+          <Form>
+            <Form.Group className="mb-3" controlId="formUsername">
+              <Form.Label>Username</Form.Label>
+              <Form.Control type="text" placeholder="Enter Username" value={userName} onChange={(e)=>{setUserName(e.target.value)}}/>
+            </Form.Group>
 
-                {/* adding the username to the sign-in */}
+            <Form.Group className="mb-3" controlId="formPassword">
+              <Form.Label>Password</Form.Label>
+              <Form.Control type="password" placeholder="Password" value={password} onChange={(e)=>{setPassword(e.target.value)}} />
+            </Form.Group>
 
-
-              <div className="username">
-                <InputGroup.Text id="Username">Username:</InputGroup.Text>
-                <br/>
-                <FormControl
-                  placeholder="Username"
-                  aria-label="Username"
-                  aria-describedby="Username"
-                  value={userName}
-                  onChange={(e) => {setUserName(e.target.value)}}
-                />
-                </div>
-                    <br/>
-
-                    {/**adding the password to the sign-in */}
-                <div className="password">
-                <InputGroup.Text id="Password">Password:</InputGroup.Text>
-                <br/>
-                <FormControl
-                  type='password'
-                  placeholder="Password"
-                  aria-label="Password"
-                  aria-describedby="Password"
-                  value={password}
-                  onChange={(e) => {setPassword(e.target.value)}}
-                />
-                </div>
-                    <br/>
-            </InputGroup>
-          </form>
-          <Button onClick={()=>{console.log(userName, password)}}>Log In</Button>
+            <Button variant="primary" onClick={()=>{navigate("/home")}}>
+              Submit
+            </Button>
+          </Form>
         </div>
       </div>
-      );
-    }
-    
-    export default SignIn;
+    </div>
+  );
+}
+
+export default SignIn;

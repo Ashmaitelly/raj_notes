@@ -1,17 +1,22 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.css';
 
-function SmallNote (){
+function SmallNote ({text, color}){
+// to make a limit of letters in the typing and a colorful note.
+  const truncString = (str, letter) => {
+    if(str.length<=letter){
+      return str
+    }else{
+      return str.slice(0,letter) + "...";
+    }
+  }
 
  return(
-
- 
-   <Card border="secondary" style={{ width: '18rem' }}>
-     <Card.Body>
+   <Card border="secondary" style={{ width: '18rem', backgroundColor: color }}>
+     <Card.Body class="grid-container">
         <Card.Title>Note Title</Card.Title>
           <Card.Text>
-             Note Text.....
+             {truncString(text,200)}
           </Card.Text>
      </Card.Body>
    </Card>

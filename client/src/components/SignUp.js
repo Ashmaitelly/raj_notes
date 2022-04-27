@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
-import { InputGroup, FormControl, Button } from 'react-bootstrap';
+import {Button,Form } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
 function SignUp(){
-
+const navigate= useNavigate();
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword,setConfirmPassword] = useState("");
@@ -13,58 +14,28 @@ function SignUp(){
           <div>
             <h2 className="title">Sign Up</h2>
           </div>
-          <form>
-            
-              <InputGroup className="mb-3">
+          <div style={{width: "60%", marginLeft: "20%"}}>
+          <Form>
+            <Form.Group className="mb-3" controlId="formUsername">
+              <Form.Label>Username</Form.Label>
+              <Form.Control type="text" placeholder="Enter Username" value={userName} onChange={(e)=>{setUserName(e.target.value)}}/>
+            </Form.Group>
 
-                {/* adding the username to the sign up */}
+            <Form.Group className="mb-3" controlId="formPassword">
+              <Form.Label>Password</Form.Label>
+              <Form.Control type="password" placeholder="Password" value={password} onChange={(e)=>{setPassword(e.target.value)}} />
+            </Form.Group>
 
+            <Form.Group className="mb-3" controlId="formConfirmPassword">
+              <Form.Label>Confirm Password</Form.Label>
+              <Form.Control type="password" placeholder="Password" value={confirmPassword} onChange={(e)=>{setConfirmPassword(e.target.value)}} />
+            </Form.Group>
 
-              <div className="username">
-                <InputGroup.Text id="Username">Username:</InputGroup.Text>
-                <br/>
-                <FormControl
-                  placeholder="Username"
-                  aria-label="Username"
-                  aria-describedby="Username"
-                  value={userName}
-                  onChange={(e) => {setUserName(e.target.value)}}
-                />
-                </div>
-                    <br/>
-
-                    {/**adding the password to the sign-up */}
-                <div className="password">
-                <InputGroup.Text id="Password">Password:</InputGroup.Text>
-                <br/>
-                <FormControl
-                  type='password'
-                  placeholder="Password"
-                  aria-label="Password"
-                  aria-describedby="Password"
-                  value={password}
-                  onChange={(e) => {setPassword(e.target.value)}}
-                />
-                </div>
-                    <br/>
-
-                    {/**adding the confirm password to the sign-up */}
-                <div className="confirm Password">
-                <InputGroup.Text id="confirm Password">Confirm Password:</InputGroup.Text>
-                <br/>
-                <FormControl
-                  type='password'
-                  placeholder="confirm Password"
-                  aria-label="confirm Password"
-                  aria-describedby="confirm Password"
-                  value={confirmPassword}
-                  onChange={(e) => {setConfirmPassword(e.target.value)}}
-                />
-                </div>
-                <br/>
-            </InputGroup>
-          </form>
-          <Button onClick={()=>{console.log(userName, password, confirmPassword)}}>Sign Up</Button>
+            <Button variant="primary" onClick={()=>{navigate("/home")}}>
+              Submit
+            </Button>
+          </Form>
+          </div>
         </div>
       </div>
       );
