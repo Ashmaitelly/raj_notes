@@ -10,7 +10,7 @@ const userRoutes = require('./routes/users');
 const noteRoutes = require('./routes/notes');
 
 app.use('/', userRoutes, (req, res) => res.sendStatus(401));
-app.use('/Notes', userRoutes, (req, res) => res.sendStatus(401));
+app.use('/Notes', noteRoutes, (req, res) => res.sendStatus(401));
 
 app.listen(3001, () => {
   console.log("server running on port 3001");
