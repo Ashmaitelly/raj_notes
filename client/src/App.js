@@ -5,6 +5,10 @@ import Account from './views/Account';
 import NotesPage from './views/NotesPage'
 import SharedPage from './views/SharedPage';
 import DeletedPage from './views/DeletedPage';
+import Note from './components/Note';
+import HomeNotePage from './views/HomeNotePage';
+import SharedNotePage from './views/SharedNotePage'
+import DeletedNotePage from './views/DeletedNotePage';
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 
 
@@ -16,6 +20,10 @@ function App() {
         <Route path='/home' element={<NotesPage />}/>
         <Route path='/shared' element={<SharedPage/>}/>
         <Route path='/deleted' element={<DeletedPage/>}/>
+        <Route path='/notes' element={<Note/>}/>
+        <Route path='/hnp' element={<HomeNotePage/>}/>
+        <Route path='/snp' element={<SharedNotePage/>}/>
+        <Route path='/dnp' element={<DeletedNotePage/>}/>
       </Routes>
     </BrowserRouter>
   );
