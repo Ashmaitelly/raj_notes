@@ -1,10 +1,9 @@
-import React, {useState} from 'react';
-import { Button } from 'react-bootstrap';
+import React from 'react';
+import {InputGroup, FormControl,Button} from 'react-bootstrap';
 
 
 
 function SearchBar(){
-
     return(
 
         <>

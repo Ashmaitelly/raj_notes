@@ -3,6 +3,8 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import Account from './views/Account';
 import NotesPage from './views/NotesPage'
+import SharedPage from './views/SharedPage';
+import DeletedPage from './views/DeletedPage';
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 
 
@@ -12,15 +14,10 @@ function App() {
       <Routes>
         <Route path='/' element={<Account />} />
         <Route path='/home' element={<NotesPage />}/>
+        <Route path='/shared' element={<SharedPage/>}/>
+        <Route path='/deleted' element={<DeletedPage/>}/>
       </Routes>
     </BrowserRouter>
   );
 }
 export default App;
-
-
-
-//<div className="App">
-//<h2 className="title">R A J NOTES</h2>
-//<Account />
-//</div>

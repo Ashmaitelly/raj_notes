@@ -12,7 +12,7 @@ function SmallNote ({text, color}){
   }
 
  return(
-   <Card border="secondary" style={{ width: '18rem', backgroundColor: color }}>
+   <Card border="secondary" style={{ width: '18rem',height: '12rem', backgroundColor: color }}>
      <Card.Body class="grid-container">
         <Card.Title>Note Title</Card.Title>
           <Card.Text>
