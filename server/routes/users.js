@@ -5,7 +5,7 @@ const UserModel = require('../models/user');
 const router = express.Router();
 
 // handle sign-in
-router.get("/signIn", (req, res) => {
+router.get("/SignIn", (req, res) => {
     const user = req.body;
 
     UserModel.findOne(user)
@@ -21,7 +21,7 @@ router.get("/signIn", (req, res) => {
     .catch(err => res.status(500).json({ error: err }));
   });
   // handle sign-up
-  router.post("/signUp", async (req, res) => {
+  router.post("/SignUp", async (req, res) => {
     const user = req.body;
 
     UserModel.findOne({username : user.username})

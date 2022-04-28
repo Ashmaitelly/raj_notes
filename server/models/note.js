@@ -22,8 +22,12 @@ const NoteSchema = new mongoose.Schema({
     type: Boolean,
     default: false
   },
+  author: {
+    type: String,
+    required: true
+  }
 
 });
 
-const UserModel = mongoose.model("users", UserSchema);
-module.exports = UserModel;
+const NoteModel = mongoose.model("note", NoteSchema);
+module.exports = NoteModel;
