@@ -10,10 +10,8 @@ function PostComments (){
         <InputGroup className="mb-2">
 
                 {/* forming the insert comment to the note page */}
-
-
               <span className="insert comments">
-                <FormControl 
+                <FormControl
                   placeholder="insert comments"
                   aria-label="insert comments"
                   aria-describedby="insert comments"

@@ -8,12 +8,12 @@ function SignIn() {
   const [password, setPassword] = useState("");
 
   return (
-    <div className="App">
+    <div className="App" class="position-absolute top-50 start-50 translate-middle">
       <div className="App-wrapper">
         <div>
           <h2 className="title">Sign In</h2>
         </div>
-        <div style={{width: "60%", marginLeft: "20%"}}>
+        <div>
           <Form>
             <Form.Group className="mb-3" controlId="formUsername">
               <Form.Label>Username</Form.Label>
