@@ -9,8 +9,8 @@ function Account(){
     return(
         
         <div className="Account" style={{}}>
-            <br/><br/><br/><br/><br/>
-            <div className='d-flex justify-content-center'>
+            
+            <div className='d-flex justify-content-center mt-5'>
                 <Button  style={{marginRight: "1%"}} onClick={()=>{setHaveUser(true)}}>Log In</Button>
                 <Button onClick={()=>{setHaveUser(false)}}>Sign Up</Button>
             </div>

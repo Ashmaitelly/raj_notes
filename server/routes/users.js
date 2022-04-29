@@ -6,14 +6,14 @@ const UserModel = require('../models/user');
 router.get("/SignIn", (req, res) => {
     const user = req.body;
 
-    UserModel.findOne(user)
+    UserModel.findOne({username : user.username, password: user.password})
     .then(result => {
       if(!result){
         //404 if user not found
-        res.status(404).json();
+        res.status(404).json('Invalid username or password');
       }
       else{
-        res.json(result);
+        res.json(result.username);
       } 
     })
     .catch(err => res.status(500).json({ error: err }));
@@ -27,11 +27,11 @@ router.get("/SignIn", (req, res) => {
       if(!result){
         const newUser = new UserModel(user);
         await newUser.save();
-        res.json(user);
+        res.json('User successfully created');
       }
       else{
         //403 if user already exists
-        res.status(403).json();
+        res.status(403).json('User already exists');
       } 
     })
     .catch(err => res.status(500).json({ error: err }));
