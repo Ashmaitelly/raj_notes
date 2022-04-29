@@ -38,4 +38,22 @@ router.post("/create", async (req, res) => {
   catch{err => res.status(500).json({ error: err })}
 });
 
+// update note
+router.put("/update/:id", (req, res) => {
+  const _id = req.params.id
+  const note = req.body;
+  const update = { title: note.title, text: note.text, date_modified: Date.now}
+  NoteModel.findOneAndUpdate({_id: _id, soft_deleted: false},update)
+  .then(result => {
+      if(!result){
+        res.status(404).json();
+      }
+      else{
+        res.json(result);
+      }
+      
+  })
+  .catch(err => res.status(500).json({ error: err }));
+});
+
 module.exports = router;
