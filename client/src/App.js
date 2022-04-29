@@ -9,6 +9,7 @@ import Note from './components/Note';
 import HomeNotePage from './views/HomeNotePage';
 import SharedNotePage from './views/SharedNotePage'
 import DeletedNotePage from './views/DeletedNotePage';
+import AddNotePage from './views/AddNotePage';
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 
 
@@ -24,6 +25,7 @@ function App() {
         <Route path='/hnp' element={<HomeNotePage/>}/>
         <Route path='/snp' element={<SharedNotePage/>}/>
         <Route path='/dnp' element={<DeletedNotePage/>}/>
+        <Route path='/anp' element={<AddNotePage/>}/>
       </Routes>
     </BrowserRouter>
   );
