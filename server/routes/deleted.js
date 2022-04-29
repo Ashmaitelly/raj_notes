@@ -2,9 +2,9 @@ const router = require('express').Router();
 
 const NoteModel = require('../models/note');
 
-//get user notes
+//get soft deleted user notes
 router.get("/", (req, res) => {
-    NoteModel.find({soft_deleted: false})
+    NoteModel.find({soft_deleted: true})
     .then(result => {
         res.json(result);
     })
@@ -14,28 +14,26 @@ router.get("/", (req, res) => {
 //get specific note
 router.get("/:id", (req, res) => {
   const _id = req.params.id
-  NoteModel.findOne({_id: _id, soft_deleted: false})
+  NoteModel.findOne({_id: _id, soft_deleted: true})
   .then(result => {
-      if(!result){
-        res.status(404).json();
-      }
-      else{
-        res.json(result);
-      }
-      
+    if(!result){
+      res.status(404).json();
+    }
+    else{
+      res.json(result);
+    }
   })
   .catch(err => res.status(500).json({ error: err }));
 });
 
 // new note
-router.post("/create", async (req, res) => {
-  const note = req.body;
-  try {
-  const newNote = new NoteModel(note);
-  await newNote.save();
-  res.json(note);
-  }
-  catch{err => res.status(500).json({ error: err })}
+router.delete("/delete/:id", async (req, res) => {
+  const _id = req.params.id
+  NoteModel.deleteOne({_id: _id})
+  .then(result => {
+      res.json('Sucessfully deleted');
+  })
+  .catch(err => res.status(500).json({ error: err }));
 });
 
 module.exports = router;
