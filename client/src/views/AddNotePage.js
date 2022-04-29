@@ -15,7 +15,7 @@ function AddNotePage({text}){
     return(
 <div>
   <NavBar/>
-  <Card style={{  height: '80%' , width: '75%', margin: '0 auto' }}>
+  <Card style={{  height: '1000%' , width: '75%', margin: '0 auto' }}>
     <Card.Body>
     
       <Card.Title><input size="lg" placeholder="insert Title" type="title" value={title} onChange={(e)=>{setTitle(e.target.value)}}/></Card.Title>
@@ -40,12 +40,14 @@ function AddNotePage({text}){
 
     </Card.Body>
   </Card>
-  <Button variant="primary" onClick={()=>{console.log("save")}}>
+      <div class="d-md-inline bg-success"style={{marginLeft: "12.5%"}}>
+  <Button style={{marginRight: "1% "}}variant="primary" onClick={()=>{console.log("save")}}>
               Save
   </Button>
   <Button variant="primary" onClick={()=>{navigate("/home")}}>
               Cancel
   </Button>        
+</div>
 </div>
     )
 }
