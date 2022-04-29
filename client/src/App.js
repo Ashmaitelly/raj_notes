@@ -21,7 +21,7 @@ function App() {
         <Route path='/home' element={<NotesPage />}/>
         <Route path='/shared' element={<SharedPage/>}/>
         <Route path='/deleted' element={<DeletedPage/>}/>
-        <Route path='/notes' element={<Note/>}/>
+        <Route path='/note' element={<Note/>}/>
         <Route path='/hnp' element={<HomeNotePage/>}/>
         <Route path='/snp' element={<SharedNotePage/>}/>
         <Route path='/dnp' element={<DeletedNotePage/>}/>
