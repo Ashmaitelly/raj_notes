@@ -6,13 +6,19 @@ import { Card } from 'react-bootstrap';
 function Note({text}){
 
   return(
-    <Card style={{  height: '80%' , width: '75%', margin: '0 auto' }}>
-      <Card.Body>
-        <Card.Title>Note Title</Card.Title>
-        <Card.Subtitle className="mb-2 text-muted">Modified Date</Card.Subtitle>
-        <Card.Text style={{  whiteSpace: "pre-wrap"}}> {text}  </Card.Text>
-      </Card.Body>
-    </Card>
+    <div class="card text-center">
+  <div class="card-header">
+    Note Title
+  </div>
+  <div class="input-group">
+  <div class="input-group-prepend">
+  </div>
+  <textarea class="form-control" aria-label="With textarea"></textarea>
+  </div>
+  <div class="card-footer text-muted">
+    modified date
+  </div>
+</div>
   )
 
 }
