@@ -11,12 +11,14 @@ function DeletedNotePage(){
     <div>
         <NavBar/>
         <Note/>
+        <div class="d-md-inline bg-success"style={{marginLeft: "12.5%"}}>
         <Button variant="primary" style={{marginRight:"1%"}} onClick={()=>{navigate("/home")}}>
             Restore
         </Button>
         <Button variant="primary" onClick={()=>{navigate("/deleted")}}>
             Delete
         </Button>
+        </div>
         <Comments/>
     </div>
 
