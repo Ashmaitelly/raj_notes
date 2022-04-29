@@ -1,8 +1,6 @@
-const express = require('express');
+const router = require('express').Router();
 
 const UserModel = require('../models/user');
-
-const router = express.Router();
 
 // handle sign-in
 router.get("/SignIn", (req, res) => {

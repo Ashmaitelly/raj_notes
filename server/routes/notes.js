@@ -1,12 +1,10 @@
-const express = require('express');
+const router = require('express').Router();
 
 const NoteModel = require('../models/note');
 
-const router = express.Router();
-
 //get user notes
 router.get("/", (req, res) => {
-
+    console.log(req.body);
     NoteModel.find({})
     .then(result => {
         res.json(result);

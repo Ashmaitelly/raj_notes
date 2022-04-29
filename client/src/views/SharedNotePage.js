@@ -7,7 +7,11 @@ function SharedNotePage(){
 
     return(
 
-        <NavBar />
+        <div>
+            <NavBar />
+            <Note />
+            <PostComments />
+        </div>
 
     )
 }
