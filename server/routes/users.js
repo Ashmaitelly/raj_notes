@@ -3,7 +3,7 @@ const router = require('express').Router();
 const UserModel = require('../models/user');
 
 // handle sign-in
-router.get("/SignIn", (req, res) => {
+router.get("/signin", (req, res) => {
     const user = req.body;
 
     UserModel.findOne({username : user.username, password: user.password})
@@ -19,7 +19,7 @@ router.get("/SignIn", (req, res) => {
     .catch(err => res.status(500).json({ error: err }));
   });
   // handle sign-up
-  router.post("/SignUp", async (req, res) => {
+  router.post("/signup", async (req, res) => {
     const user = req.body;
 
     UserModel.findOne({username : user.username})
