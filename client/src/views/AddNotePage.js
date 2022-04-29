@@ -1,6 +1,5 @@
 import React,{useState} from "react";
 import {Card,Button, FormControl,InputGroup} from 'react-bootstrap';
-import Note from "../components/Note";
 import NavBar from "../components/NavBar";
 import { useNavigate } from "react-router-dom";
 
@@ -40,7 +39,7 @@ function AddNotePage({text}){
     </Card.Body>
   </Card>
       <div class="d-md-inline "style={{marginLeft: "12.5%"}}>
-  <Button style={{marginRight: "1%"}}variant="primary" onClick={()=>{console.log("save")}}>
+  <Button style={{marginRight: "1%"}}variant="primary" onClick={()=>{navigate("/home")}}>
               Save
   </Button>
   <Button variant="primary" onClick={()=>{navigate("/home")}}>
