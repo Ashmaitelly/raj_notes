@@ -25,7 +25,7 @@ function AddNotePage({text}){
       <Card.Text style={{  whiteSpace: "pre-wrap"}}>
       <InputGroup className="mb-3">
     <FormControl
-     text={``}
+     as="textarea"
       placeholder="insert text"
       aria-label="insert text"
       aria-describedby="basic-addon1"
