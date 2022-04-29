@@ -22,7 +22,7 @@ router.get("/:id", (req, res) => {
 });
 
 // new note
-router.post("/Create", async (req, res) => {
+router.post("/create", async (req, res) => {
   const note = req.body;
   try {
   const newNote = new NoteModel(note);
