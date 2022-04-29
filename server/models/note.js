@@ -25,6 +25,9 @@ const NoteSchema = new mongoose.Schema({
   author: {
     type: String,
     required: true
+  },
+  bgc: {
+    type: String
   }
 
 });
