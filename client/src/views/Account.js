@@ -11,13 +11,14 @@ function Account(){
         <div className="Account" style={{}}>
             
             <div className='d-flex justify-content-center mt-5'>
-                <Button  style={{marginRight: "1%"}} onClick={()=>{setHaveUser(true)}}>Log In</Button>
-                <Button onClick={()=>{setHaveUser(false)}}>Sign Up</Button>
+                <Button style={{marginRight: "1%"}} onClick={()=>{setHaveUser(true)}}>Sign Up</Button>
+                <Button onClick={()=>{setHaveUser(false)}}>Log In</Button>
             </div>
     { /**if else condition */}
         { haveUser ?
-            <SignIn /> :
-            <SignUp />
+            <SignUp /> :
+            <SignIn />
+            
         }
 
         </div>
