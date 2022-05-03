@@ -8,7 +8,7 @@ export default function NotesPage () {
     return (
         <div>
          <NavBar/>
-         <h2 class="text-center">Your NOTES</h2>
+         <h2 class="text-center">{localStorage.getItem('user')}'s Notes</h2>
          <SearchBar/>
          <div className="d-flex flex-wrap justify-content-around" style={{width: "80%", marginLeft: "10%"}}>
           
