@@ -1,6 +1,7 @@
 import React,{useState} from "react";
 import {Card,Button, FormControl,InputGroup} from 'react-bootstrap';
 import NavBar from "../components/NavBar";
+import ColorSelector from "../components/ColorSelector";
 import { useNavigate } from "react-router-dom";
 
 function AddNotePage({text}){
@@ -45,6 +46,7 @@ function AddNotePage({text}){
   <Button variant="primary" onClick={()=>{navigate("/home")}}>
               Cancel
   </Button>
+  <ColorSelector/>
 </div>
 </div>
     )
