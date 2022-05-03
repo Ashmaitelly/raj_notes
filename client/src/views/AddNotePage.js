@@ -34,7 +34,7 @@ function AddNotePage({text}){
     />
   </InputGroup>
 
-        {/*<input style={{  whiteSpace: "pre-wrap" ,width:"142vh", height:"50vh"}} placeholder="insert Text" type={text} />*/}
+
          </Card.Text>
 
     </Card.Body>
