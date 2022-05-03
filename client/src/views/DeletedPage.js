@@ -7,7 +7,7 @@ export default function DeletedPage () {
     return (
         <div>
          <NavBar/>
-         <h2 class="text-center">Deleted NOTES</h2>
+         <h2 class="text-center">{localStorage.getItem('user')}'s Trash</h2>
          <SearchBar/>
          <div className="d-flex flex-wrap justify-content-around" style={{width: "80%", marginLeft: "10%"}}>
             <SmallNote color={"#f50"} text={`This is a lovely life if u have a lovely wife where she can take care of u like her own child and gives u all the love and u give her all the protection and security and love all at the same time, life is about sharing and caring, giving and taking.x`}/>
