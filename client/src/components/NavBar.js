@@ -1,13 +1,21 @@
-import React from "react";
+import React,{useEffect} from "react";
 import 'bootstrap/dist/css/bootstrap.css';
 import { useNavigate } from "react-router-dom";
 
 function NavBar() {
-  const navigate= useNavigate();
+    const navigate = useNavigate();
+    
+    useEffect(()=>{
+        if(!localStorage.getItem('user')){
+            navigate("/");
+        }
+    },[navigate]);
+
     const logOut = () =>{
       localStorage.clear();
       navigate("/");
     }
+
     return(
 
         <nav style={{position:'sticky', top:'0', zIndex:"3"}} class="navbar navbar-expand-lg navbar-dark bg-dark">
