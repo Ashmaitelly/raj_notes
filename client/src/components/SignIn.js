@@ -1,11 +1,23 @@
 import React, { useState } from "react";
 import {Button, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import Axios from 'axios';
 
 function SignIn() {
   const navigate= useNavigate();
-  const [userName, setUserName] = useState("");
+  const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
+
+  const signin = () =>{
+    Axios.get("http://localhost:3001/signin",{username,password})
+    .then((response) =>{
+      alert(response.data);
+      navigate("/home");
+    })
+    .catch((error) => {
+      alert(error.response.data);
+    })
+  };
 
   return (
     <div className="App" class="position-absolute top-50 start-50 translate-middle">
@@ -17,7 +29,7 @@ function SignIn() {
           <Form>
             <Form.Group className="mb-3" controlId="formUsername">
               <Form.Label>Username</Form.Label>
-              <Form.Control type="text" placeholder="Enter Username" value={userName} onChange={(e)=>{setUserName(e.target.value)}}/>
+              <Form.Control type="text" placeholder="Enter Username" value={username} onChange={(e)=>{setUserName(e.target.value)}}/>
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formPassword">
@@ -25,7 +37,7 @@ function SignIn() {
               <Form.Control type="password" placeholder="Password" value={password} onChange={(e)=>{setPassword(e.target.value)}} />
             </Form.Group>
 
-            <Button variant="primary" onClick={()=>{navigate("/home")}}>
+            <Button variant="primary" onClick={()=>{signin()}}>
               Submit
             </Button>
           </Form>
