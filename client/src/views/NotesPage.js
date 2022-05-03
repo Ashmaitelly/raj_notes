@@ -13,7 +13,7 @@ export default function NotesPage () {
          <div className="d-flex flex-wrap justify-content-around" style={{width: "80%", marginLeft: "10%"}}>
           
              
-            <SmallNote onClick={()=>{navigate("/hnp")} }color="#543" text={`this is a lovely chat`}/>
+            <SmallNote color="#543" text={`this is a lovely chat`}/>
             <SmallNote color={"#678"} text={`This is a lovely `}/>
             <SmallNote color={"#433"} text={`This is a lovely `}/>
             <SmallNote color={"#822"} text={`This is a lovely `}/>

@@ -11,7 +11,7 @@ function SharedNotePage(){
 
         <div>
             <NavBar />
-            <Note />
+            <Note color={"#543"}/>
             <PostComments />
             <Comments/>
         </div>
