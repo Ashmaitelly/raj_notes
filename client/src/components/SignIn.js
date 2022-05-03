@@ -9,15 +9,20 @@ function SignIn() {
   const [password, setPassword] = useState("");
 
   const signin = (e) =>{
+    //prevent
     e.preventDefault();
+
     Axios.get("http://localhost:3001/signin",{params: {username :username, password: password}})
     .then((response) =>{
-      alert(response.data);
+      localStorage.setItem('user', response.data);
       navigate("/home");
     })
     .catch((error) => {
       alert(error.response.data);
-    })
+    });
+
+
+
   };
 
   return (
@@ -38,7 +43,7 @@ function SignIn() {
               <Form.Control type="password" placeholder="Password" value={password} onChange={(e)=>{setPassword(e.target.value)}} />
             </Form.Group>
 
-            <Button variant="primary" type="submit" onClick={(e)=>{signin(e)}}>
+            <Button variant="primary" type="submit">
               Submit
             </Button>
           </Form>

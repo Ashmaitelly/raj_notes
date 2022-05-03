@@ -14,7 +14,8 @@ const navigate= useNavigate();
     if(password === confirmPassword){
     Axios.post("http://localhost:3001/signup",{username,password})
     .then((response) =>{
-      alert(response.data);
+      alert("User sucussefully created");
+      localStorage.setItem("user", response.data);
       navigate("/home");
     })
     .catch((error) => {
@@ -22,7 +23,7 @@ const navigate= useNavigate();
     })
   }
   else{
-    alert("Passwords don't match")
+    alert("Passwords don't match");
   }
   };
 
@@ -49,7 +50,7 @@ const navigate= useNavigate();
             <Form.Control type="password" placeholder="Password" value={confirmPassword} onChange={(e)=>{setConfirmPassword(e.target.value)}} />
           </Form.Group>
 
-          <Button variant="primary" type="submit" onClick={(e)=>{createUser(e);}}>
+          <Button variant="primary" type="submit">
             Submit
           </Button>
         </Form>
