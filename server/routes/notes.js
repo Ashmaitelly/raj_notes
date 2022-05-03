@@ -42,7 +42,7 @@ router.post("/create", async (req, res) => {
 router.put("/update/:id", (req, res) => {
   const _id = req.params.id
   const note = req.body;
-  const update = { title: note.title, text: note.text, date_modified: Date.now}
+  const update = { title: note.title, text: note.text, date_modified: Date.now()}
   NoteModel.findOneAndUpdate({_id: _id, soft_deleted: false},update)
   .then(result => {
       if(!result){
