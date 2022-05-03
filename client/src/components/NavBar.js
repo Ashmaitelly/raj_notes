@@ -1,7 +1,13 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.css';
+import { useNavigate } from "react-router-dom";
 
 function NavBar() {
+  const navigate= useNavigate();
+    const logOut = () =>{
+      localStorage.clear();
+      navigate("/");
+    }
     return(
 
         <nav style={{position:'sticky', top:'0', zIndex:"3"}} class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -23,7 +29,7 @@ function NavBar() {
           </ul>
           <ul class="navbar-nav mr-auto">
             <li class="d-flex justify-content-end nav-item">
-              <a class="nav-link" href="/">Log Out</a>
+            <button class="btn btn-outline-danger my-2 my-sm-0" onClick={logOut}>Logout</button>
             </li>
           </ul>
         </div>

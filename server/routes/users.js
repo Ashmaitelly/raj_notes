@@ -26,7 +26,7 @@ router.get("/signin", (req, res) => {
       if(!result){
         const newUser = new UserModel(user);
         await newUser.save();
-        res.json('User successfully created');
+        res.json(user.username);
       }
       else{
         //403 if user already exists
