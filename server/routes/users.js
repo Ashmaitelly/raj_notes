@@ -4,8 +4,7 @@ const UserModel = require('../models/user');
 
 // handle sign-in
 router.get("/signin", (req, res) => {
-    const user = req.body;
-
+    const user = req.query;
     UserModel.findOne({username : user.username, password: user.password})
     .then(result => {
       if(!result){

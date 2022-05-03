@@ -9,7 +9,7 @@ function SignIn() {
   const [password, setPassword] = useState("");
 
   const signin = () =>{
-    Axios.get("http://localhost:3001/signin",{username,password})
+    Axios.get("http://localhost:3001/signin",{params: {username :username, password: password}})
     .then((response) =>{
       alert(response.data);
       navigate("/home");
