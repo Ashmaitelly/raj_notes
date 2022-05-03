@@ -8,7 +8,8 @@ function SignIn() {
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
 
-  const signin = () =>{
+  const signin = (e) =>{
+    e.preventDefault();
     Axios.get("http://localhost:3001/signin",{params: {username :username, password: password}})
     .then((response) =>{
       alert(response.data);
@@ -26,7 +27,7 @@ function SignIn() {
           <h2 className="title">Sign In</h2>
         </div>
         <div>
-          <Form>
+          <Form onSubmit={(e)=>{signin(e)}}> 
             <Form.Group className="mb-3" controlId="formUsername">
               <Form.Label>Username</Form.Label>
               <Form.Control type="text" placeholder="Enter Username" value={username} onChange={(e)=>{setUserName(e.target.value)}}/>
@@ -37,7 +38,7 @@ function SignIn() {
               <Form.Control type="password" placeholder="Password" value={password} onChange={(e)=>{setPassword(e.target.value)}} />
             </Form.Group>
 
-            <Button variant="primary" onClick={()=>{signin()}}>
+            <Button variant="primary" type="submit" onClick={(e)=>{signin(e)}}>
               Submit
             </Button>
           </Form>

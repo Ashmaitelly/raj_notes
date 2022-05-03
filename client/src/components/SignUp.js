@@ -9,7 +9,8 @@ const navigate= useNavigate();
   const [password, setPassword] = useState("");
   const [confirmPassword,setConfirmPassword] = useState("");
 
-  const createUser = () =>{
+  const createUser = (e) =>{
+    e.preventDefault();
     if(password === confirmPassword){
     Axios.post("http://localhost:3001/signup",{username,password})
     .then((response) =>{
@@ -32,7 +33,7 @@ const navigate= useNavigate();
           <h2 className="title" >Sign Up</h2>
         </div>
         <div>
-        <Form>
+        <Form onSubmit={(e) =>{createUser(e)}}>
           <Form.Group className="mb-3" controlId="formUsername">
             <Form.Label>Username</Form.Label>
             <Form.Control type="text" placeholder="Enter Username" value={username} onChange={(e)=>{setUserName(e.target.value)}}/>
@@ -48,9 +49,7 @@ const navigate= useNavigate();
             <Form.Control type="password" placeholder="Password" value={confirmPassword} onChange={(e)=>{setConfirmPassword(e.target.value)}} />
           </Form.Group>
 
-          <Button variant="primary" onClick={()=>{
-            createUser();
-          }}>
+          <Button variant="primary" type="submit" onClick={(e)=>{createUser(e);}}>
             Submit
           </Button>
         </Form>
