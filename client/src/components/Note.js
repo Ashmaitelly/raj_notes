@@ -14,7 +14,7 @@ function Note({text, color}){
     <Card.Body style={{ backgroundColor: color }}>
       <Card.Title>{note.title}</Card.Title>
         <Card.Subtitle className="mb-2 text-muted">Last Modified: {Moment(dateModified).format('MMMM Do YYYY, h:mm:ss a')}</Card.Subtitle>
-          <Card.Text style={{  whiteSpace: "pre-wrap"}}> {text}  </Card.Text>
+          <Card.Text style={{  whiteSpace: "pre-wrap"}}> {note.text}  </Card.Text>
     </Card.Body>
   </Card>
   </>
