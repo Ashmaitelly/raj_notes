@@ -41,7 +41,7 @@ function HomeNotePage(){
         <NotesContext.Provider value={note}>
         <Note
             color = {noteColor}
-            text = {"F#$% You Man"}
+            text = {"hello homies bi t7ine"}
         />
         </NotesContext.Provider>
         <div class="d-md-inline"style={{marginLeft: "12.5%"}}>
