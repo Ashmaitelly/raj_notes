@@ -19,7 +19,6 @@ export default function DeletedPage () {
     
     },[]);
     //render
-    console.log(notes);
     return (
         <div>
          <NavBar/>
