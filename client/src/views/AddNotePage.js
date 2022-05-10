@@ -43,7 +43,7 @@ function AddNotePage({text}){
   <Button style={{marginRight: "1%"}}variant="primary" onClick={()=>{navigate("/home")}}>
               Save
   </Button>
-  <Button variant="primary" onClick={()=>{navigate("/home")}}>
+  <Button variant="primary" onClick={()=>{navigate("/hnp")}}>
               Cancel
   </Button>
   <ColorSelector/>
