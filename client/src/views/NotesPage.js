@@ -8,11 +8,11 @@ import Axios from 'axios';
 export const NotesContext = createContext();
 
 export default function NotesPage () {
+    //navigate for anp
     const navigate= useNavigate();
-
+    //state for notes
     const [notes,setNotes] = useState([]);
-
-
+    //get notes once
     useEffect(()=>{
     Axios.get("http://localhost:3001/notes/")
     .then((response) =>{
