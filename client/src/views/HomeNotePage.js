@@ -1,6 +1,7 @@
 
 import NavBar from "../components/NavBar"
 import Note from "../components/Note"
+import ColorSelector from "../components/ColorSelector"
 import PostComments from "../components/PostComment"
 import Comments from "../components/Comments"
 import { Button } from "react-bootstrap"
@@ -23,6 +24,7 @@ const navigate=useNavigate();
             Share with
         </Button>
         </div>
+        <ColorSelector/>
             <PostComments />
             <Comments/>
     </div>
