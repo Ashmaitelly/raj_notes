@@ -1,15 +1,21 @@
-import React from "react";
-import {Card} from 'react-bootstrap'
+import {React,useContext} from "react";
+import {Card} from 'react-bootstrap';
+import { NotesContext } from "../views/NotesPage";
+import Moment from "moment";
 
 
 function Note({text}){
 
+  const note = useContext(NotesContext);
+  
+  const dateModified = Date(Date.parse(note.date_modified));
+
   return(
     <Card style={{  height: '80%' , width: '75%', margin: '0 auto' }}>
     <Card.Body>
-      <Card.Title>Note Title</Card.Title>
-      <Card.Subtitle className="mb-2 text-muted">Modified Date</Card.Subtitle>
-      <Card.Text style={{  whiteSpace: "pre-wrap"}}> {text}  </Card.Text>
+      <Card.Title>{note.title}</Card.Title>
+      <Card.Subtitle className="mb-2 text-muted">Last Modified: {Moment(dateModified).format('MMMM Do YYYY, h:mm:ss a')}</Card.Subtitle>
+      <Card.Text style={{  whiteSpace: "pre-wrap"}}> {note.text}  </Card.Text>
     </Card.Body>
   </Card>
   )

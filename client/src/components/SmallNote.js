@@ -1,9 +1,16 @@
-import React from 'react';
+import React,{useContext} from 'react';
 import { Card } from 'react-bootstrap';
-import {useNavigate} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom';
+import { NotesContext } from '../views/NotesPage';
+import Moment from 'moment';
 
 function SmallNote ({text, color}){
   const navigate =useNavigate()
+  
+  const note = useContext(NotesContext);
+
+  const dateModified = Date(Date.parse(note.date_modified));
+
 // to make a limit of letters in the typing and a colorful note.
   const truncString = (str, letter) => {
     if(str.length<=letter){
@@ -14,11 +21,12 @@ function SmallNote ({text, color}){
   }
 
  return(
-   <Card onClick={()=>{navigate("/hnp")}} border="secondary" style={{ width: '18rem',height: '12rem', backgroundColor: color, marginBottom: "50px", cursor: "pointer"}}>
+   <Card onClick={()=>{navigate(`/hnp?id=${note._id}`)}} border="secondary" style={{ width: '18rem',height: '12rem', backgroundColor: color, marginBottom: "50px", cursor: "pointer"}}>
      <Card.Body class="grid-container">
-        <Card.Title>Note Title</Card.Title>
+        <Card.Title>{note.title}</Card.Title>
+        <Card.Subtitle className="mb-2">{Moment(dateModified).format('MMMM Do YYYY, h:mm:ss a')}</Card.Subtitle>
           <Card.Text>
-             {truncString(text,200)}
+             {truncString(note.text,200)}
           </Card.Text>
      </Card.Body>
    </Card>
