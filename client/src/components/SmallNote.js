@@ -17,6 +17,7 @@ function SmallNote ({text, color}){
    <Card onClick={()=>{navigate("/hnp")}} border="secondary" style={{ width: '18rem',height: '12rem', backgroundColor: color, marginBottom: "50px", cursor: "pointer"}}>
      <Card.Body class="grid-container">
         <Card.Title>Note Title</Card.Title>
+        <Card.Subtitle className="mb-2">Modified Date</Card.Subtitle>
           <Card.Text>
              {truncString(text,200)}
           </Card.Text>
