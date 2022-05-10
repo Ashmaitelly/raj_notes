@@ -4,7 +4,7 @@ import {useNavigate} from 'react-router-dom';
 import { NotesContext } from '../views/NotesPage';
 import Moment from 'moment';
 
-function SmallNote ({text, color}){
+function SmallNote ({url}){
   const navigate =useNavigate()
   
   const note = useContext(NotesContext);
@@ -21,7 +21,7 @@ function SmallNote ({text, color}){
   }
 
  return(
-   <Card onClick={()=>{navigate(`/hnp?id=${note._id}`)}} border="secondary" style={{ width: '18rem',height: '12rem', backgroundColor: color, marginBottom: "50px", cursor: "pointer"}}>
+   <Card onClick={()=>{navigate(`/${url}?id=${note._id}`)}} border="secondary" style={{ width: '18rem',height: '12rem', backgroundColor: '#543', marginBottom: "50px", cursor: "pointer"}}>
      <Card.Body class="grid-container">
         <Card.Title>{note.title}</Card.Title>
         <Card.Subtitle className="mb-2">{Moment(dateModified).format('MMMM Do YYYY, h:mm:ss a')}</Card.Subtitle>
