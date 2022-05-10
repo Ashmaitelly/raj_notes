@@ -4,7 +4,7 @@ const NoteModel = require('../models/note');
 
 //get user notes
 router.get("/", (req, res) => {
-    NoteModel.find({soft_deleted: false})
+    NoteModel.find({soft_deleted: false}).select("title date_modified text")
     .then(result => {
         res.json(result);
     })
