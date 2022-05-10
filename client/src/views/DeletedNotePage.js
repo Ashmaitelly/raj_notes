@@ -10,7 +10,7 @@ function DeletedNotePage(){
     return(
     <div>
         <NavBar/>
-        <Note/>
+        {/* <Note/> */}
         <div class="d-md-inline"style={{marginLeft: "12.5%"}}>
         <Button variant="primary" style={{marginRight:"1%"}} onClick={()=>{navigate("/deleted")}}>
             Restore
