@@ -10,12 +10,15 @@ function AddNotePage({text}){
   const [title,setTitle]= useState("");
   const [word,setWord]= useState("");
    text =`` ;
+   const [noteColor, setNoteColor] = useState("#fff")
 
-
+   const getColor = (color) => {
+    setNoteColor(color)
+}
     return(
 <div>
   <NavBar/>
-  <Card style={{  height: '1000%' , width: '75%', margin: '0 auto' }}>
+  <Card style={{  height: '1000%' , width: '75%', margin: '0 auto' }}color= {noteColor}>
     <Card.Body>
 
       <Card.Title><input size="lg" placeholder="insert Title" type="title" value={title} onChange={(e)=>{setTitle(e.target.value)}}/></Card.Title>
@@ -49,7 +52,9 @@ function AddNotePage({text}){
       </li>
 
       <li>
-  <ColorSelector />
+  <ColorSelector 
+  func ={getColor}
+  />
   </li>
 
       <li>
