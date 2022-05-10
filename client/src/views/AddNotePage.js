@@ -45,20 +45,15 @@ function AddNotePage({text}){
         <li>
       <Button variant="primary" onClick={()=>{navigate("/home")}}>
               Save
-<<<<<<< HEAD
       </Button>
       </li>
 
       <li>
-  <ColorSelector style={{display:"middle",  margin:" 20px 162px 20px 130px", listStyle: "none"}}/>
+  <ColorSelector />
   </li>
 
       <li>
       <Button variant="primary" onClick={()=>{navigate("/home")}}>
-=======
-  </Button>
-  <Button variant="primary" onClick={()=>{navigate("/hnp")}}>
->>>>>>> 9c3cf5473b2723829505ab116c359fc99af70261
               Cancel
       </Button>
       </li>
