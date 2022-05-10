@@ -23,31 +23,46 @@ function AddNotePage({text}){
 
 
       <Card.Text style={{  whiteSpace: "pre-wrap"}}>
-      <InputGroup className="mb-3">
-    <FormControl
-     as="textarea"
-      placeholder="insert text"
-      aria-label="insert text"
-      aria-describedby="basic-addon1"
-      value={word}
-      onChange={(e)=>{setWord(e.target.value)}}
-    />
-  </InputGroup>
+        <InputGroup className="mb-3">
+            <FormControl
+                as="textarea"
+                placeholder="insert text"
+                aria-label="insert text"
+                aria-describedby="basic-addon1"
+                value={word}
+                onChange={(e)=>{setWord(e.target.value)}}
+              />
+        </InputGroup>
 
 
-         </Card.Text>
+      </Card.Text>
 
     </Card.Body>
   </Card>
-      <div class="d-md-inline "style={{marginLeft: "12.5%"}}>
-  <Button style={{marginRight: "1%"}}variant="primary" onClick={()=>{navigate("/home")}}>
+
+   <div class="d-md-inline ">
+      <ul style={{display:"flex",  margin:" 20px 162px 20px 130px", listStyle: "none", justifyContent:"space-between"}}>
+        <li>
+      <Button variant="primary" onClick={()=>{navigate("/home")}}>
               Save
-  </Button>
-  <Button variant="primary" onClick={()=>{navigate("/home")}}>
+      </Button>
+      </li>
+
+      <li>
+  <ColorSelector style={{display:"middle",  margin:" 20px 162px 20px 130px", listStyle: "none"}}/>
+  </li>
+
+      <li>
+      <Button variant="primary" onClick={()=>{navigate("/home")}}>
               Cancel
-  </Button>
-  <ColorSelector/>
-</div>
+      </Button>
+      </li>
+
+      
+  </ul>
+  
+  </div>
+  
 </div>
     )
 }
