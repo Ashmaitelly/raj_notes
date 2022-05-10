@@ -34,7 +34,7 @@ export default function NotesPage () {
           
           {notes.map((note,index) => (
             <NotesContext.Provider value={note}>
-              <SmallNote key={index} color="#543" text={`${note.text}`}/>
+              <SmallNote key={index} url="hnp" text={`${note.text}`}/>
             </NotesContext.Provider>
           ))}
             <div>
