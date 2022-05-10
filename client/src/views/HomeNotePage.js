@@ -18,6 +18,8 @@ function HomeNotePage(){
     const [searchParams, setSearchParams] = useSearchParams();
     //trying context
 
+    const [noteColor, setNoteColor] = useState("#fff")
+
     useEffect(()=>{
     Axios.get(`http://localhost:3001/notes/${searchParams.get("id")}`)
     .then((response) =>{
@@ -29,11 +31,18 @@ function HomeNotePage(){
     
     },[]);
 
+    const getColor = (color) => {
+        setNoteColor(color)
+    }
+
     return(
     <div>
         <NavBar/>
         <NotesContext.Provider value={note}>
-        <Note />
+        <Note
+            color = {noteColor}
+            text = {"F#$% You Man"}
+        />
         </NotesContext.Provider>
         <div class="d-md-inline"style={{marginLeft: "12.5%"}}>
         <Button variant="primary" style={{marginRight:"1%"}} onClick={()=>{navigate("/anp")}}>
@@ -46,7 +55,9 @@ function HomeNotePage(){
             Share with
         </Button>
         </div>
-        <ColorSelector/>
+        <ColorSelector
+            func = {getColor}
+        />
             <PostComments />
             <Comments/>
     </div>
