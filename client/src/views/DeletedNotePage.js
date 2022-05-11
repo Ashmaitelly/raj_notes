@@ -2,7 +2,7 @@ import React,{useState,useEffect} from "react";
 import NavBar from "../components/NavBar"
 import Note from "../components/Note"
 import Comments from "../components/Comments";
-import { useNavigate, useSearchParams } from "react-router-dom"
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import  Axios from "axios";
 import { NotesContext } from "./NotesPage";

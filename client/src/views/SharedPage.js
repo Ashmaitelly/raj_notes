@@ -1,17 +1,36 @@
+import React,{useState,useEffect} from "react"
 import NavBar from "../components/NavBar"
 import SearchBar from "../components/SearchBar"
 import SmallNote from "../components/SmallNote"
-
+import Axios from 'axios';
+import { NotesContext } from "./NotesPage";
 
 export default function SharedPage () {
+    //state for notes
+    const [notes,setNotes] = useState([]);
+    //get notes once
+    useEffect(()=>{
+    Axios.get("http://localhost:3001/notes/")
+    .then((response) =>{
+     setNotes(response.data);
+    })
+    .catch((error) => {
+      alert("Error getting data");
+    });
+    
+    },[]);
+    //render
     return (
         <div>
          <NavBar/>
             <h2 class="text-center">Shared with {localStorage.getItem('user')}</h2>
             <SearchBar/>
             <div className="d-flex flex-wrap justify-content-around" style={{width: "80%", marginLeft: "10%"}}>
-            {/* <SmallNote color={"#f50"} text={`This is a lovely life if u have a lovely wife where she can take care of u like her own child and gives u all the love and u give her all the protection and security and love all at the same time, life is about sharing and caring, giving and taking.x`}/>
-            <SmallNote color={"#f05"} text={`This is a lovely life if u have a lovely wife where she can take care of u like her own child and gives u all the love and u give her all the protection and security and love all at the same time, life is about sharing and caring, giving and taking.x`}/> */}
+            {notes.map((note,index) => (
+                <NotesContext.Provider value={note}>
+                <SmallNote key={index} url="snp" text={`${note.text}`}/>
+                </NotesContext.Provider>
+            ))}
             </div>
         </div>
     )
