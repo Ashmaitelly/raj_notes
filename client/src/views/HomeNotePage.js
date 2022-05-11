@@ -51,7 +51,7 @@ function HomeNotePage(){
         <Button variant="primary" style={{marginRight:"1%"}} onClick={()=>{navigate("/home")}}>
             Remove
         </Button>
-        <Button variant="primary" onClick={()=>{navigate("/home")}}>
+        <Button variant="primary" onClick={()=>{prompt("enter the username you want to share with")}}>
             Share with
         </Button>
         </div>
