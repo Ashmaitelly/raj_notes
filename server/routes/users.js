@@ -21,7 +21,11 @@ router.get("/signin", (req, res) => {
   router.post("/signup", async (req, res) => {
     const user = req.body;
 
-    UserModel.findOne({username : user.username})
+    if(!user.password || !user.username){
+      res.status(422).json('Username and password cannot be empty');
+    }
+    else{
+      UserModel.findOne({username : user.username})
     .then( async result => {
       if(!result){
         const newUser = new UserModel(user);
@@ -34,6 +38,7 @@ router.get("/signin", (req, res) => {
       } 
     })
     .catch(err => res.status(500).json({ error: err }));
+    }
   });
 
 module.exports = router;
