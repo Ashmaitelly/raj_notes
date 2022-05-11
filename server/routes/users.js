@@ -22,7 +22,7 @@ router.get("/signin", (req, res) => {
     const user = req.body;
 
     if(!user.password || !user.username){
-      res.status(422).json('Username and password cannot be empty');
+      res.status(422).json('Username or password cannot be empty');
     }
     else{
       UserModel.findOne({username : user.username})
