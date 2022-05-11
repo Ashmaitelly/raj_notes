@@ -15,7 +15,7 @@ function HomeNotePage(){
     //note state object
     const [note,setNote] = useState({});
     //url parameters
-    const [searchParams, setSearchParams] = useSearchParams();
+    const [searchParams] = useSearchParams();
     //trying context
 
     const [noteColor, setNoteColor] = useState("#fff")
@@ -29,7 +29,7 @@ function HomeNotePage(){
       alert("Error getting data");
     });
     
-    },[]);
+    },[searchParams]);
 
     const getColor = (color) => {
         setNoteColor(color)
