@@ -29,7 +29,11 @@ const NoteSchema = new mongoose.Schema({
   bgc: {
     type: String,
     default: 'white'
-  }
+  },
+  shared_users:{
+    type:[String],
+    default:[]
+ }
 
 });
 
