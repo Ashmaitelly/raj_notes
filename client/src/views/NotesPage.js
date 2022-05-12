@@ -14,7 +14,7 @@ export default function NotesPage () {
     const [notes,setNotes] = useState([]);
     //get notes once
     useEffect(()=>{
-    Axios.get("http://localhost:3001/notes/")
+    Axios.get("http://localhost:3001/notes/",{params: {author: localStorage.getItem('user')}})
     .then((response) =>{
      setNotes(response.data);
     })

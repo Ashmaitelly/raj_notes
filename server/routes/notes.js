@@ -4,7 +4,8 @@ const NoteModel = require('../models/note');
 
 //get user notes
 router.get("/", (req, res) => {
-    NoteModel.find({soft_deleted: false}).select("title date_modified text")
+    const author = req.query;
+    NoteModel.find({soft_deleted: false, author: author.author}).select("title date_modified text")
     .then(result => {
         res.json(result);
     })
