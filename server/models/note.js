@@ -27,7 +27,8 @@ const NoteSchema = new mongoose.Schema({
     required: true
   },
   bgc: {
-    type: String
+    type: String,
+    default: 'white'
   }
 
 });
