@@ -14,6 +14,7 @@ router.get("/", (req, res) => {
 
 //get specific note
 router.get("/:id", (req, res) => {
+  const author = req.query;
   const _id = req.params.id
   NoteModel.findOne({_id: _id, soft_deleted: false})
   .then(result => {

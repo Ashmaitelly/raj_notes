@@ -21,7 +21,7 @@ function SmallNote ({url}){
   }
 
  return(
-   <Card onClick={()=>{navigate(`/${url}?id=${note._id}`)}} border="secondary" style={{ width: '18rem',height: '12rem', backgroundColor: '#543', marginBottom: "50px", cursor: "pointer"}}>
+   <Card onClick={()=>{navigate(`/${url}?id=${note._id}`)}} style={{ width: '18rem',height: '12rem', backgroundColor: `${note.bgc}`, marginBottom: "50px", cursor: "pointer"}}>
      <Card.Body class="grid-container">
         <Card.Title>{note.title}</Card.Title>
         <Card.Subtitle className="mb-2">{Moment(dateModified).format('MMMM Do YYYY, h:mm:ss a')}</Card.Subtitle>
