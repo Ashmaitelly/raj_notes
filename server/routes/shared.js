@@ -4,7 +4,7 @@ const NoteModel = require("../models/note");
 
 //get soft deleted user notes
 router.get("/", (req, res) => {
-  const viewer= req.query.viewer;
+  const viewer = req.query.viewer;
   NoteModel.find({ shared: true, shared_users: viewer })
     .select("title date_modified text bgc")
     .then((result) => {
