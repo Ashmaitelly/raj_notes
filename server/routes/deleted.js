@@ -36,5 +36,16 @@ router.delete("/delete/:id", async (req, res) => {
   })
   .catch(err => res.status(500).json({ error: err }));
 });
-
+router.put("/update/:id", (req, res) => {
+  const _id = req.params.id;
+  NoteModel.findOneAndUpdate({ _id: _id, soft_deleted: true }, update)
+    .then((result) => {
+      if (!result) {
+        res.status(404).json();
+      } else {
+        res.json(result);
+      }
+    })
+    .catch((err) => res.status(500).json({ error: err }));
+});
 module.exports = router;
