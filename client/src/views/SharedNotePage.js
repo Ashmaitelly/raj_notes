@@ -17,7 +17,7 @@ export default function SharedNotePage(){
     //trying context
 
     useEffect(()=>{
-    Axios.get(`http://localhost:3001/notes/${searchParams.get("id")}`)
+    Axios.get(`http://localhost:3001/shared/${searchParams.get("id")}`)
     .then((response) =>{
      setNote(response.data);
     })
