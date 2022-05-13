@@ -1,40 +1,38 @@
 const mongoose = require("mongoose");
 
-
 const NoteSchema = new mongoose.Schema({
   title: {
     type: String,
-    required: true
+    required: true,
   },
   text: {
     type: String,
-    required: true
+    required: true,
   },
-  date_modified: { 
-    type: Date, 
-    default: Date.now 
+  date_modified: {
+    type: Date,
+    default: Date.now,
   },
   soft_deleted: {
     type: Boolean,
-    default: false
+    default: false,
   },
   shared: {
     type: Boolean,
-    default: false
+    default: false,
   },
   author: {
     type: String,
-    required: true
+    required: true,
   },
   bgc: {
     type: String,
-    default: 'white'
+    default: "white",
   },
-  shared_users:{
-    type:[String],
-    default:[]
- }
-
+  shared_users: {
+    type: [String],
+    default: [],
+  },
 });
 
 const NoteModel = mongoose.model("note", NoteSchema);

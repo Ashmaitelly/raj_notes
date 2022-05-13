@@ -10,7 +10,7 @@ export default function SharedPage () {
     const [notes,setNotes] = useState([]);
     //get notes once
     useEffect(()=>{
-    Axios.get("http://localhost:3001/notes/")
+    Axios.get("http://localhost:3001/shared/",{params: {viewer: localStorage.getItem('user')}})
     .then((response) =>{
      setNotes(response.data);
     })
