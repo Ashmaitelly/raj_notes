@@ -3,8 +3,23 @@ import {Card,Button, FormControl,InputGroup} from 'react-bootstrap';
 import NavBar from "../components/NavBar";
 import ColorSelector from "../components/ColorSelector";
 import { useNavigate } from "react-router-dom";
+import  Axios  from "axios";
 
 function AddNotePage({text}){
+
+
+  const addNewNote = async (e) =>{
+    try {
+      let response = await Axios.post("http://localhost:3001/notes/create",{title,text: word, author: localStorage.getItem('user')})
+      console.log(200, response);
+      navigate("/home");
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+
+
   const navigate=useNavigate();
 
   const [title,setTitle]= useState("");
@@ -16,6 +31,7 @@ function AddNotePage({text}){
     setNoteColor(color)
 }
     return(
+
 <div>
   <NavBar/>
   <Card style={{  height: '1000%' , width: '75%', margin: '0 auto' }}color= {noteColor}>
@@ -46,7 +62,7 @@ function AddNotePage({text}){
    <div class="d-md-inline ">
       <ul style={{display:"flex",  margin:" 20px 162px 20px 130px", listStyle: "none", justifyContent:"space-between"}}>
         <li>
-      <Button variant="primary" onClick={()=>{navigate("/home")}}>
+      <Button variant="primary" onClick={addNewNote}>
               Save
       </Button>
       </li>
