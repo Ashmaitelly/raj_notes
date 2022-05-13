@@ -30,21 +30,13 @@ router.get("/:id", (req, res) => {
 // new note
 router.post("/create", async (req, res) => {
   const note = req.body;
-  console.log(note)
+  console.log(note);
   try {
-<<<<<<< HEAD
-  const newNote = new NoteModel(note);
-  const savedNote = await newNote.save();
-  return res.json(savedNote);
-  } catch(err){
-    res.status(500).json({ error: err })
-=======
     const newNote = new NoteModel(note);
     await newNote.save();
     res.json(note);
   } catch {
     (err) => res.status(500).json({ error: err });
->>>>>>> e4aca9396b4985b79958284436e5da79020446ce
   }
 });
 
