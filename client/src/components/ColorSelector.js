@@ -16,6 +16,7 @@ return(
     <Dropdown.Item onClick={()=>{setCol("#F60")}} type="color" defaultValue="#F60">Orange</Dropdown.Item>
     <Dropdown.Item onClick={()=>{setCol("#0EF")}} type="color" defaultValue="#0EF">Light Blue</Dropdown.Item>
     <Dropdown.Item onClick={()=>{setCol("#FF00EA")}} type="color" defaultValue="#FF00EA">Pink</Dropdown.Item>
+    <Dropdown.Item onClick={()=>{setCol("#fff")}} type="color" defaultValue="#FFF">White</Dropdown.Item>
   </DropdownButton>
 );
 }

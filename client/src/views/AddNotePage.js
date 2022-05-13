@@ -10,7 +10,7 @@ function AddNotePage({text}){
 
   const addNewNote = async (e) =>{
     try {
-      let response = await Axios.post("http://localhost:3001/notes/create",{title,text: word, author: localStorage.getItem('user')})
+      let response = await Axios.post("http://localhost:3001/notes/create",{title,text: word, bgc:noteColor, author: localStorage.getItem('user')})
       console.log(200, response);
       navigate("/home");
     } catch (err) {
@@ -28,16 +28,15 @@ function AddNotePage({text}){
    const [noteColor, setNoteColor] = useState("#fff")
 
    const getColor = (color) => {
-    setNoteColor(color)
+    setNoteColor(color);
 }
     return(
 
 <div>
   <NavBar/>
-  <Card style={{  height: '1000%' , width: '75%', margin: '0 auto' }}color= {noteColor}>
+  <Card style={{  height: '1000%' , width: '75%', margin: '0 auto', backgroundColor: noteColor  }}>
     <Card.Body>
-
-      <Card.Title><input size="lg" placeholder="insert Title" type="title" value={title} onChange={(e)=>{setTitle(e.target.value)}}/></Card.Title>
+      <Card.Title><input style={{backgroundColor: noteColor}} size="lg" placeholder="insert Title" type="title" value={title} onChange={(e)=>{setTitle(e.target.value)}}/></Card.Title>
       <Card.Subtitle className="mb-2 text-muted">Last Modified</Card.Subtitle>
 
 
@@ -45,6 +44,7 @@ function AddNotePage({text}){
         <InputGroup className="mb-3">
             <FormControl
                 as="textarea"
+                style={{backgroundColor: noteColor}}
                 placeholder="insert text"
                 aria-label="insert text"
                 aria-describedby="basic-addon1"
@@ -68,9 +68,7 @@ function AddNotePage({text}){
       </li>
 
       <li>
-  <ColorSelector 
-  func ={getColor}
-  />
+  <ColorSelector func ={getColor}/>
   </li>
 
       <li>
