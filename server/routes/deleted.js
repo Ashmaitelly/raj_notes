@@ -4,7 +4,8 @@ const NoteModel = require('../models/note');
 
 //get soft deleted user notes
 router.get("/", (req, res) => {
-    NoteModel.find({soft_deleted: true})
+  const author= req.query.author;
+    NoteModel.find({soft_deleted: true, author: author})
     .then(result => {
         res.json(result);
     })
