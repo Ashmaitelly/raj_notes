@@ -2,15 +2,25 @@ import React,{useState} from "react";
 import {Card,Button, FormControl,InputGroup} from 'react-bootstrap';
 import NavBar from "../components/NavBar";
 import ColorSelector from "../components/ColorSelector";
-import { useNavigate } from "react-router-dom";
+import { useNavigate ,useSearchParams} from "react-router-dom";
 import  Axios  from "axios";
 
 function AddNotePage({text}){
 
+const [searchParams] = useSearchParams();
 
   const addNewNote = async (e) =>{
     try {
       let response = await Axios.post("http://localhost:3001/notes/create",{title,text: word, bgc:noteColor, author: localStorage.getItem('user')})
+      console.log(200, response);
+      navigate("/home");
+    } catch (err) {
+      console.error(err);
+    }
+  };
+  const editNote = async (e) =>{
+    try {
+      let response = await Axios.put(`http://localhost:3001/notes/update/${searchParams.get("id")}`,{title,text: word})
       console.log(200, response);
       navigate("/home");
     } catch (err) {
@@ -24,6 +34,8 @@ function AddNotePage({text}){
 
   const [title,setTitle]= useState("");
   const [word,setWord]= useState("");
+  const [edit]= useState(searchParams.get("id")? true : false);
+  console.log(edit);
    text =`` ;
    const [noteColor, setNoteColor] = useState("#fff")
 
@@ -62,7 +74,7 @@ function AddNotePage({text}){
    <div class="d-md-inline ">
       <ul style={{display:"flex",  margin:" 20px 162px 20px 130px", listStyle: "none", justifyContent:"space-between"}}>
         <li>
-      <Button variant="primary" onClick={addNewNote}>
+      <Button variant="primary" onClick={edit? editNote: addNewNote}>
               Save
       </Button>
       </li>
@@ -82,6 +94,7 @@ function AddNotePage({text}){
   
   </div>
   
+
 </div>
     )
 }

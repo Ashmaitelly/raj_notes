@@ -44,7 +44,7 @@ function HomeNotePage() {
           variant="primary"
           style={{ marginRight: "1%" }}
           onClick={() => {
-            navigate("/anp");
+            navigate(`/anp?id=${note._id}`);
           }}
         >
           Edit
