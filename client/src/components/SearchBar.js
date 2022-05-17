@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
-import { InputGroup, FormControl, Button } from "react-bootstrap";
-import { useState } from "react";
+import { InputGroup, FormControl } from "react-bootstrap";
 import { SearchContext } from "../App";
 
 function SearchBar() {

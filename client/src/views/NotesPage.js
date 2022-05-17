@@ -13,10 +13,11 @@ export default function NotesPage() {
   const [notes, setNotes] = useState([]);
   //filter string
   const [search, setSearch] = useState("");
-  //get notes once
+  //search function
   const searchBar = (searchString) => {
     setSearch(searchString);
   };
+  //get notes once
 
   useEffect(() => {
     Axios.get("http://localhost:3001/notes/", {
