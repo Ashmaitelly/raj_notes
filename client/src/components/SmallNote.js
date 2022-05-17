@@ -9,8 +9,6 @@ function SmallNote({ url }) {
 
   const note = useContext(NotesContext);
 
-  const dateModified = note.date_modified.toString();
-
   // to make a limit of letters in the typing and a colorful note.
   const truncString = (str, letter) => {
     if (str.length <= letter) {
@@ -36,7 +34,7 @@ function SmallNote({ url }) {
       <Card.Body class="grid-container">
         <Card.Title>{note.title}</Card.Title>
         <Card.Subtitle className="mb-2">
-          {Moment(dateModified).format("MMMM Do YYYY, h:mm:ss a")}
+          {Moment(note.date_modified).format("MMMM Do YYYY, h:mm:ss a")}
         </Card.Subtitle>
         <Card.Text>{truncString(note.text, 200)}</Card.Text>
       </Card.Body>

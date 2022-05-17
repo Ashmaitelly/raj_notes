@@ -5,7 +5,6 @@ import Moment from "moment";
 
 function Note() {
   const note = useContext(NotesContext);
-  // const dateModified = note.date_modified.toString();
 
   return (
     <>
@@ -14,7 +13,7 @@ function Note() {
           <Card.Title>{note.title}</Card.Title>
           <Card.Subtitle className="mb-2 text-muted">
             Last Modified:{" "}
-            {/* {Moment(dateModified).format("MMMM Do YYYY, h:mm:ss a")} */}
+            {Moment(note.date_modified).format("MMMM Do YYYY, h:mm:ss a")}
           </Card.Subtitle>
           <Card.Text style={{ whiteSpace: "pre-wrap" }}>
             {" "}
