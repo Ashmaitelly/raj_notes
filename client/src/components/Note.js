@@ -3,18 +3,18 @@ import { Card } from "react-bootstrap";
 import { NotesContext } from "../App.js";
 import Moment from "moment";
 
-function Note({ text, color }) {
+function Note() {
   const note = useContext(NotesContext);
-  const dateModified = note.date_modified.toString();
+  // const dateModified = note.date_modified.toString();
 
   return (
     <>
       <Card style={{ height: "80%", width: "75%", margin: "0 auto" }}>
-        <Card.Body style={{ backgroundColor: color }}>
+        <Card.Body style={{ backgroundColor: note.bgc }}>
           <Card.Title>{note.title}</Card.Title>
           <Card.Subtitle className="mb-2 text-muted">
             Last Modified:{" "}
-            {Moment(dateModified).format("MMMM Do YYYY, h:mm:ss a")}
+            {/* {Moment(dateModified).format("MMMM Do YYYY, h:mm:ss a")} */}
           </Card.Subtitle>
           <Card.Text style={{ whiteSpace: "pre-wrap" }}>
             {" "}

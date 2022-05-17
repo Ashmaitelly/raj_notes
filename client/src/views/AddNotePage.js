@@ -35,7 +35,6 @@ const [searchParams] = useSearchParams();
   const [title,setTitle]= useState("");
   const [word,setWord]= useState("");
   const [edit]= useState(searchParams.get("id")? true : false);
-  console.log(edit);
    text =`` ;
    const [noteColor, setNoteColor] = useState("#fff")
 

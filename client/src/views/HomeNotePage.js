@@ -1,7 +1,6 @@
 import { React, useState, useEffect } from "react";
 import NavBar from "../components/NavBar";
 import Note from "../components/Note";
-import ColorSelector from "../components/ColorSelector";
 import PostComments from "../components/PostComment";
 import Comments from "../components/Comments";
 import { Button } from "react-bootstrap";
@@ -17,8 +16,6 @@ function HomeNotePage() {
   const [searchParams] = useSearchParams();
   //trying context
 
-  const [noteColor, setNoteColor] = useState("#fff");
-
   useEffect(() => {
     Axios.get(`http://localhost:3001/notes/${searchParams.get("id")}`)
       .then((response) => {
@@ -29,15 +26,11 @@ function HomeNotePage() {
       });
   }, [searchParams]);
 
-  const getColor = (color) => {
-    setNoteColor(color);
-  };
-
   return (
     <div>
       <NavBar />
       <NotesContext.Provider value={note}>
-        <Note color={noteColor} text={"hello homies bi t7ine"} />
+        <Note/>
       </NotesContext.Provider>
       <div class="d-md-inline" style={{ marginLeft: "12.5%" }}>
         <Button
@@ -67,7 +60,6 @@ function HomeNotePage() {
           Share with
         </Button>
       </div>
-      <ColorSelector func={getColor} />
       <PostComments />
       <Comments />
     </div>
