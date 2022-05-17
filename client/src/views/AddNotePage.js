@@ -19,15 +19,16 @@ function AddNotePage({ text }) {
     if (edit) {
       Axios.get(`http://localhost:3001/notes/${searchParams.get("id")}`)
         .then((response) => {
-          setNoteColor(response.data.bgc);
-          setTitle(response.data.title);
-          setWord(response.data.text);
+          let note = response.data;
+          setNoteColor(note.bgc);
+          setTitle(note.title);
+          setWord(note.text);
         })
         .catch((error) => {
           alert("Error getting data");
         });
     }
-  }, [searchParams,edit]);
+  }, [searchParams, edit]);
 
   const addNewNote = async (e) => {
     try {
