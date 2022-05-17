@@ -27,7 +27,7 @@ function AddNotePage({ text }) {
           alert("Error getting data");
         });
     }
-  }, [searchParams]);
+  }, [searchParams,edit]);
 
   const addNewNote = async (e) => {
     try {
