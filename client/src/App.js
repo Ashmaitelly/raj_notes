@@ -15,6 +15,7 @@ import { createContext } from "react";
 
 export const SearchContext = createContext();
 export const NotesContext = createContext();
+export const ColorContext = createContext();
 
 function App() {
   return (

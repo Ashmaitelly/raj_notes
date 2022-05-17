@@ -4,6 +4,7 @@ import NavBar from "../components/NavBar";
 import ColorSelector from "../components/ColorSelector";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import Axios from "axios";
+import { ColorContext } from "../App";
 
 function AddNotePage({ text }) {
   const [searchParams] = useSearchParams();
@@ -14,6 +15,10 @@ function AddNotePage({ text }) {
   const [edit] = useState(searchParams.get("id") ? true : false);
   text = ``;
   const [noteColor, setNoteColor] = useState("");
+
+  const setCol = (color) => {
+    setNoteColor(color);
+  };
 
   useEffect(() => {
     if (edit) {
@@ -55,10 +60,6 @@ function AddNotePage({ text }) {
     } catch (err) {
       console.error(err);
     }
-  };
-
-  const getColor = (color) => {
-    setNoteColor(color);
   };
   return (
     <div>
@@ -122,7 +123,9 @@ function AddNotePage({ text }) {
           </li>
 
           <li>
-            <ColorSelector func={getColor} />
+            <ColorContext.Provider value={setCol}>
+              <ColorSelector />
+            </ColorContext.Provider>
           </li>
 
           <li>
