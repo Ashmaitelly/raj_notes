@@ -47,6 +47,7 @@ router.put("/update/:id", (req, res) => {
   const update = {
     title: note.title,
     text: note.text,
+    bgc: note.bgc,
     date_modified: Date.now(),
   };
   NoteModel.findOneAndUpdate({ _id: _id, soft_deleted: false }, update)
