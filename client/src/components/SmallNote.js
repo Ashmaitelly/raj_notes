@@ -9,7 +9,7 @@ function SmallNote({ url }) {
 
   const note = useContext(NotesContext);
 
-  const dateModified = Date(Date.parse(note.date_modified));
+  const dateModified = note.date_modified.toString();
 
   // to make a limit of letters in the typing and a colorful note.
   const truncString = (str, letter) => {

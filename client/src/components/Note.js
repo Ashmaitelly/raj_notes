@@ -5,7 +5,7 @@ import Moment from "moment";
 
 function Note({ text, color }) {
   const note = useContext(NotesContext);
-  const dateModified = Date(Date.parse(note.date_modified));
+  const dateModified = note.date_modified.toString();
 
   return (
     <>
