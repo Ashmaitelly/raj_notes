@@ -20,7 +20,7 @@ const [searchParams] = useSearchParams();
   };
   const editNote = async (e) =>{
     try {
-      let response = await Axios.put(`http://localhost:3001/notes/update/${searchParams.get("id")}`,{title,text: word})
+      let response = await Axios.put(`http://localhost:3001/notes/update/${searchParams.get("id")}`,{title,text: word, bgc:noteColor})
       console.log(200, response);
       navigate("/home");
     } catch (err) {
