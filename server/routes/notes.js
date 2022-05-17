@@ -30,13 +30,13 @@ router.get("/:id", (req, res) => {
 // new note
 router.post("/create", async (req, res) => {
   const note = req.body;
-  console.log(note)
+  console.log(note);
   try {
-  const newNote = new NoteModel(note);
-  const savedNote = await newNote.save();
-  return res.json(savedNote);
-  } catch(err){
-    res.status(500).json({ error: err })
+    const newNote = new NoteModel(note);
+    const savedNote = await newNote.save();
+    return res.json(savedNote);
+  } catch (err) {
+    res.status(500).json({ error: err });
   }
 });
 
@@ -59,5 +59,6 @@ router.put("/update/:id", (req, res) => {
     })
     .catch((err) => res.status(500).json({ error: err }));
 });
+//change color code here
 
 module.exports = router;
