@@ -29,10 +29,12 @@ function HomeNotePage() {
   };
 
   //share button function
-  const shareNote = async (e,user) => {
+  const shareNote = async (user) => {
+    console.log(user);
     try {
       let response = await Axios.put(
-        `http://localhost:3001/notes/share/${searchParams.get("id")}`,{user: user}
+        `http://localhost:3001/notes/share/${searchParams.get("id")}`,
+        { user: user }
       );
       console.log(200, response);
       navigate("/home");
@@ -40,7 +42,6 @@ function HomeNotePage() {
       console.error(err);
     }
   };
-
 
   useEffect(() => {
     Axios.get(`http://localhost:3001/notes/${searchParams.get("id")}`)
