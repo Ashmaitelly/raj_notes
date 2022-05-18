@@ -31,11 +31,6 @@ export default function NotesPage() {
       });
   }, []);
 
-  // useEffect(() => {
-  //   setFilter(notes);
-  //   console.log(filter);
-  // }, [search]);
-
   return (
     <div>
       <NavBar />

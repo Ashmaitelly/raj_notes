@@ -33,6 +33,15 @@ const NoteSchema = new mongoose.Schema({
     type: [String],
     default: [],
   },
+  comments: {
+    type: [
+      {
+        username: { type: String },
+        comment: { type: String },
+        time: { type: Date, default: Date.now },
+      },
+    ],
+  },
 });
 
 const NoteModel = mongoose.model("note", NoteSchema);
