@@ -39,7 +39,7 @@ export default function SharedPage() {
         style={{ width: "80%", marginLeft: "10%" }}
       >
         {notes
-          .filter((note) => note.title.includes(search))
+          .filter((note) => note.title.toLowerCase().includes(search.toLocaleLowerCase()))
           .map((note, index) => (
             <NotesContext.Provider value={note}>
               <SmallNote key={index} url="snp" text={`${note.text}`} />
