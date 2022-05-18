@@ -15,6 +15,33 @@ function DeletedNotePage() {
   const [searchParams] = useSearchParams();
   //trying context
 
+
+  const restoreNote = async (e) => {
+    try {
+      let response = await Axios.put(
+        `http://localhost:3001/deleted/restore/${searchParams.get("id")}`
+      );
+      console.log(200, response);
+      navigate("/deleted");
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+
+  const deleteNote = async (e) => {
+    try {
+      let response = await Axios.delete(
+        `http://localhost:3001/deleted/delete/${searchParams.get("id")}`
+      );
+      console.log(200, response);
+      navigate("/deleted");
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+
   useEffect(() => {
     Axios.get(`http://localhost:3001/deleted/${searchParams.get("id")}`)
       .then((response) => {
@@ -36,7 +63,7 @@ function DeletedNotePage() {
           variant="primary"
           style={{ marginRight: "1%" }}
           onClick={() => {
-            navigate("/deleted");
+            restoreNote();
           }}
         >
           Restore
@@ -44,7 +71,7 @@ function DeletedNotePage() {
         <Button
           variant="primary"
           onClick={() => {
-            navigate("/deleted");
+            deleteNote();
           }}
         >
           Delete
