@@ -61,19 +61,19 @@ router.put("/update/:id", (req, res) => {
     .catch((err) => res.status(500).json({ error: err }));
 });
 // share with button activation
-router.put("/update/:id", (req, res) => {
+router.put("/share/:id", (req, res) => {
   const _id = req.params.id;
   const note = req.body;
   const update = {
     shared: true,
-    $push: {shared_users:[note.user]}
+    $push: { shared_users: [note.user] },
   };
   NoteModel.findOneAndUpdate({ _id: _id }, update)
     .then((result) => {
       if (!result) {
         res.status(404).json();
       } else {
-        res.json(result);
+        res.status(200).json("Successfully shared");
       }
     })
     .catch((err) => res.status(500).json({ error: err }));
