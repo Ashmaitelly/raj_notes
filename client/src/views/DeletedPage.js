@@ -39,7 +39,9 @@ export default function DeletedPage() {
         style={{ width: "80%", marginLeft: "10%" }}
       >
         {notes
-          .filter((note) => note.title.toLowerCase().includes(search.toLocaleLowerCase()))
+          .filter((note) =>
+            note.title.toLowerCase().includes(search.toLowerCase())
+          )
           .map((note, index) => (
             <NotesContext.Provider value={note}>
               <SmallNote key={index} url="dnp" text={`${note.text}`} />
