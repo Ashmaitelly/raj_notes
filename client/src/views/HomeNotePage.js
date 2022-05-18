@@ -28,6 +28,20 @@ function HomeNotePage() {
     }
   };
 
+  //share button function
+  const shareNote = async (e,user) => {
+    try {
+      let response = await Axios.put(
+        `http://localhost:3001/notes/share/${searchParams.get("id")}`,{user: user}
+      );
+      console.log(200, response);
+      navigate("/home");
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+
   useEffect(() => {
     Axios.get(`http://localhost:3001/notes/${searchParams.get("id")}`)
       .then((response) => {
@@ -66,7 +80,7 @@ function HomeNotePage() {
         <Button
           variant="primary"
           onClick={() => {
-            prompt("enter the username you want to share with");
+            shareNote(prompt("enter the username you want to share with"));
           }}
         >
           Share with
