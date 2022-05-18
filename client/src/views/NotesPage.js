@@ -51,29 +51,27 @@ export default function NotesPage() {
               <SmallNote key={index} url="hnp" text={`${note.text}`} />
             </NotesContext.Provider>
           ))}
-        <div>
-          <button
-            onClick={() => {
-              navigate("/anp");
-            }}
-            style={{
-              position: "fixed",
-              bottom: "25px",
-              right: "25px",
-              cursor: "pointer",
-              width: "55px",
-              height: "55px",
-              padding: "0px 0px",
-              borderRadius: "50px",
-              fontSize: "30px",
-              textAlign: "center",
-            }}
-            type="button"
-            class="btn btn-dark"
-          >
-            +
-          </button>
-        </div>
+        <button
+          onClick={() => {
+            navigate("/anp");
+          }}
+          style={{
+            position: "fixed",
+            bottom: "25px",
+            right: "25px",
+            cursor: "pointer",
+            width: "55px",
+            height: "55px",
+            padding: "0px 0px",
+            borderRadius: "50px",
+            fontSize: "30px",
+            textAlign: "center",
+          }}
+          type="button"
+          class="btn btn-dark"
+        >
+          +
+        </button>
       </div>
     </div>
   );
