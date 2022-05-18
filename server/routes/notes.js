@@ -100,7 +100,15 @@ router.put("/comment/:id", (req, res) => {
   const _id = req.params.id;
   const comment = req.body;
   const update = {
-    $push: {comments: [{comment}]}
+    $push: {
+      comments: [
+        {
+          username: comment.username,
+          comment: comment.comment,
+          time: Date.now(),
+        },
+      ],
+    },
   };
   NoteModel.findOneAndUpdate({ _id: _id }, update)
     .then((result) => {
