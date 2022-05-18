@@ -5,7 +5,7 @@ const NoteModel = require("../models/note");
 //get soft deleted user notes
 router.get("/", (req, res) => {
   const viewer = req.query.viewer;
-  NoteModel.find({ shared: true, shared_users: viewer })
+  NoteModel.find({ shared: true, shared_users: viewer, soft_deleted: false })
     .select("title date_modified text bgc")
     .then((result) => {
       res.json(result);
@@ -16,7 +16,7 @@ router.get("/", (req, res) => {
 //get specific note
 router.get("/:id", (req, res) => {
   const _id = req.params.id;
-  NoteModel.findOne({ _id: _id, shared: true })
+  NoteModel.findOne({ _id: _id, shared: true, soft_deleted: false })
     .then((result) => {
       if (!result) {
         res.status(404).json();
