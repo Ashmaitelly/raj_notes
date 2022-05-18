@@ -14,7 +14,19 @@ function HomeNotePage() {
   const [note, setNote] = useState({});
   //url parameters
   const [searchParams] = useSearchParams();
-  //trying context
+  //functions
+
+  const removeNote = async (e) => {
+    try {
+      let response = await Axios.put(
+        `http://localhost:3001/notes/delete/${searchParams.get("id")}`
+      );
+      console.log(200, response);
+      navigate("/home");
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   useEffect(() => {
     Axios.get(`http://localhost:3001/notes/${searchParams.get("id")}`)
@@ -30,7 +42,7 @@ function HomeNotePage() {
     <div>
       <NavBar />
       <NotesContext.Provider value={note}>
-        <Note/>
+        <Note />
       </NotesContext.Provider>
       <div class="d-md-inline" style={{ marginLeft: "12.5%" }}>
         <Button
@@ -46,7 +58,7 @@ function HomeNotePage() {
           variant="primary"
           style={{ marginRight: "1%" }}
           onClick={() => {
-            navigate("/home");
+            removeNote();
           }}
         >
           Remove
