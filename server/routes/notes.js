@@ -63,12 +63,12 @@ router.put("/update/:id", (req, res) => {
 // share with button activation
 router.put("/share/:id", (req, res) => {
   const _id = req.params.id;
-  const note = req.body;
+  const user = req.body.user;
   const update = {
     shared: true,
-    $push: { shared_users: [note.user] },
+    $push: { shared_users: [user] },
   };
-  NoteModel.findOneAndUpdate({ _id: _id }, update)
+  NoteModel.findOneAndUpdate({ _id: _id, shared_users: { $ne: user } }, update)
     .then((result) => {
       if (!result) {
         res.status(404).json();
@@ -82,7 +82,7 @@ router.put("/share/:id", (req, res) => {
 router.put("/delete/:id", (req, res) => {
   const _id = req.params.id;
   const update = {
-   soft_deleted: true
+    soft_deleted: true,
   };
   NoteModel.findOneAndUpdate({ _id: _id }, update)
     .then((result) => {

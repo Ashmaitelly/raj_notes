@@ -30,7 +30,6 @@ function HomeNotePage() {
 
   //share button function
   const shareNote = async (user) => {
-    console.log(user);
     try {
       let response = await Axios.put(
         `http://localhost:3001/notes/share/${searchParams.get("id")}`,
