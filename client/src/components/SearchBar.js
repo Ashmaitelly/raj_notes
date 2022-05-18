@@ -5,7 +5,7 @@ import { SearchContext } from "../App";
 function SearchBar() {
   const setSearch = useContext(SearchContext);
   return (
-    <>
+    <div>
       <InputGroup className="mb-3">
         <FormControl
           placeholder="Search Here"
@@ -16,7 +16,7 @@ function SearchBar() {
           }}
         />
       </InputGroup>
-    </>
+    </div>
   );
 }
 
