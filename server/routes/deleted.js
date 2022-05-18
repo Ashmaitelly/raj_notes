@@ -26,18 +26,22 @@ router.get("/:id", (req, res) => {
     .catch((err) => res.status(500).json({ error: err }));
 });
 
-// new note
+//delete note
 router.delete("/delete/:id", async (req, res) => {
   const _id = req.params.id;
-  NoteModel.deleteOne({ _id: _id })
+  NoteModel.deleteOne({ _id: _id, soft_deleted: true })
     .then((result) => {
       res.json("Sucessfully deleted");
     })
     .catch((err) => res.status(500).json({ error: err }));
 });
-router.put("/update/:id", (req, res) => {
+//restore the note
+router.put("/restore/:id", (req, res) => {
   const _id = req.params.id;
-  NoteModel.findOneAndUpdate({ _id: _id, soft_deleted: true }, update)
+  NoteModel.findOneAndUpdate(
+    { _id: _id, soft_deleted: true },
+    { soft_deleted: false }
+  )
     .then((result) => {
       if (!result) {
         res.status(404).json();
