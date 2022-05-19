@@ -65,7 +65,6 @@ router.put("/share/:id", (req, res) => {
   const user = req.body.user;
   const update = {
     shared: true,
-    comments: {},
     $push: { shared_users: [user] },
   };
   NoteModel.findOneAndUpdate({ _id: _id, shared_users: { $ne: user } }, update)
