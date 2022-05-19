@@ -15,7 +15,6 @@ function DeletedNotePage() {
   const [searchParams] = useSearchParams();
   //trying context
 
-
   const restoreNote = async (e) => {
     try {
       let response = await Axios.put(
@@ -28,7 +27,6 @@ function DeletedNotePage() {
     }
   };
 
-
   const deleteNote = async (e) => {
     try {
       let response = await Axios.delete(
@@ -40,7 +38,6 @@ function DeletedNotePage() {
       console.error(err);
     }
   };
-
 
   useEffect(() => {
     Axios.get(`http://localhost:3001/deleted/${searchParams.get("id")}`)
@@ -77,7 +74,7 @@ function DeletedNotePage() {
           Delete
         </Button>
       </div>
-      <Comments />
+      {note.shared && <Comments />}
     </div>
   );
 }

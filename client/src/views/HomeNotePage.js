@@ -86,8 +86,8 @@ function HomeNotePage() {
           Share with
         </Button>
       </div>
-      <PostComments />
-      <Comments />
+      {note.shared && <PostComments />}
+      {note.shared && <Comments />}
     </div>
   );
 }
