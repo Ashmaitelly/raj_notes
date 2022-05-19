@@ -4,7 +4,7 @@ import Note from "../components/Note";
 import PostComments from "../components/PostComment";
 import Comments from "../components/Comments";
 import Axios from "axios";
-import { NotesContext } from "../App";
+import { NotesContext, CommentsContext } from "../App";
 import { useSearchParams } from "react-router-dom";
 
 export default function SharedNotePage() {
