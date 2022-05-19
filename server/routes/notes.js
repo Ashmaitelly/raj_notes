@@ -30,7 +30,6 @@ router.get("/:id", (req, res) => {
 // new note
 router.post("/create", async (req, res) => {
   const note = req.body;
-  console.log(note);
   try {
     const newNote = new NoteModel(note);
     const savedNote = await newNote.save();
@@ -66,6 +65,7 @@ router.put("/share/:id", (req, res) => {
   const user = req.body.user;
   const update = {
     shared: true,
+    comments: {},
     $push: { shared_users: [user] },
   };
   NoteModel.findOneAndUpdate({ _id: _id, shared_users: { $ne: user } }, update)

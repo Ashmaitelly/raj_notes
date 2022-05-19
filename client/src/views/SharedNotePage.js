@@ -31,9 +31,11 @@ export default function SharedNotePage() {
         <Note color={"#538"} text={"hello homies bi t7ine"} />
       </NotesContext.Provider>
       <PostComments />
-      <CommentsContext.Provider value={note.comments}>
-        <Comments />
-      </CommentsContext.Provider>
+      {note.shared && (
+        <CommentsContext.Provider value={note.comments}>
+          <Comments />
+        </CommentsContext.Provider>
+      )}
     </div>
   );
 }
