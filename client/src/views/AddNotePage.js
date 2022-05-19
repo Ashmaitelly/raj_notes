@@ -107,7 +107,7 @@ function AddNotePage({ text }) {
         </Card.Body>
       </Card>
 
-      <div class="d-md-inline ">
+      <div className="d-md-inline ">
         <ul
           style={{
             display: "flex",

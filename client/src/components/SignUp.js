@@ -28,7 +28,7 @@ const navigate= useNavigate();
   };
 
   return (
-    <div className="App" class="position-absolute top-50 start-50 translate-middle">
+    <div className="App position-absolute top-50 start-50 translate-middle">
       <div className="App-wrapper">
         <div>
           <h2 className="title" >Sign Up</h2>

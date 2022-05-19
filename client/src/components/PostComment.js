@@ -1,12 +1,10 @@
 import React, {useState} from 'react';
 import { InputGroup, FormControl, Button } from 'react-bootstrap';
-import Comments from './Comments';
-import {useNavigate,useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import Axios from "axios";
 
 
   function PostComments (){
-      const navigate= useNavigate();
       const [insertComments, setInsertComments] = useState("");
       const [searchParams] = useSearchParams();
 
@@ -35,7 +33,7 @@ import Axios from "axios";
               id="commentInput"
               onChange={(e) => {setInsertComments(e.target.value)}}
             />
-            <Button class="btn-outline-secondary" onClick={()=>{postComment(localStorage.getItem("user"))}}>Post</Button>
+            <Button className="btn-outline-secondary" onClick={()=>{postComment(localStorage.getItem("user"))}}>Post</Button>
           </div>
         </InputGroup>
     );

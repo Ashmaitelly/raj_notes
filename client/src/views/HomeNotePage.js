@@ -58,7 +58,7 @@ function HomeNotePage() {
       <NotesContext.Provider value={note}>
         <Note />
       </NotesContext.Provider>
-      <div class="d-md-inline" style={{ marginLeft: "12.5%" }}>
+      <div className="d-md-inline" style={{ marginLeft: "12.5%" }}>
         <Button
           variant="primary"
           style={{ marginRight: "1%" }}

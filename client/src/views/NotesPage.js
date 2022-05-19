@@ -34,7 +34,7 @@ export default function NotesPage() {
   return (
     <div>
       <NavBar />
-      <h2 class="text-center">{localStorage.getItem("user")}'s Notes</h2>
+      <h2 className="text-center">{localStorage.getItem("user")}'s Notes</h2>
       <SearchContext.Provider value={searchBar}>
         <SearchBar />
       </SearchContext.Provider>
@@ -68,7 +68,7 @@ export default function NotesPage() {
             textAlign: "center",
           }}
           type="button"
-          class="btn btn-dark"
+          className="btn btn-dark"
         >
           +
         </button>

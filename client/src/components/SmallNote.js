@@ -31,7 +31,7 @@ function SmallNote({ url }) {
         cursor: "pointer",
       }}
     >
-      <Card.Body class="grid-container">
+      <Card.Body className="grid-container">
         <Card.Title>{note.title}</Card.Title>
         <Card.Subtitle className="mb-2">
           {Moment(note.date_modified).format("MMMM Do YYYY, h:mm:ss a")}

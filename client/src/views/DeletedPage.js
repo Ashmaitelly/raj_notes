@@ -30,7 +30,7 @@ export default function DeletedPage() {
   return (
     <div>
       <NavBar />
-      <h2 class="text-center">{localStorage.getItem("user")}'s Trash</h2>
+      <h2 className="text-center">{localStorage.getItem("user")}'s Trash</h2>
       <SearchContext.Provider value={searchBar}>
         <SearchBar />
       </SearchContext.Provider>
