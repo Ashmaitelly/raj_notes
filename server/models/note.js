@@ -41,7 +41,6 @@ const NoteSchema = new mongoose.Schema({
         time: { type: Date },
       },
     ],
-    default: {},
   },
 });
 
