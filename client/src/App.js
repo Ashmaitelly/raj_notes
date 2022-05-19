@@ -17,7 +17,7 @@ export const SearchContext = createContext();
 export const NotesContext = createContext();
 export const ColorContext = createContext();
 export const CommentsContext = createContext();
-
+export const PostContext= createContext();
 function App() {
   return (
     <BrowserRouter>
