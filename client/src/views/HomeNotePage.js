@@ -6,7 +6,7 @@ import Comments from "../components/Comments";
 import { Button } from "react-bootstrap";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import Axios from "axios";
-import { NotesContext } from "../App.js";
+import { CommentsContext, NotesContext } from "../App.js";
 
 function HomeNotePage() {
   const navigate = useNavigate();
@@ -87,7 +87,11 @@ function HomeNotePage() {
         </Button>
       </div>
       {note.shared && <PostComments />}
-      {note.shared && <Comments />}
+      {note.shared && (
+        <CommentsContext.Provider value={note.comments}>
+          <Comments />
+        </CommentsContext.Provider>
+      )}
     </div>
   );
 }
