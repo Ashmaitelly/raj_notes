@@ -37,7 +37,7 @@ function Comments() {
               comments[1] ? (
                 <Button
                   variant="danger"
-                  style={{ float: "right" }}
+                  style={{ float: "right", borderRadius: "100%" }}
                   onClick={() => {
                     deleteComment(comment._id);
                   }}
