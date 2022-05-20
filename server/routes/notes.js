@@ -2,6 +2,8 @@ const router = require("express").Router();
 
 const NoteModel = require("../models/note");
 
+const UserModel = require("../models/user");
+
 //get user notes
 router.get("/", (req, res) => {
   const author = req.query.author;
@@ -59,6 +61,8 @@ router.put("/update/:id", (req, res) => {
     })
     .catch((err) => res.status(500).json({ error: err }));
 });
+
+
 // share with button activation
 router.put("/share/:id", (req, res) => {
   const _id = req.params.id;
@@ -67,28 +71,21 @@ router.put("/share/:id", (req, res) => {
     shared: true,
     $push: { shared_users: [user] },
   };
-  NoteModel.findOneAndUpdate({ _id: _id, shared_users: { $ne: user } }, update)
+  
+  UserModel.findOne({ username: user})
     .then((result) => {
       if (!result) {
-        res.status(404).json();
+        //404 if user not found
+        res.status(404).json("The User was Not Found... Try Again");
       } else {
-        res.status(200).json("Successfully shared");
-      }
-    })
-    .catch((err) => res.status(500).json({ error: err }));
-});
-//remove button functionality
-router.put("/delete/:id", (req, res) => {
-  const _id = req.params.id;
-  const update = {
-    soft_deleted: true,
-  };
-  NoteModel.findOneAndUpdate({ _id: _id }, update)
-    .then((result) => {
-      if (!result) {
-        res.status(404).json();
-      } else {
-        res.status(200).json("Successfully deleted");
+        NoteModel.findOneAndUpdate({ _id: _id, shared_users: { $ne: user } }, update)
+        .then((result) => {
+          if (!result) {
+            res.status(404).json("Already shared with user");
+          } else {
+            res.status(200).json("Successfully shared");
+          }
+        })
       }
     })
     .catch((err) => res.status(500).json({ error: err }));
