@@ -3,7 +3,7 @@ import NavBar from "../components/NavBar";
 import Note from "../components/Note";
 import PostComments from "../components/PostComment";
 import Comments from "../components/Comments";
-import { Button, Modal, InputGroup, FormControl, Form } from "react-bootstrap";
+import { Button, Modal, InputGroup, FormControl } from "react-bootstrap";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import Axios from "axios";
 import { PostContext, CommentsContext, NotesContext } from "../App.js";
