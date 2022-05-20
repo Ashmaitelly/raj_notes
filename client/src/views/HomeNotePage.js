@@ -44,8 +44,7 @@ function HomeNotePage() {
       console.log(200, response);
     } catch (err) {
       alert(err.response.data);
-    }
-    finally{
+    } finally {
       setShare("");
       setShow(false);
     }

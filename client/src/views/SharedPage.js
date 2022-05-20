@@ -30,7 +30,9 @@ export default function SharedPage() {
   return (
     <div>
       <NavBar />
-      <h2 className="text-center">Shared with {localStorage.getItem("user")}</h2>
+      <h2 className="text-center">
+        Shared with {localStorage.getItem("user")}
+      </h2>
       <SearchContext.Provider value={searchBar}>
         <SearchBar />
       </SearchContext.Provider>

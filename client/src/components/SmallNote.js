@@ -33,7 +33,7 @@ function SmallNote({ url }) {
     >
       <Card.Body className="grid-container">
         <Card.Title>
-          {truncString(note.title,20)}{" "}
+          {truncString(note.title, 20)}{" "}
           {note.author === localStorage.getItem("user") ? (
             ""
           ) : (

@@ -62,7 +62,6 @@ router.put("/update/:id", (req, res) => {
     .catch((err) => res.status(500).json({ error: err }));
 });
 
-
 // share with button activation
 router.put("/share/:id", (req, res) => {
   const _id = req.params.id;
@@ -71,21 +70,23 @@ router.put("/share/:id", (req, res) => {
     shared: true,
     $push: { shared_users: [user] },
   };
-  
-  UserModel.findOne({ username: user})
+
+  UserModel.findOne({ username: user })
     .then((result) => {
       if (!result) {
         //404 if user not found
         res.status(404).json("The User was Not Found... Try Again");
       } else {
-        NoteModel.findOneAndUpdate({ _id: _id, shared_users: { $ne: user } }, update)
-        .then((result) => {
+        NoteModel.findOneAndUpdate(
+          { _id: _id, shared_users: { $ne: user } },
+          update
+        ).then((result) => {
           if (!result) {
             res.status(404).json("Already shared with user");
           } else {
             res.status(200).json("Successfully shared");
           }
-        })
+        });
       }
     })
     .catch((err) => res.status(500).json({ error: err }));
