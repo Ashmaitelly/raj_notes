@@ -3,10 +3,10 @@ import NavBar from "../components/NavBar";
 import Note from "../components/Note";
 import PostComments from "../components/PostComment";
 import Comments from "../components/Comments";
-import { Button } from "react-bootstrap";
+import { Button, Modal, InputGroup, FormControl, Form } from "react-bootstrap";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import Axios from "axios";
-import { PostContext ,CommentsContext, NotesContext } from "../App.js";
+import { PostContext, CommentsContext, NotesContext } from "../App.js";
 
 function HomeNotePage() {
   const navigate = useNavigate();
@@ -14,7 +14,12 @@ function HomeNotePage() {
   const [note, setNote] = useState({});
   //url parameters
   const [searchParams] = useSearchParams();
+  const [show, setShow] = useState(false);
+  const [share, setShare] = useState("");
   //functions
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const removeNote = async (e) => {
     try {
@@ -29,14 +34,15 @@ function HomeNotePage() {
   };
 
   //share button function
-  const shareNote = async (user) => {
+  const shareNote = async () => {
     try {
       let response = await Axios.put(
         `http://localhost:3001/notes/share/${searchParams.get("id")}`,
-        { user: user }
+        { user: share }
       );
+
       console.log(200, response);
-      navigate("/home");
+      setShow(false);
     } catch (err) {
       console.error(err);
     }
@@ -80,22 +86,46 @@ function HomeNotePage() {
         <Button
           variant="primary"
           onClick={() => {
-            shareNote(prompt("enter the username you want to share with"));
+            handleShow();
           }}
         >
           Share with
         </Button>
       </div>
       {note.shared && (
-      <PostContext.Provider value={searchParams.get("id")}>
-      <PostComments/>
-      </PostContext.Provider>
+        <PostContext.Provider value={searchParams.get("id")}>
+          <PostComments />
+        </PostContext.Provider>
       )}
       {note.shared && (
         <CommentsContext.Provider value={note.comments}>
           <Comments />
         </CommentsContext.Provider>
       )}
+      {/* Share with users modal */}
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Share with</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <InputGroup className="mb-3">
+            <FormControl
+              placeholder="Enter user to share with"
+              aria-label="Enter user to share with"
+              aria-describedby="basic-addon2"
+              value={share}
+              onChange={(e) => {
+                setShare(e.target.value);
+              }}
+            />
+          </InputGroup>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" type="submit" onClick={shareNote}>
+            Share
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 }
