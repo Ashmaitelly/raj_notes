@@ -4,7 +4,7 @@ import Note from "../components/Note";
 import PostComments from "../components/PostComment";
 import Comments from "../components/Comments";
 import Axios from "axios";
-import { PostContext,NotesContext, CommentsContext } from "../App";
+import { PostContext, NotesContext, CommentsContext } from "../App";
 import { useSearchParams } from "react-router-dom";
 
 export default function SharedNotePage() {
@@ -30,11 +30,13 @@ export default function SharedNotePage() {
       <NotesContext.Provider value={note}>
         <Note color={"#538"} text={"hello homies bi t7ine"} />
       </NotesContext.Provider>
-      {note.shared &&(<PostContext.Provider value={searchParams.get("id")}>
-      <PostComments/>
-      </PostContext.Provider>)}
       {note.shared && (
-        <CommentsContext.Provider value={note.comments}>
+        <PostContext.Provider value={searchParams.get("id")}>
+          <PostComments />
+        </PostContext.Provider>
+      )}
+      {note.shared && (
+        <CommentsContext.Provider value={[note.comments, false]}>
           <Comments />
         </CommentsContext.Provider>
       )}
