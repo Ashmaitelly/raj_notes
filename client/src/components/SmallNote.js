@@ -32,7 +32,14 @@ function SmallNote({ url }) {
       }}
     >
       <Card.Body className="grid-container">
-        <Card.Title>{note.title}</Card.Title>
+        <Card.Title>
+          {note.title}{" "}
+          {note.author === localStorage.getItem("user") ? (
+            ""
+          ) : (
+            <small>{`by ${note.author}`}</small>
+          )}
+        </Card.Title>
         <Card.Subtitle className="mb-2">
           {Moment(note.date_modified).format("MMMM Do YYYY, h:mm:ss a")}
         </Card.Subtitle>

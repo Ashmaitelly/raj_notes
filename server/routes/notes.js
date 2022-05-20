@@ -6,7 +6,7 @@ const NoteModel = require("../models/note");
 router.get("/", (req, res) => {
   const author = req.query.author;
   NoteModel.find({ soft_deleted: false, author: author })
-    .select("title date_modified text bgc")
+    .select("title date_modified text bgc author")
     .then((result) => {
       res.json(result);
     })

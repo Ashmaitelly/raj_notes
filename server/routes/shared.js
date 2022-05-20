@@ -2,11 +2,11 @@ const router = require("express").Router();
 
 const NoteModel = require("../models/note");
 
-//get soft deleted user notes
+//get shared user notes
 router.get("/", (req, res) => {
   const viewer = req.query.viewer;
   NoteModel.find({ shared: true, shared_users: viewer, soft_deleted: false })
-    .select("title date_modified text bgc")
+    .select("title date_modified text bgc author")
     .then((result) => {
       res.json(result);
     })
