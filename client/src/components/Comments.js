@@ -13,7 +13,8 @@ function Comments() {
   const deleteComment = async (commentId) => {
     try {
       let response = await Axios.put(
-        `http://localhost:3001/notes/removecomment/${searchParams.get("id")}`,{id: commentId}
+        `http://localhost:3001/notes/removecomment/${searchParams.get("id")}`,
+        { id: commentId }
       );
       console.log(200, response);
       window.location.reload();
@@ -21,9 +22,6 @@ function Comments() {
       console.error(err);
     }
   };
-
-
-
   return (
     <Stack gap={3}>
       <div className="bg-light border">Comment</div>
@@ -35,12 +33,20 @@ function Comments() {
             ).format("MMMM Do YYYY, h:mm:ss a")}`}</Card.Subtitle>
             <Card.Body>
               {`${comment.comment}`}
-              <Button variant="danger" style={{ float: "right" }}
-              onClick={()=>{
-                deleteComment(comment._id);
-              }}>
-                X
-              </Button>
+              {localStorage.getItem("user") === comment.username ||
+              window.location.pathname === "/hnp" ? (
+                <Button
+                  variant="danger"
+                  style={{ float: "right" }}
+                  onClick={() => {
+                    deleteComment(comment._id);
+                  }}
+                >
+                  X
+                </Button>
+              ) : (
+                ""
+              )}
             </Card.Body>
           </Card>
         ))

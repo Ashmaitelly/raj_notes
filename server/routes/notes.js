@@ -105,7 +105,6 @@ router.put("/comment/:id", (req, res) => {
           username: comment.username,
           comment: comment.comment,
           time: Date.now(),
-          
         },
       ],
     },
@@ -121,19 +120,16 @@ router.put("/comment/:id", (req, res) => {
     .catch((err) => res.status(500).json({ error: err }));
 });
 
-
 //delete a comment from homenotepage
 router.put("/removecomment/:id", (req, res) => {
   const _id = req.params.id;
   const commentId = req.body.id;
-  console.log(commentId)
   const update = {
     $pull: {
-      comments:
-          {_id: commentId, },
+      comments: { _id: commentId },
     },
   };
-  NoteModel.findOneAndUpdate({ _id: _id}, update)
+  NoteModel.findOneAndUpdate({ _id: _id }, update)
     .then((result) => {
       if (!result) {
         res.status(404).json();
