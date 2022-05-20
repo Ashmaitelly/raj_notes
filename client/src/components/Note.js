@@ -15,7 +15,7 @@ function Note() {
             {note.author === localStorage.getItem("user") ? (
               ""
             ) : (
-              <small>{`by ~${note.author}`}</small>
+              <small>{`~by ${note.author}`}</small>
             )}
           </Card.Title>
           <Card.Subtitle className="mb-2 text-muted">
