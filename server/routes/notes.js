@@ -61,7 +61,22 @@ router.put("/update/:id", (req, res) => {
     })
     .catch((err) => res.status(500).json({ error: err }));
 });
-
+//remove button functionality
+router.put("/delete/:id", (req, res) => {
+  const _id = req.params.id;
+  const update = {
+    soft_deleted: true,
+  };
+  NoteModel.findOneAndUpdate({ _id: _id }, update)
+    .then((result) => {
+      if (!result) {
+        res.status(404).json();
+      } else {
+        res.status(200).json("Successfully deleted");
+      }
+    })
+    .catch((err) => res.status(500).json({ error: err }));
+});
 // share with button activation
 router.put("/share/:id", (req, res) => {
   const _id = req.params.id;
