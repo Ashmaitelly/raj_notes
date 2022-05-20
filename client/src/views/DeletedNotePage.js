@@ -75,7 +75,7 @@ function DeletedNotePage() {
         </Button>
       </div>
       {note.shared && (
-        <CommentsContext.Provider value={note.comments}>
+        <CommentsContext.Provider value={[note.comments, true]}>
           <Comments />
         </CommentsContext.Provider>
       )}
