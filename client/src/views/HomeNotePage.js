@@ -42,9 +42,12 @@ function HomeNotePage() {
       );
 
       console.log(200, response);
-      setShow(false);
     } catch (err) {
-      console.error(err);
+      alert(err.response.data);
+    }
+    finally{
+      setShare("");
+      setShow(false);
     }
   };
 
