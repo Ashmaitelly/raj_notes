@@ -10,10 +10,10 @@ function Comments() {
 
   const [searchParams] = useSearchParams();
 
-  const deleteComment = async (e) => {
+  const deleteComment = async (commentId) => {
     try {
       let response = await Axios.put(
-        `http://localhost:3001/notes/removecomment/${searchParams.get("id")}`
+        `http://localhost:3001/notes/removecomment/${searchParams.get("id")}`,{id: commentId}
       );
       console.log(200, response);
       window.location.reload();
@@ -37,7 +37,7 @@ function Comments() {
               {`${comment.comment}`}
               <Button variant="danger" style={{ float: "right" }}
               onClick={()=>{
-                deleteComment();
+                deleteComment(comment._id);
               }}>
                 X
               </Button>
