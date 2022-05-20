@@ -25,7 +25,7 @@ function Comments() {
   return (
     <Stack gap={3}>
       <div className="bg-light border">Comment</div>
-      {comments
+      {comments[0]
         .map((comment, index) => (
           <Card key={index} style={{ padding: "10px 0px" }}>
             <Card.Subtitle>{`${comment.username} - ${Moment(
@@ -34,7 +34,7 @@ function Comments() {
             <Card.Body>
               {`${comment.comment}`}
               {localStorage.getItem("user") === comment.username ||
-              window.location.pathname === "/hnp" ? (
+              comments[1] ? (
                 <Button
                   variant="danger"
                   style={{ float: "right" }}

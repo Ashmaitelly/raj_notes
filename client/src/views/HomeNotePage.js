@@ -98,7 +98,7 @@ function HomeNotePage() {
         </PostContext.Provider>
       )}
       {note.shared && (
-        <CommentsContext.Provider value={note.comments}>
+        <CommentsContext.Provider value={[note.comments, true]}>
           <Comments />
         </CommentsContext.Provider>
       )}
