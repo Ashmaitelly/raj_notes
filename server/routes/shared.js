@@ -7,6 +7,7 @@ router.get("/", (req, res) => {
   const viewer = req.query.viewer;
   NoteModel.find({ shared: true, shared_users: viewer, soft_deleted: false })
     .select("title date_modified text bgc author")
+    .sort({ date_modified: "desc" })
     .then((result) => {
       res.json(result);
     })

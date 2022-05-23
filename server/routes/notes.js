@@ -8,6 +8,7 @@ const UserModel = require("../models/user");
 router.get("/", (req, res) => {
   const author = req.query.author;
   NoteModel.find({ soft_deleted: false, author: author })
+    .sort({ date_modified: "desc" })
     .select("title date_modified text bgc author")
     .then((result) => {
       res.json(result);
