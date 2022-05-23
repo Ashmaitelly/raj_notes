@@ -6,6 +6,7 @@ const NoteModel = require("../models/note");
 router.get("/", (req, res) => {
   const author = req.query.author;
   NoteModel.find({ soft_deleted: true, author: author })
+    .sort({ date_modified: "desc" })
     .then((result) => {
       res.json(result);
     })
@@ -16,7 +17,6 @@ router.get("/", (req, res) => {
 router.get("/:id", (req, res) => {
   const _id = req.params.id;
   NoteModel.findOne({ _id: _id, soft_deleted: true })
-    .sort({ date_modified: "desc" })
     .then((result) => {
       if (!result) {
         res.status(404).json();
