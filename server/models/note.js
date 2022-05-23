@@ -42,10 +42,6 @@ const NoteSchema = new mongoose.Schema({
       },
     ],
   },
-  expireAt: {
-    type: Date,
-    expires: null,
-  },
 });
 
 const NoteModel = mongoose.model("note", NoteSchema);
