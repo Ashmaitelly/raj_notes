@@ -11,7 +11,7 @@ const NoteSchema = new mongoose.Schema({
   },
   date_modified: {
     type: Date,
-    default: Date.now,
+    default: Date.now(),
   },
   soft_deleted: {
     type: Boolean,
@@ -41,6 +41,11 @@ const NoteSchema = new mongoose.Schema({
         time: { type: Date },
       },
     ],
+  },
+  expiresAt: {
+    type: Date,
+    default: Date.now() + 63113904000000,
+    expires: "30d",
   },
 });
 

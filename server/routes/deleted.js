@@ -41,7 +41,11 @@ router.put("/restore/:id", (req, res) => {
   const _id = req.params.id;
   NoteModel.findOneAndUpdate(
     { _id: _id, soft_deleted: true },
-    { soft_deleted: false, date_modified: Date.now() }
+    {
+      soft_deleted: false,
+      date_modified: Date.now(),
+      expiresAt: Date.now() + 63113904000000,
+    }
   )
     .then((result) => {
       if (!result) {

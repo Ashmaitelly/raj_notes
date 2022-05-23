@@ -68,6 +68,7 @@ router.put("/delete/:id", (req, res) => {
   const update = {
     soft_deleted: true,
     date_modified: Date.now(),
+    expiresAt: Date.now(),
   };
   NoteModel.findOneAndUpdate({ _id: _id }, update)
     .then((result) => {
