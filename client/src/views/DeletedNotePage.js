@@ -53,7 +53,7 @@ function DeletedNotePage() {
     <div>
       <NavBar />
       <NotesContext.Provider value={note}>
-        <Note color={"#538"} text={"hello homies bi t7ine"} />
+        <Note />
       </NotesContext.Provider>
       <div className="d-md-inline" style={{ marginLeft: "12.5%" }}>
         <Button

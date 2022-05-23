@@ -28,7 +28,7 @@ export default function SharedNotePage() {
     <div>
       <NavBar />
       <NotesContext.Provider value={note}>
-        <Note color={"#538"} text={"hello homies bi t7ine"} />
+        <Note />
       </NotesContext.Provider>
       {note.shared && (
         <PostContext.Provider value={searchParams.get("id")}>
