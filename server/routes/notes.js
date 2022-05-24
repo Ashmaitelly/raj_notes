@@ -158,18 +158,22 @@ router.put("/removecomment/:id", (req, res) => {
 
 router.put("/editcomment/:id", (req, res) => {
   const _id = req.params.id;
-  const comment= req.body;
+  const comment = req.body;
   const update = {
-    
+    $set: {
       comments: [
         {
+          username: comment.username,
           comment: comment.comment,
           time: Date.now(),
         },
-      ] ,
-    }
-  ;
-  NoteModel.findOneAndUpdate({ _id: _id }, update)
+      ],
+    },
+  };
+  NoteModel.findOneAndUpdate(
+    { _id: _id, notifications: { $elemMatch: { id: comment.id } } },
+    update
+  )
     .then((result) => {
       if (!result) {
         res.status(404).json();
