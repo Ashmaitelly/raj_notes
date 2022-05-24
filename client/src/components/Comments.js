@@ -50,26 +50,27 @@ function Comments() {
               {`${comment.comment}`}
               {user === comment.username || comments[1] ? (
                 <Button
-                  variant="primary"
-                  style={{ float: "right", borderRadius: "90%" }}
-                  onClick={() => {
-                    editComment(comment._id);
-                  }}
-                >
-                  Edit
-                </Button>
-              ) : (
-                ""
-              )}
-              {user === comment.username || comments[1] ? (
-                <Button
                   variant="danger"
                   style={{ float: "right", borderRadius: "100%" }}
                   onClick={() => {
                     deleteComment(comment._id);
                   }}
                 >
-                  X
+                  ✖
+                </Button>
+              ) : (
+                ""
+              )}
+              {user === comment.username || comments[1] ? (
+                <Button
+                  variant="primary"
+                  style={{
+                    float: "right",
+                    borderRadius: "100%",
+                    marginRight: "5px",
+                  }}
+                >
+                  ✎
                 </Button>
               ) : (
                 ""
