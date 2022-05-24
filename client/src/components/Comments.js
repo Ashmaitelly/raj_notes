@@ -22,6 +22,19 @@ function Comments() {
       console.error(err);
     }
   };
+
+  const editComment = async (comment) => {
+    try {
+      let response = await Axios.put(
+        `http://localhost:3001/notes/editcomment/${searchParams.get("id")}`,
+        { id: comment}
+      );
+      console.log(200, response);
+      window.location.reload();
+    } catch (err) {
+      console.error(err);
+    }
+  };
   return (
     <Stack gap={3}>
       <div className="bg-light border">Comment</div>
@@ -33,6 +46,23 @@ function Comments() {
             ).format("MMMM Do YYYY, h:mm:ss a")}`}</Card.Subtitle>
             <Card.Body>
               {`${comment.comment}`}
+              <CommentsContext.Provider value={comments}>
+                <Comments/>
+              </CommentsContext.Provider>
+              {localStorage.getItem("user") === comment.username ||
+              comments[1] ? (
+                <Button
+                  variant="primary"
+                  style={{ float: "right", borderRadius: "90%" }}
+                  onClick={() => {
+                    editComment(comment._id);
+                  }}
+                >
+                  Edit
+                </Button>
+              ) : (
+                ""
+              )}
               {localStorage.getItem("user") === comment.username ||
               comments[1] ? (
                 <Button

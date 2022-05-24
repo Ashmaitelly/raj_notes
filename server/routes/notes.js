@@ -156,4 +156,28 @@ router.put("/removecomment/:id", (req, res) => {
     .catch((err) => res.status(500).json({ error: err }));
 });
 
+router.put("/editcomment/:id", (req, res) => {
+  const _id = req.params.id;
+  const comment= req.body;
+  const update = {
+    
+      comments: [
+        {
+          comment: comment.comment,
+          time: Date.now(),
+        },
+      ] ,
+    }
+  ;
+  NoteModel.findOneAndUpdate({ _id: _id }, update)
+    .then((result) => {
+      if (!result) {
+        res.status(404).json();
+      } else {
+        res.status(200).json("Comment Edited");
+      }
+    })
+    .catch((err) => res.status(500).json({ error: err }));
+});
+
 module.exports = router;
