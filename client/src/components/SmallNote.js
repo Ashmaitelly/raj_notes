@@ -43,7 +43,7 @@ function SmallNote({ url }) {
         <Card.Subtitle className="mb-2">
           {Moment(note.date_modified).format("MMMM Do YYYY, h:mm:ss a")}
         </Card.Subtitle>
-        <Card.Text>{truncString(note.text, 185)}</Card.Text>
+        <Card.Text>{truncString(note.text, 150)}</Card.Text>
       </Card.Body>
     </Card>
   );

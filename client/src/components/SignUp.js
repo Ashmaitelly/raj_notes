@@ -11,7 +11,7 @@ function SignUp() {
 
   const createUser = (e) => {
     e.preventDefault();
-    if (password === confirmPassword) {
+    if (password === confirmPassword && username && password) {
       Axios.post("http://localhost:3001/signup", { username, password })
         .then((response) => {
           alert("User sucussefully created");
@@ -22,7 +22,15 @@ function SignUp() {
           alert(error.response.data);
         });
     } else {
-      alert("Passwords don't match");
+      if( password !==confirmPassword ) {
+        alert("Passwords don't match");
+      }
+      if( !password ) {
+        alert("Please enter a password")
+      }
+      if (!username) {
+        alert('Please enter a username1')
+      }
     }
   };
 
