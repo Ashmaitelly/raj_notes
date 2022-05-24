@@ -56,7 +56,7 @@ function Comments() {
                     deleteComment(comment._id);
                   }}
                 >
-                  ✖
+                  x
                 </Button>
               ) : (
                 ""
