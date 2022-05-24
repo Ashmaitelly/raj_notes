@@ -1,5 +1,5 @@
 import "./App.css";
-import React from "react";
+import React, { useState, createContext } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import Account from "./views/Account";
 import NotesPage from "./views/NotesPage";
@@ -11,14 +11,25 @@ import SharedNotePage from "./views/SharedNotePage";
 import DeletedNotePage from "./views/DeletedNotePage";
 import AddNotePage from "./views/AddNotePage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { createContext } from "react";
 
 export const SearchContext = createContext();
 export const NotesContext = createContext();
 export const ColorContext = createContext();
 export const CommentsContext = createContext();
-export const PostContext= createContext();
+export const PostContext = createContext();
+export const UserContext = createContext();
+
 function App() {
+  const [user, setUser] = useState("");
+
+  const getUser = () => {
+    return user;
+  };
+
+  const updateUser = (userString) => {
+    setUser(userString);
+  };
+
   return (
     <BrowserRouter>
       <Routes>
