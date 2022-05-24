@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Stack, Card, Button } from "react-bootstrap";
 import { CommentsContext } from "../App";
 import Axios from "axios";
@@ -9,6 +9,8 @@ function Comments() {
   const comments = useContext(CommentsContext);
 
   const [searchParams] = useSearchParams();
+
+  const user = useState(localStorage.getItem("user"));
 
   const deleteComment = async (commentId) => {
     try {
@@ -27,7 +29,7 @@ function Comments() {
     try {
       let response = await Axios.put(
         `http://localhost:3001/notes/editcomment/${searchParams.get("id")}`,
-        { id: comment}
+        { id: comment }
       );
       console.log(200, response);
       window.location.reload();
@@ -46,11 +48,7 @@ function Comments() {
             ).format("MMMM Do YYYY, h:mm:ss a")}`}</Card.Subtitle>
             <Card.Body>
               {`${comment.comment}`}
-              <CommentsContext.Provider value={comments}>
-                <Comments/>
-              </CommentsContext.Provider>
-              {localStorage.getItem("user") === comment.username ||
-              comments[1] ? (
+              {user === comment.username || comments[1] ? (
                 <Button
                   variant="primary"
                   style={{ float: "right", borderRadius: "90%" }}
@@ -63,8 +61,7 @@ function Comments() {
               ) : (
                 ""
               )}
-              {localStorage.getItem("user") === comment.username ||
-              comments[1] ? (
+              {user === comment.username || comments[1] ? (
                 <Button
                   variant="danger"
                   style={{ float: "right", borderRadius: "100%" }}
