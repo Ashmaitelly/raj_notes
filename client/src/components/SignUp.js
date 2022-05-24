@@ -21,17 +21,14 @@ function SignUp() {
         .catch((error) => {
           alert(error.response.data);
         });
-    } else {
-      if( password !==confirmPassword ) {
+    } else if( password !==confirmPassword )  {
+      
         alert("Passwords don't match");
       }
-      if( !password ) {
-        alert("Please enter a password")
+      else if (!username || !password){
+        alert("Missing username or password ")
       }
-      if (!username) {
-        alert('Please enter a username1')
-      }
-    }
+  
   };
 
   return (
