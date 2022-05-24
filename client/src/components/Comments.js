@@ -10,7 +10,7 @@ function Comments() {
 
   const [searchParams] = useSearchParams();
 
-  const user = useState(localStorage.getItem("user"));
+  const [user] = useState(localStorage.getItem("user"));
 
   const deleteComment = async (commentId) => {
     try {
