@@ -21,14 +21,11 @@ function SignUp() {
         .catch((error) => {
           alert(error.response.data);
         });
-    } else if( password !==confirmPassword )  {
-      
-        alert("Passwords don't match");
-      }
-      else if (!username || !password){
-        alert("Missing username or password ")
-      }
-  
+    } else if (password !== confirmPassword) {
+      alert("Passwords don't match");
+    } else if (!username || !password) {
+      alert("Missing username or password ");
+    }
   };
 
   return (
@@ -43,11 +40,10 @@ function SignUp() {
               createUser(e);
             }}
           >
-            <Form.Group className="mb-3" controlId="formUsername">
-              <Form.Label>Username</Form.Label>
+            <Form.Group className="mb-4 mt-4" controlId="formUsername">
               <Form.Control
                 type="text"
-                placeholder="Enter Username"
+                placeholder="Username"
                 value={username}
                 onChange={(e) => {
                   setUserName(e.target.value);
@@ -55,8 +51,7 @@ function SignUp() {
               />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formPassword">
-              <Form.Label>Password</Form.Label>
+            <Form.Group className="mb-4" controlId="formPassword">
               <Form.Control
                 type="password"
                 placeholder="Password"
@@ -67,11 +62,10 @@ function SignUp() {
               />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formConfirmPassword">
-              <Form.Label>Confirm Password</Form.Label>
+            <Form.Group className="mb-4" controlId="formConfirmPassword">
               <Form.Control
                 type="password"
-                placeholder="Password"
+                placeholder="Confirm Password"
                 value={confirmPassword}
                 onChange={(e) => {
                   setConfirmPassword(e.target.value);

@@ -15,26 +15,30 @@ function Account() {
   }, [navigate]);
 
   return (
-    <div className="Account" style={{}}>
+    <div className="Account">
       <div className="d-flex justify-content-center mt-5">
         <Button
           style={{ marginRight: "1%" }}
+          className={`btn ${haveUser ? "btn-secondary" : "btn-primary"}`}
           onClick={() => {
-            setHaveUser(true);
+            setHaveUser(false);
           }}
         >
           Sign Up
         </Button>
         <Button
+          className={`btn ${haveUser ? "btn-primary" : "btn-secondary"}`}
           onClick={() => {
-            setHaveUser(false);
+            setHaveUser(true);
           }}
         >
           Log In
         </Button>
       </div>
-      {/**if else condition */}
-      {haveUser ? <SignUp /> : <SignIn />}
+      <div>
+        {/**if else condition */}
+        {haveUser ? <SignIn /> : <SignUp />}
+      </div>
     </div>
   );
 }

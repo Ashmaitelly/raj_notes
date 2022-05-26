@@ -36,8 +36,7 @@ function SignIn() {
               signin(e);
             }}
           >
-            <Form.Group className="mb-3" controlId="formUsername">
-              <Form.Label>Username</Form.Label>
+            <Form.Group className="mb-4 mt-4" controlId="formUsername">
               <Form.Control
                 type="text"
                 placeholder="Enter Username"
@@ -48,8 +47,7 @@ function SignIn() {
               />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formPassword">
-              <Form.Label>Password</Form.Label>
+            <Form.Group className="mb-4" controlId="formPassword">
               <Form.Control
                 type="password"
                 placeholder="Password"
