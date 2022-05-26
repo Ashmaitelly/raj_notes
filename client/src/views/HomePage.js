@@ -6,13 +6,15 @@ import { useNavigate } from "react-router-dom";
 import Axios from "axios";
 import { NotesContext, SearchContext } from "../App";
 
-export default function NotesPage() {
+export default function HomePage() {
   //navigate for anp
   const navigate = useNavigate();
   //state for notes
   const [notes, setNotes] = useState([]);
   //filter string
   const [search, setSearch] = useState("");
+  //user
+  const [user] = localStorage.getItem("user");
   //search function
   const searchBar = (searchString) => {
     setSearch(searchString);
@@ -21,7 +23,7 @@ export default function NotesPage() {
 
   useEffect(() => {
     Axios.get("http://localhost:3001/notes/", {
-      params: { author: localStorage.getItem("user") },
+      params: { author: user },
     })
       .then((response) => {
         setNotes(response.data);
@@ -34,7 +36,7 @@ export default function NotesPage() {
   return (
     <div>
       <NavBar />
-      <h2 className="text-center">{localStorage.getItem("user")}'s Notes</h2>
+      <h2 className="text-center">{user}'s Notes</h2>
       <div style={{ width: "80%", margin: "0 auto" }}>
         <SearchContext.Provider value={searchBar}>
           <SearchBar />
@@ -49,7 +51,7 @@ export default function NotesPage() {
             note.title.toLowerCase().includes(search.toLowerCase())
           )
           .map((note, index) => (
-            <NotesContext.Provider value={note}>
+            <NotesContext.Provider value={note} key={index}>
               <SmallNote key={index} url="hnp" text={`${note.text}`} />
             </NotesContext.Provider>
           ))}

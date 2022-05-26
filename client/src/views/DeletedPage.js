@@ -10,6 +10,8 @@ export default function DeletedPage() {
   const [notes, setNotes] = useState([]);
   //filter string
   const [search, setSearch] = useState("");
+  //user
+  const [user] = useState(localStorage.getItem("user"));
   //search function
   const searchBar = (searchString) => {
     setSearch(searchString);
@@ -17,7 +19,7 @@ export default function DeletedPage() {
   //get notes once
   useEffect(() => {
     Axios.get("http://localhost:3001/deleted/", {
-      params: { author: localStorage.getItem("user") },
+      params: { author: user },
     })
       .then((response) => {
         setNotes(response.data);
@@ -30,7 +32,7 @@ export default function DeletedPage() {
   return (
     <div>
       <NavBar />
-      <h2 className="text-center">{localStorage.getItem("user")}'s Trash</h2>
+      <h2 className="text-center">{user}'s Trash</h2>
       <div style={{ width: "80%", margin: "0 auto" }}>
         <SearchContext.Provider value={searchBar}>
           <SearchBar />
