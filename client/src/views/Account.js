@@ -19,7 +19,7 @@ function Account() {
       <div className="d-flex justify-content-center mt-5">
         <Button
           style={{ marginRight: "1%" }}
-          className={`btn ${haveUser ? "btn-secondary" : "btn-primary"}`}
+          className={`btn ${haveUser ? "btn-secondary" : "btn-success"}`}
           onClick={() => {
             setHaveUser(false);
           }}
@@ -27,7 +27,7 @@ function Account() {
           Sign Up
         </Button>
         <Button
-          className={`btn ${haveUser ? "btn-primary" : "btn-secondary"}`}
+          className={`btn ${haveUser ? "btn-success" : "btn-secondary"}`}
           onClick={() => {
             setHaveUser(true);
           }}

@@ -29,10 +29,10 @@ function SignUp() {
   };
 
   return (
-    <div className="App position-absolute top-50 start-50 translate-middle">
+    <div style={{ border:"1px solid black", padding:"40px",borderRadius: "25px", background:" black"}} className="App position-absolute top-50 start-50 translate-middle">
       <div className="App-wrapper">
         <div>
-          <h2 className="title">Sign Up</h2>
+          <h2 style={{ color:"green"}} className="title">Sign Up</h2>
         </div>
         <div>
           <Form
@@ -73,8 +73,8 @@ function SignUp() {
               />
             </Form.Group>
 
-            <Button variant="primary" type="submit">
-              Submit
+            <Button variant="success" type="submit">
+              Sign Up
             </Button>
           </Form>
         </div>
