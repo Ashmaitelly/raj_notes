@@ -16,6 +16,10 @@ function Account() {
 
   return (
     <div className="Account">
+      <div>
+        {/**if else condition */}
+        {haveUser ? <SignIn /> : <SignUp />}
+      </div>
       <div className="d-flex justify-content-center mt-5">
         <Button
           style={{ marginRight: "1%" }}
@@ -34,10 +38,6 @@ function Account() {
         >
           Log In
         </Button>
-      </div>
-      <div>
-        {/**if else condition */}
-        {haveUser ? <SignIn /> : <SignUp />}
       </div>
     </div>
   );
