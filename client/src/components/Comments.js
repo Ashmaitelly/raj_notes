@@ -25,11 +25,11 @@ function Comments() {
     }
   };
 
-  const editComment = async (comment) => {
+  const editComment = async (id, comment) => {
     try {
       let response = await Axios.put(
         `http://localhost:3001/notes/editcomment/${searchParams.get("id")}`,
-        { id: comment }
+        { id: id, username: user, comment: comment }
       );
       console.log(200, response);
       window.location.reload();
