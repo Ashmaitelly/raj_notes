@@ -1,4 +1,4 @@
-import React, {useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import { useNavigate } from "react-router-dom";
 
@@ -10,7 +10,7 @@ function NavBar() {
     if (!user) {
       navigate("/");
     }
-  }, [navigate]);
+  }, [navigate, user]);
 
   const logOut = () => {
     setUser("");

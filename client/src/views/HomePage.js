@@ -31,7 +31,7 @@ export default function HomePage() {
       .catch((error) => {
         alert("Error getting data");
       });
-  }, []);
+  }, [user]);
 
   return (
     <div>

@@ -27,7 +27,7 @@ export default function SharedPage() {
       .catch((error) => {
         alert("Error getting data");
       });
-  }, []);
+  }, [user]);
   //render
   return (
     <div>

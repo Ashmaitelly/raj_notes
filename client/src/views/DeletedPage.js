@@ -27,7 +27,7 @@ export default function DeletedPage() {
       .catch((error) => {
         alert("Error getting data");
       });
-  }, []);
+  }, [user]);
   //render
   return (
     <div>
