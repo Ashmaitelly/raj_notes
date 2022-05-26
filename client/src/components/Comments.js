@@ -25,18 +25,7 @@ function Comments() {
     }
   };
 
-  const editComment = async (id, comment) => {
-    try {
-      let response = await Axios.put(
-        `http://localhost:3001/notes/editcomment/${searchParams.get("id")}`,
-        { id: id, username: user, comment: comment }
-      );
-      console.log(200, response);
-      window.location.reload();
-    } catch (err) {
-      console.error(err);
-    }
-  };
+
   return (
     <Stack gap={3}>
       <div className="bg-light border">Comment</div>
@@ -61,20 +50,7 @@ function Comments() {
               ) : (
                 ""
               )}
-              {user === comment.username || comments[1] ? (
-                <Button
-                  variant="primary"
-                  style={{
-                    float: "right",
-                    borderRadius: "100%",
-                    marginRight: "5px",
-                  }}
-                >
-                  ✎
-                </Button>
-              ) : (
-                ""
-              )}
+
             </Card.Body>
           </Card>
         ))
