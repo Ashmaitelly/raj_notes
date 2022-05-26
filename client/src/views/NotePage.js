@@ -8,7 +8,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import Axios from "axios";
 import { PostContext, CommentsContext, NotesContext } from "../App.js";
 
-function HomeNotePage() {
+function NotePage() {
   const navigate = useNavigate();
   //note state object
   const [note, setNote] = useState({});
@@ -132,4 +132,4 @@ function HomeNotePage() {
   );
 }
 
-export default HomeNotePage;
+export default NotePage;
