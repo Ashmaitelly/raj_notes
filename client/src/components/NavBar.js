@@ -4,14 +4,16 @@ import { useNavigate } from "react-router-dom";
 
 function NavBar() {
   const navigate = useNavigate();
+  const [user, setUser] = useState(localStorage.getItem("user"));
 
   useEffect(() => {
-    if (!localStorage.getItem("user")) {
+    if (!user) {
       navigate("/");
     }
   }, [navigate]);
 
   const logOut = () => {
+    setUser("");
     localStorage.clear();
     navigate("/");
   };
