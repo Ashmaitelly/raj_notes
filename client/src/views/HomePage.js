@@ -14,7 +14,7 @@ export default function HomePage() {
   //filter string
   const [search, setSearch] = useState("");
   //user
-  const [user] = localStorage.getItem("user");
+  const [user] = useState(localStorage.getItem("user"));
   //search function
   const searchBar = (searchString) => {
     setSearch(searchString);
