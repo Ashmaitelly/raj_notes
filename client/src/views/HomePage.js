@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import Axios from "axios";
 import { NotesContext, SearchContext } from "../App";
 
-export default function NotesPage() {
+export default function HomePage() {
   //navigate for anp
   const navigate = useNavigate();
   //state for notes

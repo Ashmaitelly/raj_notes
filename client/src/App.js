@@ -2,7 +2,7 @@ import "./App.css";
 import React, { useState, createContext } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import Account from "./views/Account";
-import NotesPage from "./views/NotesPage";
+import HomePage from "./views/HomePage";
 import SharedPage from "./views/SharedPage";
 import DeletedPage from "./views/DeletedPage";
 import Note from "./components/Note";
@@ -29,20 +29,21 @@ function App() {
   const updateUser = (userString) => {
     setUser(userString);
   };
-
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Account />} />
-        <Route path="/home" element={<NotesPage />} />
-        <Route path="/shared" element={<SharedPage />} />
-        <Route path="/deleted" element={<DeletedPage />} />
-        <Route path="/note" element={<Note />} />
-        <Route path="/hnp" element={<NotePage />} />
-        <Route path="/snp" element={<SharedNotePage />} />
-        <Route path="/dnp" element={<DeletedNotePage />} />
-        <Route path="/anp" element={<AddNotePage />} />
-      </Routes>
+      <UserContext.Provider value={(getUser, setUser)}>
+        <Routes>
+          <Route path="/" element={<Account />} />
+          <Route path="/home" element={<HomePage />} />
+          <Route path="/shared" element={<SharedPage />} />
+          <Route path="/deleted" element={<DeletedPage />} />
+          <Route path="/note" element={<Note />} />
+          <Route path="/hnp" element={<NotePage />} />
+          <Route path="/snp" element={<SharedNotePage />} />
+          <Route path="/dnp" element={<DeletedNotePage />} />
+          <Route path="/anp" element={<AddNotePage />} />
+        </Routes>
+      </UserContext.Provider>
     </BrowserRouter>
   );
 }
