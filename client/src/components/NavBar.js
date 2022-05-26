@@ -19,7 +19,7 @@ function NavBar() {
   return (
     <nav
       style={{ position: "sticky", top: "0", zIndex: "3" }}
-      className="navbar navbar-expand-lg navbar-dark bg-dark"
+      className="navbar navbar-expand-lg navbar-dark bg-dark mb-1"
     >
       <a className="navbar-brand" href="/home">
         R A J NOTES

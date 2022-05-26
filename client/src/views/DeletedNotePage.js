@@ -55,7 +55,7 @@ function DeletedNotePage() {
       <NotesContext.Provider value={note}>
         <Note />
       </NotesContext.Provider>
-      <div className="d-md-inline" style={{ marginLeft: "12.5%" }}>
+      <div className="mx-auto mb-2" style={{ width: "75%" }}>
         <Button
           variant="primary"
           style={{ marginRight: "1%" }}

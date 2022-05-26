@@ -8,7 +8,7 @@ function Note() {
 
   return (
     <>
-      <Card style={{ height: "80%", width: "75%", margin: "0 auto" }}>
+      <Card className="mx-auto mb-3" style={{ height: "80%", width: "75%" }}>
         <Card.Body style={{ backgroundColor: note.bgc }}>
           <Card.Title>
             {note.title}{" "}
