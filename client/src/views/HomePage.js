@@ -49,7 +49,7 @@ export default function HomePage() {
             note.title.toLowerCase().includes(search.toLowerCase())
           )
           .map((note, index) => (
-            <NotesContext.Provider value={note}>
+            <NotesContext.Provider value={note} key={index}>
               <SmallNote key={index} url="hnp" text={`${note.text}`} />
             </NotesContext.Provider>
           ))}
