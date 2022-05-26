@@ -39,7 +39,7 @@ function SignIn() {
             <Form.Group className="mb-4 mt-4" controlId="formUsername">
               <Form.Control
                 type="text"
-                placeholder="Enter Username"
+                placeholder="Username"
                 value={username}
                 onChange={(e) => {
                   setUserName(e.target.value);
