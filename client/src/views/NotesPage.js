@@ -35,9 +35,11 @@ export default function NotesPage() {
     <div>
       <NavBar />
       <h2 className="text-center">{localStorage.getItem("user")}'s Notes</h2>
-      <SearchContext.Provider value={searchBar}>
-        <SearchBar />
-      </SearchContext.Provider>
+      <div style={{ width: "80%", margin: "0 auto" }}>
+        <SearchContext.Provider value={searchBar}>
+          <SearchBar />
+        </SearchContext.Provider>
+      </div>
       <div
         className="d-flex flex-wrap justify-content-around"
         style={{ width: "80%", marginLeft: "10%" }}
