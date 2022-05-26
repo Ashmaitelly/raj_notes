@@ -10,6 +10,8 @@ export default function SharedPage() {
   const [notes, setNotes] = useState([]);
   //filter string
   const [search, setSearch] = useState("");
+  //user
+  const [user] = localStorage.getItem("user");
   //search function
   const searchBar = (searchString) => {
     setSearch(searchString);
@@ -17,7 +19,7 @@ export default function SharedPage() {
   //get notes once
   useEffect(() => {
     Axios.get("http://localhost:3001/shared/", {
-      params: { viewer: localStorage.getItem("user") },
+      params: { viewer: user },
     })
       .then((response) => {
         setNotes(response.data);
@@ -30,9 +32,7 @@ export default function SharedPage() {
   return (
     <div>
       <NavBar />
-      <h2 className="text-center">
-        Shared with {localStorage.getItem("user")}
-      </h2>
+      <h2 className="text-center">Shared with {user}</h2>
       <div style={{ width: "80%", margin: "0 auto" }}>
         <SearchContext.Provider value={searchBar}>
           <SearchBar />

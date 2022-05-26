@@ -5,6 +5,7 @@ import Moment from "moment";
 
 function Note() {
   const note = useContext(NotesContext);
+  const [user] = localStorage.getItem("user");
 
   return (
     <>
@@ -12,11 +13,7 @@ function Note() {
         <Card.Body style={{ backgroundColor: note.bgc }}>
           <Card.Title>
             {note.title}{" "}
-            {note.author === localStorage.getItem("user") ? (
-              ""
-            ) : (
-              <small>{`~by ${note.author}`}</small>
-            )}
+            {note.author === user ? "" : <small>{`~by ${note.author}`}</small>}
           </Card.Title>
           <Card.Subtitle className="mb-2 text-muted">
             Last Modified:{" "}

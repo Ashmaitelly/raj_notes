@@ -13,6 +13,8 @@ export default function HomePage() {
   const [notes, setNotes] = useState([]);
   //filter string
   const [search, setSearch] = useState("");
+  //user
+  const [user] = localStorage.getItem("user");
   //search function
   const searchBar = (searchString) => {
     setSearch(searchString);
@@ -21,7 +23,7 @@ export default function HomePage() {
 
   useEffect(() => {
     Axios.get("http://localhost:3001/notes/", {
-      params: { author: localStorage.getItem("user") },
+      params: { author: user },
     })
       .then((response) => {
         setNotes(response.data);
@@ -34,7 +36,7 @@ export default function HomePage() {
   return (
     <div>
       <NavBar />
-      <h2 className="text-center">{localStorage.getItem("user")}'s Notes</h2>
+      <h2 className="text-center">{user}'s Notes</h2>
       <div style={{ width: "80%", margin: "0 auto" }}>
         <SearchContext.Provider value={searchBar}>
           <SearchBar />
