@@ -4,7 +4,7 @@ import { SearchContext } from "../App";
 function SearchBar() {
   const setSearch = useContext(SearchContext);
   return (
-    <div style={{ marginBottom: "15px" }}>
+    <div style={{ marginBottom: "30px" }}>
       <input
         type="text"
         name="search"

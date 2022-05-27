@@ -16,6 +16,8 @@ function NotePage() {
   const [searchParams] = useSearchParams();
   const [show, setShow] = useState(false);
   const [share, setShare] = useState("");
+  //user
+  const [user] = useState(localStorage.getItem("user"));
   //functions
 
   const handleClose = () => setShow(false);
@@ -53,12 +55,17 @@ function NotePage() {
   useEffect(() => {
     Axios.get(`http://localhost:3001/notes/${searchParams.get("id")}`)
       .then((response) => {
-        setNote(response.data);
+        if (response.data.author === user) {
+          setNote(response.data);
+        } else {
+          throw new Error("You are not authorized to acces this note");
+        }
       })
       .catch((error) => {
-        alert("Error getting data");
+        alert(error.message);
+        navigate("/home");
       });
-  }, [searchParams]);
+  }, [searchParams, user, navigate]);
 
   return (
     <div>

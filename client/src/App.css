@@ -16,6 +16,17 @@
   width: 100%;
 }
 
+
+.xxxx {
+  width: 80% ;
+  margin-left: 10% ;
+  margin-bottom: 10px;
+  border: 3px solid rgb(33, 37, 41);
+  background-color: rgb(33, 37, 41);
+  padding:20px 35px 0px;
+  border-radius: 10px;
+}
+
 .App {
   text-align: center;
 }

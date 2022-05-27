@@ -39,8 +39,7 @@ export default function SharedPage() {
         </SearchContext.Provider>
       </div>
       <div
-        className="d-flex flex-wrap justify-content-around"
-        style={{ width: "80%", marginLeft: "10%" }}
+        className="d-flex flex-wrap justify-content-around xxxx"
       >
         {notes
           .filter((note) =>

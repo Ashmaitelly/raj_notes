@@ -27,7 +27,7 @@ function SmallNote({ url }) {
         width: "18rem",
         height: "12rem",
         backgroundColor: `${note.bgc}`,
-        marginBottom: "50px",
+        marginBottom: "20px",
         cursor: "pointer",
       }}
     >

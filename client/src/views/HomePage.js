@@ -43,8 +43,7 @@ export default function HomePage() {
         </SearchContext.Provider>
       </div>
       <div
-        className="d-flex flex-wrap justify-content-around"
-        style={{ width: "80%", marginLeft: "10%" }}
+        className="d-flex flex-wrap justify-content-around xxxx"
       >
         {notes
           .filter((note) =>
@@ -55,7 +54,9 @@ export default function HomePage() {
               <SmallNote key={index} url="hnp" text={`${note.text}`} />
             </NotesContext.Provider>
           ))}
-        <button
+      </div>
+      
+      <button
           onClick={() => {
             navigate("/anp");
           }}
@@ -76,7 +77,6 @@ export default function HomePage() {
         >
           +
         </button>
-      </div>
     </div>
   );
 }
