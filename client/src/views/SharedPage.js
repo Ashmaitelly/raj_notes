@@ -38,19 +38,21 @@ export default function SharedPage() {
           <SearchBar />
         </SearchContext.Provider>
       </div>
-      <div
-        className="d-flex flex-wrap justify-content-around xxxx"
-      >
-        {notes
-          .filter((note) =>
-            note.title.toLowerCase().includes(search.toLowerCase())
-          )
-          .map((note, index) => (
-            <NotesContext.Provider value={note}>
-              <SmallNote key={index} url="snp" text={`${note.text}`} />
-            </NotesContext.Provider>
-          ))}
-      </div>
+      {notes.length > 0 ? (
+        <div className="d-flex flex-wrap justify-content-around xxxx">
+          {notes
+            .filter((note) =>
+              note.title.toLowerCase().includes(search.toLowerCase())
+            )
+            .map((note, index) => (
+              <NotesContext.Provider value={note} key={index}>
+                <SmallNote key={index} url="snp" text={`${note.text}`} />
+              </NotesContext.Provider>
+            ))}
+        </div>
+      ) : (
+        <h3 className="text-center">No notes shared with you</h3>
+      )}
     </div>
   );
 }
