@@ -12,6 +12,7 @@ export default function DeletedPage() {
   const [search, setSearch] = useState("");
   //user
   const [user] = useState(localStorage.getItem("user"));
+  const [message, setMessage] = useState("");
   //search function
   const searchBar = (searchString) => {
     setSearch(searchString);
@@ -23,6 +24,7 @@ export default function DeletedPage() {
     })
       .then((response) => {
         setNotes(response.data);
+        setMessage("Your trash is empty");
       })
       .catch((error) => {
         alert("Error getting data");
@@ -51,7 +53,7 @@ export default function DeletedPage() {
             ))}
         </div>
       ) : (
-        <h3 className="text-center">Your trash is empty</h3>
+        <h3 className="text-center">{message}</h3>
       )}
     </div>
   );

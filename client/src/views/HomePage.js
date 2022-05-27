@@ -15,6 +15,7 @@ export default function HomePage() {
   const [search, setSearch] = useState("");
   //user
   const [user] = useState(localStorage.getItem("user"));
+  const [message, setMessage] = useState("");
   //search function
   const searchBar = (searchString) => {
     setSearch(searchString);
@@ -27,6 +28,7 @@ export default function HomePage() {
     })
       .then((response) => {
         setNotes(response.data);
+        setMessage("You have no notes");
       })
       .catch((error) => {
         alert("Error getting data");
@@ -55,7 +57,7 @@ export default function HomePage() {
             ))}
         </div>
       ) : (
-        <h3 className="text-center">You have no notes</h3>
+        <h3 className="text-center">{message}</h3>
       )}
 
       <button

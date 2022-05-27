@@ -12,6 +12,7 @@ export default function SharedPage() {
   const [search, setSearch] = useState("");
   //user
   const [user] = useState(localStorage.getItem("user"));
+  const [message, setMessage] = useState("");
   //search function
   const searchBar = (searchString) => {
     setSearch(searchString);
@@ -23,6 +24,7 @@ export default function SharedPage() {
     })
       .then((response) => {
         setNotes(response.data);
+        setMessage("No notes shared with you");
       })
       .catch((error) => {
         alert("Error getting data");
@@ -51,7 +53,7 @@ export default function SharedPage() {
             ))}
         </div>
       ) : (
-        <h3 className="text-center">No notes shared with you</h3>
+        <h3 className="text-center">{message}</h3>
       )}
     </div>
   );
