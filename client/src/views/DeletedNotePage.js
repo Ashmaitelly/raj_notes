@@ -55,16 +55,26 @@ function DeletedNotePage() {
       <NotesContext.Provider value={note}>
         <Note />
       </NotesContext.Provider>
-      <div className="mx-auto mb-2" style={{ width: "75%" }}>
+      <div className="mx-auto mb-2" >
+        <ul
+        style={{
+          display: "flex",
+          margin:"5px 272px 5px 240px",
+          listStyle: "none",
+          justifyContent: "space-between",
+        }}
+        >
+          <li>
         <Button
           variant="primary"
-          style={{ marginRight: "1%" }}
           onClick={() => {
             restoreNote();
           }}
         >
           Restore
         </Button>
+        </li>
+        <li>
         <Button
           variant="primary"
           onClick={() => {
@@ -73,6 +83,8 @@ function DeletedNotePage() {
         >
           Delete
         </Button>
+        </li>
+        </ul>
       </div>
       {note.shared && (
         <CommentsContext.Provider value={[note.comments, true]}>

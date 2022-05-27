@@ -65,10 +65,11 @@ function AddNotePage({ text }) {
     <div>
       <NavBar />
       <Card
+      className="mx-auto mb-3"
         style={{
-          height: "1000%",
+          height: "450px",
           width: "75%",
-          margin: "0 auto",
+          marginTop: "20px",
           backgroundColor: noteColor,
         }}
       >
@@ -111,7 +112,7 @@ function AddNotePage({ text }) {
         <ul
           style={{
             display: "flex",
-            margin: " 20px 162px 20px 130px",
+            margin: " 20px 272px 20px 240px",
             listStyle: "none",
             justifyContent: "space-between",
           }}

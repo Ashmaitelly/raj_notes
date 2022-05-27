@@ -66,25 +66,36 @@ function NotePage() {
       <NotesContext.Provider value={note}>
         <Note />
       </NotesContext.Provider>
-      <div className="d-md-inline" style={{ marginLeft: "12.5%" }}>
+      <div className="d-md-inline">
+        <ul
+        style={{
+          display: "flex",
+          margin:"0.4px 272px 0.4px 240px",
+          listStyle: "none",
+          justifyContent: "space-between",
+        }}
+        >
+          <li>
         <Button
           variant="primary"
-          style={{ marginRight: "1%" }}
           onClick={() => {
             navigate(`/anp?id=${note._id}`);
           }}
         >
           Edit
         </Button>
+        </li>
+        <li>
         <Button
           variant="primary"
-          style={{ marginRight: "1%" }}
           onClick={() => {
             removeNote();
           }}
         >
           Remove
         </Button>
+        </li>
+        <li>
         <Button
           variant="primary"
           onClick={() => {
@@ -93,6 +104,8 @@ function NotePage() {
         >
           Share with
         </Button>
+        </li>
+        </ul>
       </div>
       {note.shared && (
         <PostContext.Provider value={searchParams.get("id")}>

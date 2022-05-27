@@ -8,8 +8,8 @@ function Note() {
   const [user] = localStorage.getItem("user");
 
   return (
-    <>
-      <Card className="mx-auto mb-3" style={{ height: "80%", width: "75%" }}>
+    <div>
+      <Card className="mx-auto mb-3" style={{ marginTop: "20px", minHeight: "450px", width: "75%" }}>
         <Card.Body style={{ backgroundColor: note.bgc }}>
           <Card.Title>
             {note.title}{" "}
@@ -25,7 +25,7 @@ function Note() {
           </Card.Text>
         </Card.Body>
       </Card>
-    </>
+    </div>
   );
 }
 

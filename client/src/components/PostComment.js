@@ -24,7 +24,7 @@ function PostComments() {
     <InputGroup className="mb-2 d-flex justify-content-center">
       <div
         className="insertComments d-flex justify-content-center"
-        style={{ width: "40%", marginTop: "0.7em" }}
+        style={{ width: "40%", marginTop:"40px"}}
       >
         <FormControl
           as="textarea"
