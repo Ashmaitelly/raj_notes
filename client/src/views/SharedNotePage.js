@@ -37,8 +37,8 @@ export default function SharedNotePage() {
         <Note />
       </NotesContext.Provider>
       {note.shared && (
-        <PostContext.Provider value={searchParams.get("id")}>
-          <PostComments />
+        <PostContext.Provider value={searchParams.get("id")}  style={{marginBottom: "50px"}}>
+          <PostComments   />
         </PostContext.Provider>
       )}
       {note.shared && (
