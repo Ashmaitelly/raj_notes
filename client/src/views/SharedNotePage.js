@@ -5,7 +5,7 @@ import PostComments from "../components/PostComment";
 import Comments from "../components/Comments";
 import Axios from "axios";
 import { PostContext, NotesContext, CommentsContext } from "../App";
-import { useSearchParams } from "react-router-dom";
+import { Navigate, useSearchParams } from "react-router-dom";
 
 export default function SharedNotePage() {
   //note state object
@@ -13,16 +13,22 @@ export default function SharedNotePage() {
   //url parameters
   const [searchParams] = useSearchParams();
   //trying context
+  const [user] = useState(localStorage.getItem("user"));
 
   useEffect(() => {
     Axios.get(`http://localhost:3001/shared/${searchParams.get("id")}`)
       .then((response) => {
-        setNote(response.data);
+        if (response.data.shared_users.includes(user)) {
+          setNote(response.data);
+        } else {
+          throw new Error("You are not authorized to acces this note");
+        }
       })
       .catch((error) => {
-        alert("Error getting data");
+        alert(error.message);
+        Navigate("/home");
       });
-  }, [searchParams]);
+  }, [searchParams, user]);
   //render
   return (
     <div>

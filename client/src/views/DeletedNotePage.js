@@ -14,6 +14,7 @@ function DeletedNotePage() {
   //url parameters
   const [searchParams] = useSearchParams();
   //trying context
+  const [user] = useState(localStorage.getItem("user"));
 
   const restoreNote = async (e) => {
     try {
@@ -42,12 +43,17 @@ function DeletedNotePage() {
   useEffect(() => {
     Axios.get(`http://localhost:3001/deleted/${searchParams.get("id")}`)
       .then((response) => {
-        setNote(response.data);
+        if (response.data.author === user) {
+          setNote(response.data);
+        } else {
+          throw new Error("You are not authorized to acces this note");
+        }
       })
       .catch((error) => {
-        alert("Error getting data");
+        alert(error.message);
+        navigate("/home");
       });
-  }, [searchParams]);
+  }, [searchParams, user, navigate]);
 
   return (
     <div>
