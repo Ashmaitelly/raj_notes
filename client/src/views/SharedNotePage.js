@@ -21,7 +21,7 @@ export default function SharedNotePage() {
         if (response.data.shared_users.includes(user)) {
           setNote(response.data);
         } else {
-          throw new Error("You are not authorized to acces this note");
+          throw new Error("You are not authorized to access this note");
         }
       })
       .catch((error) => {
