@@ -72,7 +72,7 @@ function DeletedNotePage() {
         >
           <li>
         <Button
-          variant="primary"
+          variant="dark"
           onClick={() => {
             restoreNote();
           }}
@@ -82,7 +82,7 @@ function DeletedNotePage() {
         </li>
         <li>
         <Button
-          variant="primary"
+          variant="dark" 
           onClick={() => {
             deleteNote();
           }}

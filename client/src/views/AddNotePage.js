@@ -118,7 +118,7 @@ function AddNotePage({ text }) {
           }}
         >
           <li>
-            <Button variant="primary" onClick={edit ? editNote : addNewNote}>
+            <Button variant="dark" onClick={edit ? editNote : addNewNote}>
               Save
             </Button>
           </li>
@@ -131,7 +131,7 @@ function AddNotePage({ text }) {
 
           <li>
             <Button
-              variant="primary"
+              variant="dark"
               onClick={() => {
                 navigate("/home");
               }}

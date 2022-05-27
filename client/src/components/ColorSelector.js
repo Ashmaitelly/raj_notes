@@ -6,7 +6,7 @@ import { ColorContext } from "../App";
 function ColorSelector() {
   const setCol = useContext(ColorContext);
   return (
-    <DropdownButton id="dropdown-basic-button" title="Colors">
+    <DropdownButton variant="dark" id="dropdown-basic-button" title="Colors">
       <Dropdown.Item
         onClick={() => {
           setCol("#F6041C");

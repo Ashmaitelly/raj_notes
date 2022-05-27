@@ -39,7 +39,7 @@ function PostComments() {
           }}
         />
         <Button
-          className="btn-outline-secondary"
+          variant="dark"
           onClick={() => {
             postComment(localStorage.getItem("user"));
           }}

@@ -84,7 +84,7 @@ function NotePage() {
         >
           <li>
         <Button
-          variant="primary"
+          variant="dark"
           onClick={() => {
             navigate(`/anp?id=${note._id}`);
           }}
@@ -94,7 +94,7 @@ function NotePage() {
         </li>
         <li>
         <Button
-          variant="primary"
+          variant="dark"
           onClick={() => {
             removeNote();
           }}
@@ -104,7 +104,7 @@ function NotePage() {
         </li>
         <li>
         <Button
-          variant="primary"
+          variant="dark"
           onClick={() => {
             handleShow();
           }}
