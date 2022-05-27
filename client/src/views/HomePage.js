@@ -42,41 +42,43 @@ export default function HomePage() {
           <SearchBar />
         </SearchContext.Provider>
       </div>
-      <div
-        className="d-flex flex-wrap justify-content-around xxxx"
-      >
-        {notes
-          .filter((note) =>
-            note.title.toLowerCase().includes(search.toLowerCase())
-          )
-          .map((note, index) => (
-            <NotesContext.Provider value={note} key={index}>
-              <SmallNote key={index} url="hnp" text={`${note.text}`} />
-            </NotesContext.Provider>
-          ))}
-      </div>
-      
+      {notes.length > 0 ? (
+        <div className="d-flex flex-wrap justify-content-around xxxx">
+          {notes
+            .filter((note) =>
+              note.title.toLowerCase().includes(search.toLowerCase())
+            )
+            .map((note, index) => (
+              <NotesContext.Provider value={note} key={index}>
+                <SmallNote key={index} url="hnp" text={`${note.text}`} />
+              </NotesContext.Provider>
+            ))}
+        </div>
+      ) : (
+        <h3 className="text-center">You have no notes</h3>
+      )}
+
       <button
-          onClick={() => {
-            navigate("/anp");
-          }}
-          style={{
-            position: "fixed",
-            bottom: "25px",
-            right: "25px",
-            cursor: "pointer",
-            width: "55px",
-            height: "55px",
-            padding: "0px 0px",
-            borderRadius: "50px",
-            fontSize: "30px",
-            textAlign: "center",
-          }}
-          type="button"
-          className="btn btn-dark"
-        >
-          +
-        </button>
+        onClick={() => {
+          navigate("/anp");
+        }}
+        style={{
+          position: "fixed",
+          bottom: "25px",
+          right: "25px",
+          cursor: "pointer",
+          width: "55px",
+          height: "55px",
+          padding: "0px 0px",
+          borderRadius: "50px",
+          fontSize: "30px",
+          textAlign: "center",
+        }}
+        type="button"
+        className="btn btn-dark"
+      >
+        +
+      </button>
     </div>
   );
 }
