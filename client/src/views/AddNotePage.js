@@ -67,7 +67,7 @@ function AddNotePage({ text }) {
       <Card
       className="mx-auto mb-3"
         style={{
-          height: "450px",
+          minHeight: "450px",
           width: "75%",
           marginTop: "20px",
           backgroundColor: noteColor,
