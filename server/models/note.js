@@ -11,7 +11,6 @@ const NoteSchema = new mongoose.Schema({
   },
   date_modified: {
     type: Date,
-    default: Date.now(),
   },
   soft_deleted: {
     type: Boolean,

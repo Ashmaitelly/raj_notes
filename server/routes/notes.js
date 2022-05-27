@@ -33,6 +33,7 @@ router.get("/:id", (req, res) => {
 // new note
 router.post("/create", async (req, res) => {
   const note = req.body;
+  note.date_modified = Date.now();
   try {
     const newNote = new NoteModel(note);
     const savedNote = await newNote.save();
@@ -155,7 +156,5 @@ router.put("/removecomment/:id", (req, res) => {
     })
     .catch((err) => res.status(500).json({ error: err }));
 });
-
-
 
 module.exports = router;
