@@ -143,7 +143,7 @@ function NotePage() {
           </InputGroup>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" type="submit" onClick={shareNote}>
+          <Button variant="dark" type="submit" onClick={shareNote}>
             Share
           </Button>
         </Modal.Footer>
