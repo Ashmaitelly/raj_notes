@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Card, Button, FormControl, InputGroup } from "react-bootstrap";
+import { Card, Button, FormControl } from "react-bootstrap";
 import NavBar from "../components/NavBar";
 import ColorSelector from "../components/ColorSelector";
 import { useNavigate, useSearchParams } from "react-router-dom";
@@ -65,7 +65,7 @@ function AddNotePage({ text }) {
     <div>
       <NavBar />
       <Card
-      className="mx-auto mb-3"
+        className="mx-auto mb-3"
         style={{
           minHeight: "450px",
           width: "75%",
@@ -76,34 +76,48 @@ function AddNotePage({ text }) {
         <Card.Body>
           <Card.Title>
             <input
-              style={{ backgroundColor: noteColor }}
+              style={{
+                border: "none",
+                backgroundColor: "transparent",
+                resize: "none",
+                outline: "none",
+              }}
               size="lg"
-              placeholder="insert Title"
+              id="title"
+              placeholder="Title"
               type="title"
               value={title}
               onChange={(e) => {
                 setTitle(e.target.value);
               }}
+              onKeyPress={(e) => {
+                if (e.key === "Enter") {
+                  document.getElementById("text").focus();
+                }
+              }}
             />
           </Card.Title>
-          <Card.Subtitle className="mb-2 text-muted">
-            Modifying now
-          </Card.Subtitle>
-
+          <Card.Subtitle className="mb-2 text-muted"></Card.Subtitle>
           <Card.Text style={{ whiteSpace: "pre-wrap" }}>
-            <InputGroup className="mb-3">
-              <FormControl
-                as="textarea"
-                style={{ backgroundColor: noteColor }}
-                placeholder="insert text"
-                aria-label="insert text"
-                aria-describedby="basic-addon1"
-                value={word}
-                onChange={(e) => {
-                  setWord(e.target.value);
-                }}
-              />
-            </InputGroup>
+            <FormControl
+              as="textarea"
+              id="text"
+              style={{
+                border: "none",
+                backgroundColor: "transparent",
+                resize: "none",
+                outline: "none",
+                height: "60vh",
+                boxShadow: "none",
+              }}
+              placeholder="Text"
+              aria-label="Text"
+              aria-describedby="basic-addon1"
+              value={word}
+              onChange={(e) => {
+                setWord(e.target.value);
+              }}
+            />
           </Card.Text>
         </Card.Body>
       </Card>
