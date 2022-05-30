@@ -7,9 +7,13 @@ function PostComments() {
   const [insertComments, setInsertComments] = useState("");
   const [searchParams] = useSearchParams();
 
+
   //post button activation axios
   const postComment = async (user) => {
     try {
+      if(insertComments===""){
+        throw new Error("Empty comment")
+      }
       let response = await Axios.put(
         `http://localhost:3001/notes/comment/${searchParams.get("id")}`,
         { username: user, comment: insertComments }
@@ -37,18 +41,20 @@ function PostComments() {
           onChange={(e) => {
             setInsertComments(e.target.value);
           }}
+
         />
         <Button
           variant="dark"
           onClick={() => {
             postComment(localStorage.getItem("user"));
           }}
+
         >
           Post
         </Button>
       </div>
     </InputGroup>
   );
-}
+        }
 
 export default PostComments;
