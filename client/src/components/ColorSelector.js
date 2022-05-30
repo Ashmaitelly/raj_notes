@@ -19,6 +19,7 @@ function ColorSelector() {
     <DropdownButton variant="dark" id="dropdown-basic-button" title="Colors">
       {cols.map((col, index) => (
         <Dropdown.Item
+          style={{ backgroundColor: col }}
           key={index}
           onClick={() => {
             setCol(col);
