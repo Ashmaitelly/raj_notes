@@ -33,6 +33,7 @@ function Comments() {
             key={index}
             id={index}
             style={{
+              margin:"0% 30.5%",
               padding: "5px",
               minHeight: "5px",
               width: "500px",
