@@ -33,22 +33,42 @@ function Comments() {
             key={index}
             id={index}
             style={{
-              margin:"0% 30.5%",
+              margin: "0% 30.5%",
               padding: "5px",
               minHeight: "5px",
               width: "500px",
               verticalAlign: "middle",
             }}
+            onMouseOver={() => {
+              document.getElementById(`d-${index}`).style.display = "";
+            }}
+            onMouseOut={() => {
+              document.getElementById(`d-${index}`).style.display = "none";
+            }}
           >
-            <Card.Subtitle>{`${comment.username} - ${Moment(
-              comment.time
-            ).format("MMMM Do YYYY, h:mm:ss a")}`}</Card.Subtitle>
+            <Card.Subtitle
+              className="mb-2"
+              style={{ color: `${comment.username === user ? "green" : ""}` }}
+            >
+              <h4>{`${comment.username}`}</h4>
+            </Card.Subtitle>
+
+            <Card.Subtitle>
+              <small>
+                {`- ${Moment(comment.time).format("MMMM Do YYYY, h:mm:ss a")}`}
+              </small>
+            </Card.Subtitle>
             <Card.Body>
-              {`${comment.comment}`}
+              <h5>{`${comment.comment}`}</h5>
               {user === comment.username || comments[1] ? (
                 <Button
                   variant="danger"
-                  style={{ float: "right", borderRadius: "100%" }}
+                  id={`d-${index}`}
+                  style={{
+                    float: "right",
+                    borderRadius: "100%",
+                    display: "none",
+                  }}
                   onClick={() => {
                     deleteComment(comment._id);
                     document.getElementById(index).style.display = "none";
