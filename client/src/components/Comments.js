@@ -74,7 +74,7 @@ function Comments() {
                     document.getElementById(index).style.display = "none";
                   }}
                 >
-                  x
+                  X
                 </Button>
               ) : (
                 ""
