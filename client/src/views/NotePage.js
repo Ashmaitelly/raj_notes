@@ -16,10 +16,16 @@ function NotePage() {
   const [searchParams] = useSearchParams();
   const [show, setShow] = useState(false);
   const [share, setShare] = useState("");
+  const [comments, setComments] = useState([]);
   //user
   const [user] = useState(localStorage.getItem("user"));
   //functions
-
+  const addComments = (comment) => {
+    setComments([
+      ...comments,
+      { username: user, comment: comment, time: Date.now() },
+    ]);
+  };
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -75,52 +81,54 @@ function NotePage() {
       </NotesContext.Provider>
       <div className="d-md-inline">
         <ul
-        style={{
-          display: "flex",
-          margin:"0.4px 272px 0.4px 240px",
-          listStyle: "none",
-          justifyContent: "space-between",
-        }}
+          style={{
+            display: "flex",
+            margin: "0.4px 272px 0.4px 240px",
+            listStyle: "none",
+            justifyContent: "space-between",
+          }}
         >
           <li>
-        <Button
-          variant="dark"
-          onClick={() => {
-            navigate(`/anp?id=${note._id}`);
-          }}
-        >
-          Edit
-        </Button>
-        </li>
-        <li>
-        <Button
-          variant="dark"
-          onClick={() => {
-            removeNote();
-          }}
-        >
-          Remove
-        </Button>
-        </li>
-        <li>
-        <Button
-          variant="dark"
-          onClick={() => {
-            handleShow();
-          }}
-        >
-          Share with
-        </Button>
-        </li>
+            <Button
+              variant="dark"
+              onClick={() => {
+                navigate(`/anp?id=${note._id}`);
+              }}
+            >
+              Edit
+            </Button>
+          </li>
+          <li>
+            <Button
+              variant="dark"
+              onClick={() => {
+                removeNote();
+              }}
+            >
+              Remove
+            </Button>
+          </li>
+          <li>
+            <Button
+              variant="dark"
+              onClick={() => {
+                handleShow();
+              }}
+            >
+              Share with
+            </Button>
+          </li>
         </ul>
       </div>
       {note.shared && (
-        <PostContext.Provider value={searchParams.get("id")}>
+        <PostContext.Provider value={addComments}>
           <PostComments />
         </PostContext.Provider>
       )}
       {note.shared && (
-        <CommentsContext.Provider value={[note.comments, true]}>
+        <CommentsContext.Provider
+          value={[[...note.comments, ...comments], true]}
+        >
           <Comments />
         </CommentsContext.Provider>
       )}

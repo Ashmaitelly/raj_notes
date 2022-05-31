@@ -14,6 +14,8 @@ export default function SharedNotePage() {
   const [searchParams] = useSearchParams();
   //trying context
   const [user] = useState(localStorage.getItem("user"));
+  //comments
+  const [comments, setComments] = useState([]);
 
   useEffect(() => {
     Axios.get(`http://localhost:3001/shared/${searchParams.get("id")}`)
@@ -29,7 +31,16 @@ export default function SharedNotePage() {
         Navigate("/home");
       });
   }, [searchParams, user]);
+
+  //add comments
+  const addComments = (comment) => {
+    setComments([
+      ...comments,
+      { username: user, comment: comment, time: Date.now() },
+    ]);
+  };
   //render
+
   return (
     <div>
       <NavBar />
@@ -37,12 +48,14 @@ export default function SharedNotePage() {
         <Note />
       </NotesContext.Provider>
       {note.shared && (
-        <PostContext.Provider value={searchParams.get("id")}  style={{marginBottom: "50px"}}>
-          <PostComments   />
+        <PostContext.Provider value={addComments}>
+          <PostComments />
         </PostContext.Provider>
       )}
       {note.shared && (
-        <CommentsContext.Provider value={[note.comments, false]}>
+        <CommentsContext.Provider
+          value={[[...note.comments, ...comments], false]}
+        >
           <Comments />
         </CommentsContext.Provider>
       )}
