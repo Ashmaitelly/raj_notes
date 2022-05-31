@@ -64,20 +64,8 @@ export default function HomePage() {
         onClick={() => {
           navigate("/anp");
         }}
-        style={{
-          position: "fixed",
-          bottom: "25px",
-          right: "25px",
-          cursor: "pointer",
-          width: "55px",
-          height: "55px",
-          padding: "0px 0px",
-          borderRadius: "50px",
-          fontSize: "30px",
-          textAlign: "center",
-        }}
         type="button"
-        className="btn btn-dark"
+        className="newNote btn btn-dark"
       >
         +
       </button>
