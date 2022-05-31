@@ -21,6 +21,7 @@ function PostComments() {
       );
       console.log(200, response);
       addComment(insertComments);
+      setInsertComments("");
     } catch (err) {
       console.error(err);
     }
