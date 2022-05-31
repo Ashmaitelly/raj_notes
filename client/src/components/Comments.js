@@ -31,7 +31,7 @@ function Comments() {
       <div className="bg-light border">Comment</div>
       {comments[0]
         .map((comment, index) => (
-          <Card key={index} style={{ padding: "10px 0px" }}>
+          <Card key={index}   style={{ padding: "5px"  ,minHeight:"5px",width: "500px" ,verticalAlign:"middle"}}>
             <Card.Subtitle>{`${comment.username} - ${Moment(
               comment.time
             ).format("MMMM Do YYYY, h:mm:ss a")}`}</Card.Subtitle>
