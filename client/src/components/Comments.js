@@ -40,10 +40,10 @@ function Comments() {
               verticalAlign: "middle",
             }}
             onMouseOver={() => {
-              document.getElementById(`d-${index}`).style.visibility = "";
+              document.getElementById(`d-${index}`).style.display = "";
             }}
             onMouseOut={() => {
-              document.getElementById(`d-${index}`).style.visibility = "hidden";
+              document.getElementById(`d-${index}`).style.display = "none";
             }}
           >
             <Card.Subtitle
@@ -67,11 +67,11 @@ function Comments() {
                   style={{
                     float: "right",
                     borderRadius: "100%",
-                    visibilty: "hidden",
+                    display: "none",
                   }}
                   onClick={() => {
                     deleteComment(comment._id);
-                    document.getElementById(index).style.display = "hidden";
+                    document.getElementById(index).style.display = "none";
                   }}
                 >
                   x
