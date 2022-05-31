@@ -16,8 +16,11 @@
   width: 100%;
 }
 
+.signCol{
+  color: green !important;
+}
 
-.xxxx {
+.backLayout {
   width: 80% ;
   margin-left: 10% ;
   margin-bottom: 10px;
@@ -29,7 +32,7 @@
 
 .sign{
   border: 1px solid black;
-  padding: 40px;
+  padding: 40px 40px 0px;
   border-radius: 25px;
   background-color: black;
 }

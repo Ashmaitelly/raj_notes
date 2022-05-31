@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button } from "react-bootstrap";
+import { Button, Nav } from "react-bootstrap";
 import SignUp from "../components/SignUp";
 import SignIn from "../components/SignIn";
 import { useNavigate } from "react-router-dom";
@@ -15,14 +15,29 @@ function Account() {
   }, [navigate]);
 
   return (
-    <div className="Account">
+    <div className="sign App position-absolute top-50 start-50 translate-middle">
+      <div>
+      <Nav variant="tabs" defaultActiveKey="/home" justify= "true" >
+  <Nav.Item>
+    <Nav.Link eventKey="link-1" className={ `btn ${haveUser ? "btn-success" : "btn-secondary"} signCol`}
+          onClick={() => {
+            setHaveUser(true);
+          }} >Sign In</Nav.Link>
+  </Nav.Item>
+  <Nav.Item>
+    <Nav.Link eventKey="link-2" className={`btn ${haveUser ? "btn-secondary" : "btn-success"} signCol`}
+          onClick={() => {
+            setHaveUser(false);
+          }} >Sign Up</Nav.Link>
+  </Nav.Item>
+</Nav>
+      </div>
       <div>
         {/**if else condition */}
         {haveUser ? <SignIn /> : <SignUp />}
       </div>
       <div className="d-flex justify-content-center mt-5">
-        <Button
-          style={{ marginRight: "1%" }}
+        {/* <Button
           className={`btn ${haveUser ? "btn-secondary" : "btn-success"}`}
           onClick={() => {
             setHaveUser(false);
@@ -37,7 +52,7 @@ function Account() {
           }}
         >
           Log In
-        </Button>
+        </Button> */}
       </div>
     </div>
   );

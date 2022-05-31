@@ -41,7 +41,7 @@ export default function SharedPage() {
         </SearchContext.Provider>
       </div>
       {notes.length > 0 ? (
-        <div className="d-flex flex-wrap justify-content-around xxxx">
+        <div className="d-flex flex-wrap justify-content-around backLayout">
           {notes
             .filter((note) =>
               note.title.toLowerCase().includes(search.toLowerCase())

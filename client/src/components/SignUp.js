@@ -29,11 +29,7 @@ function SignUp() {
   };
 
   return (
-    <div className="sign App position-absolute top-50 start-50 translate-middle">
       <div className="App-wrapper">
-        <div>
-          <h2 style={{ color:"green"}} className="title">Sign Up</h2>
-        </div>
         <div>
           <Form
             onSubmit={(e) => {
@@ -79,7 +75,6 @@ function SignUp() {
           </Form>
         </div>
       </div>
-    </div>
   );
 }
 export default SignUp;
