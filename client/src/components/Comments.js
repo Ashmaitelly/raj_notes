@@ -19,19 +19,26 @@ function Comments() {
         { id: commentId }
       );
       console.log(200, response);
-      window.location.reload();
     } catch (err) {
       console.error(err);
     }
   };
-
 
   return (
     <Stack gap={3}>
       <div className="bg-light border">Comment</div>
       {comments[0]
         .map((comment, index) => (
-          <Card key={index}   style={{ padding: "5px"  ,minHeight:"5px",width: "500px" ,verticalAlign:"middle"}}>
+          <Card
+            key={index}
+            id={index}
+            style={{
+              padding: "5px",
+              minHeight: "5px",
+              width: "500px",
+              verticalAlign: "middle",
+            }}
+          >
             <Card.Subtitle>{`${comment.username} - ${Moment(
               comment.time
             ).format("MMMM Do YYYY, h:mm:ss a")}`}</Card.Subtitle>
@@ -43,6 +50,7 @@ function Comments() {
                   style={{ float: "right", borderRadius: "100%" }}
                   onClick={() => {
                     deleteComment(comment._id);
+                    document.getElementById(index).style.display = "none";
                   }}
                 >
                   x
@@ -50,7 +58,6 @@ function Comments() {
               ) : (
                 ""
               )}
-
             </Card.Body>
           </Card>
         ))
