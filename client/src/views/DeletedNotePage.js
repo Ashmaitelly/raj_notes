@@ -58,6 +58,7 @@ function DeletedNotePage() {
   return (
     <div>
       <NavBar />
+      <div className="backLayout">
       <NotesContext.Provider value={note}>
         <Note />
       </NotesContext.Provider>
@@ -72,7 +73,8 @@ function DeletedNotePage() {
         >
           <li>
         <Button
-          variant="dark"
+          variant="light"
+          style={{text: "black"}}
           onClick={() => {
             restoreNote();
           }}
@@ -82,15 +84,18 @@ function DeletedNotePage() {
         </li>
         <li>
         <Button
-          variant="dark" 
+          variant="light"
+          style={{text: "black"}}
           onClick={() => {
             deleteNote();
           }}
         >
           Delete
         </Button>
+
         </li>
         </ul>
+      </div>
       </div>
       {note.shared && (
         <CommentsContext.Provider value={[note.comments, true]}>

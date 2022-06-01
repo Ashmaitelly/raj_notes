@@ -64,7 +64,7 @@ function NotePage() {
         if (response.data.author === user) {
           setNote(response.data);
         } else {
-          throw new Error("You are not authorized to acces this note");
+          throw new Error("You are not authorized to access this note");
         }
       })
       .catch((error) => {
@@ -76,6 +76,7 @@ function NotePage() {
   return (
     <div>
       <NavBar />
+      <div className="backLayout" >
       <NotesContext.Provider value={note}>
         <Note />
       </NotesContext.Provider>
@@ -90,7 +91,8 @@ function NotePage() {
         >
           <li>
             <Button
-              variant="dark"
+              variant="light"
+              style={{text: "black"}}
               onClick={() => {
                 navigate(`/anp?id=${note._id}`);
               }}
@@ -100,7 +102,8 @@ function NotePage() {
           </li>
           <li>
             <Button
-              variant="dark"
+              variant="light"
+              style={{text: "black"}}
               onClick={() => {
                 removeNote();
               }}
@@ -110,7 +113,8 @@ function NotePage() {
           </li>
           <li>
             <Button
-              variant="dark"
+              variant="light"
+              style={{text: "black"}}
               onClick={() => {
                 handleShow();
               }}
@@ -125,6 +129,7 @@ function NotePage() {
           <PostComments />
         </PostContext.Provider>
       )}
+      </div>
       {note.shared && (
         <CommentsContext.Provider
           value={[[...note.comments, ...comments], true]}
@@ -151,11 +156,13 @@ function NotePage() {
           </InputGroup>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="dark" type="submit" onClick={shareNote}>
+          <Button variant="light"
+              style={{text: "black"}} type="submit" onClick={shareNote}>
             Share
           </Button>
         </Modal.Footer>
       </Modal>
+      
     </div>
   );
 }
