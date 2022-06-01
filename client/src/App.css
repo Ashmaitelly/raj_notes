@@ -32,15 +32,15 @@
 
 .newNote {
   position: fixed;
-  margin-bottom: 25px;
+  bottom: 25px;
   right: 25px;
   cursor: pointer;
   width: 55px;
   height: 55px;
-  padding: 0px 0px;
-  border-radius: 50px;
-  font-size: 30px;
-  text-align: center;
+  padding: 0px 0px !important;
+  border-radius: 50px !important;
+  font-size: 30px !important;
+  text-align: center !important;
 }
 
 .sign {
