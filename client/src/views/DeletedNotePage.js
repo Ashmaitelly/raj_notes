@@ -46,7 +46,7 @@ function DeletedNotePage() {
         if (response.data.author === user) {
           setNote(response.data);
         } else {
-          throw new Error('You are not authorized to acces this note');
+          throw new Error('You are not authorized to access this note');
         }
       })
       .catch((error) => {
@@ -95,28 +95,7 @@ function DeletedNotePage() {
         </Button>
 
         </li>
-          <li>
-            <Button
-              variant="dark"
-              onClick={() => {
-                restoreNote();
-              }}
-            >
-              Restore
-            </Button>
-          </li>
-          <li>
-            <Button
-              variant="dark"
-              onClick={() => {
-                deleteNote();
-              }}
-            >
-              Delete
-            </Button>
-          </li>
-
-        </ul>
+          </ul>
       </div>
     </div>
 
