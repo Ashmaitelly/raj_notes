@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
-import NavBar from "../components/NavBar";
-import SearchBar from "../components/SearchBar";
-import SmallNote from "../components/SmallNote";
-import { useNavigate } from "react-router-dom";
-import Axios from "axios";
-import { NotesContext, SearchContext } from "../App";
+import React, { useState, useEffect } from 'react';
+import NavBar from '../components/NavBar';
+import SearchBar from '../components/SearchBar';
+import SmallNote from '../components/SmallNote';
+import { useNavigate } from 'react-router-dom';
+import Axios from 'axios';
+import { NotesContext, SearchContext } from '../App';
 
 export default function HomePage() {
   //navigate for anp
@@ -12,10 +12,10 @@ export default function HomePage() {
   //state for notes
   const [notes, setNotes] = useState([]);
   //filter string
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState('');
   //user
-  const [user] = useState(localStorage.getItem("user"));
-  const [message, setMessage] = useState("");
+  const [user] = useState(localStorage.getItem('user'));
+  const [message, setMessage] = useState('');
   //search function
   const searchBar = (searchString) => {
     setSearch(searchString);
@@ -23,15 +23,15 @@ export default function HomePage() {
   //get notes once
 
   useEffect(() => {
-    Axios.get("http://localhost:3001/notes/", {
+    Axios.get('http://localhost:3001/notes/', {
       params: { author: user },
     })
       .then((response) => {
         setNotes(response.data);
-        setMessage("You have no notes");
+        setMessage('You have no notes');
       })
       .catch((error) => {
-        alert("Error getting data");
+        alert('Error getting data');
       });
   }, [user]);
 
@@ -39,7 +39,7 @@ export default function HomePage() {
     <div>
       <NavBar />
       <h2 className="text-center">{user}'s Notes</h2>
-      <div style={{ width: "80%", margin: "0 auto" }}>
+      <div style={{ width: '80%', margin: '0 auto' }}>
         <SearchContext.Provider value={searchBar}>
           <SearchBar />
         </SearchContext.Provider>
@@ -62,7 +62,7 @@ export default function HomePage() {
 
       <button
         onClick={() => {
-          navigate("/anp");
+          navigate('/anp');
         }}
         type="button"
         className="newNote btn btn-dark"

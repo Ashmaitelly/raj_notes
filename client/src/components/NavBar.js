@@ -1,26 +1,26 @@
-import React, { useState, useEffect } from "react";
-import "bootstrap/dist/css/bootstrap.css";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import 'bootstrap/dist/css/bootstrap.css';
+import { useNavigate } from 'react-router-dom';
 
 function NavBar() {
   const navigate = useNavigate();
-  const [user, setUser] = useState(localStorage.getItem("user"));
+  const [user, setUser] = useState(localStorage.getItem('user'));
 
   useEffect(() => {
     if (!user) {
-      navigate("/");
+      navigate('/');
     }
   }, [navigate, user]);
 
   const logOut = () => {
-    setUser("");
+    setUser('');
     localStorage.clear();
-    navigate("/");
+    navigate('/');
   };
 
   return (
     <nav
-      style={{ position: "sticky", top: "0", zIndex: "3" }}
+      style={{ position: 'sticky', top: '0', zIndex: '3' }}
       className="navbar navbar-expand-lg navbar-dark bg-dark mb-1"
     >
       <a className="navbar-brand" href="/home">

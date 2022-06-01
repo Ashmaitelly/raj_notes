@@ -1,12 +1,12 @@
-import { React, useState, useEffect } from "react";
-import NavBar from "../components/NavBar";
-import Note from "../components/Note";
-import PostComments from "../components/PostComment";
-import Comments from "../components/Comments";
-import { Button, Modal, InputGroup, FormControl } from "react-bootstrap";
-import { useNavigate, useSearchParams } from "react-router-dom";
-import Axios from "axios";
-import { PostContext, CommentsContext, NotesContext } from "../App.js";
+import { React, useState, useEffect } from 'react';
+import NavBar from '../components/NavBar';
+import Note from '../components/Note';
+import PostComments from '../components/PostComment';
+import Comments from '../components/Comments';
+import { Button, Modal, InputGroup, FormControl } from 'react-bootstrap';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import Axios from 'axios';
+import { PostContext, CommentsContext, NotesContext } from '../App.js';
 
 function NotePage() {
   const navigate = useNavigate();
@@ -15,10 +15,10 @@ function NotePage() {
   //url parameters
   const [searchParams] = useSearchParams();
   const [show, setShow] = useState(false);
-  const [share, setShare] = useState("");
+  const [share, setShare] = useState('');
   const [comments, setComments] = useState([]);
   //user
-  const [user] = useState(localStorage.getItem("user"));
+  const [user] = useState(localStorage.getItem('user'));
   //functions
   const addComments = (comment) => {
     setComments([
@@ -32,10 +32,10 @@ function NotePage() {
   const removeNote = async (e) => {
     try {
       let response = await Axios.put(
-        `http://localhost:3001/notes/delete/${searchParams.get("id")}`
+        `http://localhost:3001/notes/delete/${searchParams.get('id')}`
       );
       console.log(200, response);
-      navigate("/home");
+      navigate('/home');
     } catch (err) {
       console.error(err);
     }
@@ -45,7 +45,7 @@ function NotePage() {
   const shareNote = async () => {
     try {
       let response = await Axios.put(
-        `http://localhost:3001/notes/share/${searchParams.get("id")}`,
+        `http://localhost:3001/notes/share/${searchParams.get('id')}`,
         { user: share }
       );
 
@@ -53,23 +53,23 @@ function NotePage() {
     } catch (err) {
       alert(err.response.data);
     } finally {
-      setShare("");
+      setShare('');
       setShow(false);
     }
   };
 
   useEffect(() => {
-    Axios.get(`http://localhost:3001/notes/${searchParams.get("id")}`)
+    Axios.get(`http://localhost:3001/notes/${searchParams.get('id')}`)
       .then((response) => {
         if (response.data.author === user) {
           setNote(response.data);
         } else {
-          throw new Error("You are not authorized to acces this note");
+          throw new Error('You are not authorized to acces this note');
         }
       })
       .catch((error) => {
         alert(error.message);
-        navigate("/home");
+        navigate('/home');
       });
   }, [searchParams, user, navigate]);
 
@@ -82,10 +82,10 @@ function NotePage() {
       <div className="d-md-inline">
         <ul
           style={{
-            display: "flex",
-            margin: "0.4px 272px 0.4px 240px",
-            listStyle: "none",
-            justifyContent: "space-between",
+            display: 'flex',
+            margin: '0.4px 272px 0.4px 240px',
+            listStyle: 'none',
+            justifyContent: 'space-between',
           }}
         >
           <li>
