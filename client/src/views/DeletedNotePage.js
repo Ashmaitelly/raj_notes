@@ -58,6 +58,7 @@ function DeletedNotePage() {
   return (
     <div>
       <NavBar />
+      <div className="backLayout">
       <NotesContext.Provider value={note}>
         <Note />
       </NotesContext.Provider>
@@ -70,6 +71,30 @@ function DeletedNotePage() {
             justifyContent: 'space-between',
           }}
         >
+          <li>
+
+        <Button
+          variant="light"
+          style={{text: "black"}}
+          onClick={() => {
+            restoreNote();
+          }}
+        >
+          Restore
+        </Button>
+        </li>
+        <li>
+        <Button
+          variant="light"
+          style={{text: "black"}}
+          onClick={() => {
+            deleteNote();
+          }}
+        >
+          Delete
+        </Button>
+
+        </li>
           <li>
             <Button
               variant="dark"
@@ -90,8 +115,11 @@ function DeletedNotePage() {
               Delete
             </Button>
           </li>
+
         </ul>
       </div>
+    </div>
+
       {note.shared && (
         <CommentsContext.Provider value={[note.comments, true]}>
           <Comments />

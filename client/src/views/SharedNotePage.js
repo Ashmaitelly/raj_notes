@@ -44,6 +44,7 @@ export default function SharedNotePage() {
   return (
     <div>
       <NavBar />
+      <div className="backLayout">
       <NotesContext.Provider value={note}>
         <Note />
       </NotesContext.Provider>
@@ -52,6 +53,7 @@ export default function SharedNotePage() {
           <PostComments />
         </PostContext.Provider>
       )}
+      </div>
       {note.shared && (
         <CommentsContext.Provider
           value={[[...note.comments, ...comments], false]}

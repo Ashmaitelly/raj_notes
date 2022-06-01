@@ -45,7 +45,8 @@ function PostComments() {
           }}
         />
         <Button
-          variant="dark"
+          variant="light"
+          style={{text: "black"}}
           onClick={() => {
             postComment(localStorage.getItem('user'));
           }}

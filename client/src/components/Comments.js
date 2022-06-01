@@ -27,6 +27,7 @@ function Comments() {
   return (
     <Stack gap={3}>
       <div className="bg-light border">Comment</div>
+      <div className='backLayout'>
       {comments[0]
         .map((comment, index) => (
           <Card
@@ -87,6 +88,7 @@ function Comments() {
           </Card>
         ))
         .reverse()}
+        </div>
     </Stack>
   );
 }
