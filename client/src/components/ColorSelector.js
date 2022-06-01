@@ -1,17 +1,17 @@
-import { useContext, useState } from "react";
-import { Dropdown } from "react-bootstrap";
-import DropdownButton from "react-bootstrap/DropdownButton";
-import { ColorContext } from "../App";
+import { useContext, useState } from 'react';
+import { Dropdown } from 'react-bootstrap';
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import { ColorContext } from '../App';
 
 function ColorSelector() {
   const [cols] = useState([
-    "Red",
-    "Yellow",
-    "Green",
-    "Orange",
-    "Aqua",
-    "Pink",
-    "White",
+    'Red',
+    'Yellow',
+    'Green',
+    'Orange',
+    'Aqua',
+    'Pink',
+    'White',
   ]);
 
   const setCol = useContext(ColorContext);

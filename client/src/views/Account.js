@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { Nav } from "react-bootstrap";
-import SignUp from "../components/SignUp";
-import SignIn from "../components/SignIn";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { Nav } from 'react-bootstrap';
+import SignUp from '../components/SignUp';
+import SignIn from '../components/SignIn';
+import { useNavigate } from 'react-router-dom';
 
 function Account() {
   const [haveUser, setHaveUser] = useState(true);
 
   const navigate = useNavigate();
   useEffect(() => {
-    if (localStorage.getItem("user")) {
-      navigate("/home");
+    if (localStorage.getItem('user')) {
+      navigate('/home');
     }
   }, [navigate]);
 
@@ -22,7 +22,7 @@ function Account() {
             <Nav.Link
               eventKey="link-1"
               className={`btn ${
-                haveUser ? "btn-success" : "btn-secondary"
+                haveUser ? 'btn-success' : 'btn-secondary'
               } signCol`}
               onClick={() => {
                 setHaveUser(true);
@@ -35,7 +35,7 @@ function Account() {
             <Nav.Link
               eventKey="link-2"
               className={`btn ${
-                haveUser ? "btn-secondary" : "btn-success"
+                haveUser ? 'btn-secondary' : 'btn-success'
               } signCol`}
               onClick={() => {
                 setHaveUser(false);

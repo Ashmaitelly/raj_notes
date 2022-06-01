@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
-import NavBar from "../components/NavBar";
-import Note from "../components/Note";
-import PostComments from "../components/PostComment";
-import Comments from "../components/Comments";
-import Axios from "axios";
-import { PostContext, NotesContext, CommentsContext } from "../App";
-import { Navigate, useSearchParams } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import NavBar from '../components/NavBar';
+import Note from '../components/Note';
+import PostComments from '../components/PostComment';
+import Comments from '../components/Comments';
+import Axios from 'axios';
+import { PostContext, NotesContext, CommentsContext } from '../App';
+import { Navigate, useSearchParams } from 'react-router-dom';
 
 export default function SharedNotePage() {
   //note state object
@@ -13,22 +13,22 @@ export default function SharedNotePage() {
   //url parameters
   const [searchParams] = useSearchParams();
   //trying context
-  const [user] = useState(localStorage.getItem("user"));
+  const [user] = useState(localStorage.getItem('user'));
   //comments
   const [comments, setComments] = useState([]);
 
   useEffect(() => {
-    Axios.get(`http://localhost:3001/shared/${searchParams.get("id")}`)
+    Axios.get(`http://localhost:3001/shared/${searchParams.get('id')}`)
       .then((response) => {
         if (response.data.shared_users.includes(user)) {
           setNote(response.data);
         } else {
-          throw new Error("You are not authorized to access this note");
+          throw new Error('You are not authorized to access this note');
         }
       })
       .catch((error) => {
         alert(error.message);
-        Navigate("/home");
+        Navigate('/home');
       });
   }, [searchParams, user]);
 

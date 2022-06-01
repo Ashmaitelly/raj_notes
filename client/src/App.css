@@ -16,21 +16,34 @@
   width: 100%;
 }
 
-.signCol{
+.signCol {
   color: green !important;
 }
 
 .backLayout {
-  width: 80% ;
-  margin-left: 10% ;
+  width: 80%;
+  margin-left: 10%;
   margin-bottom: 10px;
   border: 3px solid rgb(33, 37, 41);
   background-color: rgb(33, 37, 41);
-  padding:20px 35px 0px;
+  padding: 20px 35px 0px;
   border-radius: 10px;
 }
 
-.sign{
+.newNote {
+  position: fixed;
+  margin-bottom: 25px;
+  right: 25px;
+  cursor: pointer;
+  width: 55px;
+  height: 55px;
+  padding: 0px 0px;
+  border-radius: 50px;
+  font-size: 30px;
+  text-align: center;
+}
+
+.sign {
   border: 1px solid black;
   padding: 40px 40px 0px;
   border-radius: 25px;
