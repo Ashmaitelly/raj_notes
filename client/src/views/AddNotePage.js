@@ -64,8 +64,9 @@ function AddNotePage({ text }) {
   return (
     <div>
       <NavBar />
+      <div className="backLayout">
       <Card
-        className="mx-auto mb-3"
+        className="mx-auto mb-3 "
         style={{
           minHeight: '450px',
           width: '75%',
@@ -132,7 +133,9 @@ function AddNotePage({ text }) {
           }}
         >
           <li>
-            <Button variant="dark" onClick={edit ? editNote : addNewNote}>
+            <Button variant="light"
+          style={{text: "black"}}
+           onClick={edit ? editNote : addNewNote}>
               Save
             </Button>
           </li>
@@ -145,7 +148,8 @@ function AddNotePage({ text }) {
 
           <li>
             <Button
-              variant="dark"
+              variant="light"
+              style={{text: "black"}}
               onClick={() => {
                 navigate('/home');
               }}
@@ -154,6 +158,7 @@ function AddNotePage({ text }) {
             </Button>
           </li>
         </ul>
+      </div>
       </div>
     </div>
   );

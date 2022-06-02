@@ -16,7 +16,9 @@ function ColorSelector() {
 
   const setCol = useContext(ColorContext);
   return (
-    <DropdownButton variant="dark" id="dropdown-basic-button" title="Colors">
+    <DropdownButton variant="light"
+    style={{text: "black"}}
+    id="dropdown-basic-button" title="Colors">
       {cols.map((col, index) => (
         <Dropdown.Item
           style={{ backgroundColor: col }}
