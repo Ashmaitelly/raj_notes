@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import Axios from "axios";
 import { NotesContext, SearchContext } from "../App";
 
+
 export default function HomePage() {
   //navigate for anp
   const navigate = useNavigate();
@@ -38,7 +39,7 @@ export default function HomePage() {
   return (
     <div>
       <NavBar />
-      <h2 className="text-center">{user}'s Notes</h2>
+      <h2 className="text-center">My Notes</h2>
       <div style={{ width: "80%", margin: "0 auto" }}>
         <SearchContext.Provider value={searchBar}>
           <SearchBar />
@@ -69,6 +70,7 @@ export default function HomePage() {
       >
         +
       </button>
+
     </div>
   );
 }
