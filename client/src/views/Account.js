@@ -12,6 +12,7 @@ function Account() {
     if (localStorage.getItem('user')) {
       navigate('/home');
     }
+    document.getElementById('signIn').click();
   }, [navigate]);
 
   return (
@@ -21,6 +22,7 @@ function Account() {
           <Nav.Item>
             <Nav.Link
               eventKey="link-1"
+              id="signIn"
               className={`btn ${
                 haveUser ? 'btn-success' : 'btn-secondary'
               } signCol`}
