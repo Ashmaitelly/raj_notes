@@ -24,6 +24,17 @@ UserSchema.pre('save', async function(next){
 });
 
 
+UserSchema.methods.comparePassword=async function(password){
+ if(!password){throw new Error("password is missing can not compare")}
+try {
+  const result = await bcrypt.compare(password,this.password)
+  return result;
+} catch (error) {
+  console.log("error while comparing message!" ,error.message)
+}
+}
+
+
 
 const UserModel = mongoose.model("user", UserSchema);
 module.exports = UserModel;
