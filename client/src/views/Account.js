@@ -8,12 +8,16 @@ function Account() {
   const [haveUser, setHaveUser] = useState(true);
 
   const navigate = useNavigate();
+
   useEffect(() => {
     if (localStorage.getItem('user')) {
       navigate('/home');
     }
-    document.getElementById('signIn').click();
   }, [navigate]);
+
+  useEffect(() => {
+    document.getElementById('signIn').click();
+  }, []);
 
   return (
     <div className="sign App position-absolute top-50 start-50 translate-middle">
