@@ -1,27 +1,34 @@
-const router = require("express").Router();
+const router = require('express').Router();
+const bcrypt = require('bcrypt');
 
-const UserModel = require("../models/user");
+const UserModel = require('../models/user');
 
 // handle sign-in
-router.get("/signin", (req, res) => {
+router.get('/signin', (req, res) => {
   const user = req.query;
-  UserModel.findOne({ username: user.username, password: user.password })
+
+  UserModel.findOne({ username: user.username })
     .then((result) => {
       if (!result) {
         //404 if user not found
-        res.status(404).json("Invalid username or password");
+        res.status(404).json('Invalid username or password');
       } else {
-        res.json(result.username);
+        //compare password
+        if (bcrypt.compare(user.password, result.password)) {
+          res.json(result.username);
+        } else {
+          res.status(404).json('Invalid username or password');
+        }
       }
     })
     .catch((err) => res.status(500).json({ error: err }));
 });
 // handle sign-up
-router.post("/signup", async (req, res) => {
+router.post('/signup', async (req, res) => {
   const user = req.body;
 
   if (!user.password || !user.username) {
-    res.status(422).json("Username or password cannot be empty");
+    res.status(422).json('Username or password cannot be empty');
   } else {
     UserModel.findOne({ username: user.username })
       .then(async (result) => {
@@ -31,7 +38,7 @@ router.post("/signup", async (req, res) => {
           res.json(user.username);
         } else {
           //403 if user already exists
-          res.status(403).json("User already exists");
+          res.status(403).json('User already exists');
         }
       })
       .catch((err) => res.status(500).json({ error: err }));
