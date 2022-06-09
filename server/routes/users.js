@@ -18,7 +18,9 @@ router.get('/signin', (req, res) => {
         //compare password
         if (bcrypt.compare(user.password, result.password)) {
           user = { name: result.username };
-          const token = jwt.sign(user, process.env.ACCESS_TOKEN);
+          const token = jwt.sign(user, process.env.ACCESS_TOKEN, {
+            expiresIn: '30m',
+          });
           res.json(token);
         } else {
           res.status(404).json('Invalid username or password');
