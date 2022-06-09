@@ -3,9 +3,11 @@ const bcrypt = require('bcrypt');
 
 const UserModel = require('../models/user');
 
+const jwt = require('jsonwebtoken');
+
 // handle sign-in
 router.get('/signin', (req, res) => {
-  const user = req.query;
+  let user = req.query;
 
   UserModel.findOne({ username: user.username })
     .then((result) => {
@@ -15,17 +17,19 @@ router.get('/signin', (req, res) => {
       } else {
         //compare password
         if (bcrypt.compare(user.password, result.password)) {
-          res.json(result.username);
+          user = { name: result.username };
+          const token = jwt.sign(user, process.env.ACCESS_TOKEN);
+          res.json(token);
         } else {
           res.status(404).json('Invalid username or password');
         }
       }
     })
-    .catch((err) => res.status(500).json({ error: err }));
+    .catch((err) => res.status(500).json(err.message));
 });
 // handle sign-up
 router.post('/signup', async (req, res) => {
-  const user = req.body;
+  let user = req.body;
 
   if (!user.password || !user.username) {
     res.status(422).json('Username or password cannot be empty');
@@ -35,7 +39,7 @@ router.post('/signup', async (req, res) => {
         if (!result) {
           const newUser = new UserModel(user);
           await newUser.save();
-          res.json(user.username);
+          res.status(201).json('User successfully');
         } else {
           //403 if user already exists
           res.status(403).json('User already exists');
