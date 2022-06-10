@@ -18,13 +18,14 @@ router.get('/', authenticateToken, (req, res) => {
 });
 
 //get specific note
-router.get('/:id', (req, res) => {
+router.get('/:id', authenticateToken, (req, res) => {
   const _id = req.params.id;
   NoteModel.findOne({ _id: _id, soft_deleted: false })
     .then((result) => {
       if (!result) {
         res.status(404).json();
       } else {
+        if (result.author !== req.user.name) res.status(403).json();
         res.json(result);
       }
     })
