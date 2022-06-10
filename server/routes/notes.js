@@ -33,10 +33,18 @@ router.get('/:id', authenticateToken, (req, res) => {
 });
 
 // new note
-router.post('/create', async (req, res) => {
-  const note = req.body;
+router.post('/create', authenticateToken, async (req, res) => {
+  const note = {
+    title: req.body.title,
+    text: req.body.text,
+    bgc: req.body.bgc,
+  };
+  note.author = req.user.name;
   note.date_modified = Date.now();
   try {
+    if (note.author === null) {
+      throw error('No authorized author');
+    }
     const newNote = new NoteModel(note);
     const savedNote = await newNote.save();
     return res.json(savedNote);
@@ -158,17 +166,5 @@ router.put('/removecomment/:id', (req, res) => {
     })
     .catch((err) => res.status(500).json({ error: err }));
 });
-
-// function authenticateToken(req, res, next) {
-//   const authHeader = req.headers['authorization'];
-//   const token = authHeader && authHeader.split(' ')[1];
-//   if (token == null) return res.sendStatus(401);
-
-//   jwt.verify(token, process.env.ACCESS_TOKEN, (err, user) => {
-//     if (err) return res.status(403).json({ error: 'Error with token' });
-//     req.user = user;
-//     next();
-//   });
-// }
 
 module.exports = router;

@@ -15,6 +15,7 @@ function AddNotePage({ text }) {
   const [edit] = useState(searchParams.get('id') ? true : false);
   text = ``;
   const [noteColor, setNoteColor] = useState('');
+  const [user] = useState(localStorage.getItem('user'));
 
   const setCol = (color) => {
     setNoteColor(color);
@@ -37,12 +38,17 @@ function AddNotePage({ text }) {
 
   const addNewNote = async (e) => {
     try {
-      let response = await Axios.post('http://localhost:3001/notes/create', {
-        title,
-        text: word,
-        bgc: noteColor,
-        author: localStorage.getItem('user'),
-      });
+      let response = await Axios.post(
+        'http://localhost:3001/notes/create',
+        {
+          title,
+          text: word,
+          bgc: noteColor,
+        },
+        {
+          headers: { Authorization: `Bearer ${user}` },
+        }
+      );
       console.log(200, response);
       navigate('/home');
     } catch (err) {
@@ -65,100 +71,102 @@ function AddNotePage({ text }) {
     <div>
       <NavBar />
       <div className="backLayout">
-      <Card
-        className="mx-auto mb-3 "
-        style={{
-          minHeight: '450px',
-          width: '75%',
-          marginTop: '20px',
-          backgroundColor: noteColor,
-        }}
-      >
-        <Card.Body>
-          <Card.Title>
-            <input
-              style={{
-                border: 'none',
-                backgroundColor: 'transparent',
-                resize: 'none',
-                outline: 'none',
-              }}
-              size="lg"
-              id="title"
-              placeholder="Title"
-              type="title"
-              value={title}
-              onChange={(e) => {
-                setTitle(e.target.value);
-              }}
-              onKeyPress={(e) => {
-                if (e.key === 'Enter') {
-                  document.getElementById('text').focus();
-                }
-              }}
-            />
-          </Card.Title>
-          <Card.Subtitle className="mb-2 text-muted"></Card.Subtitle>
-          <Card.Text style={{ whiteSpace: 'pre-wrap' }}>
-            <FormControl
-              as="textarea"
-              id="text"
-              style={{
-                border: 'none',
-                backgroundColor: 'transparent',
-                resize: 'none',
-                outline: 'none',
-                height: '60vh',
-                boxShadow: 'none',
-              }}
-              placeholder="Text"
-              aria-label="Text"
-              aria-describedby="basic-addon1"
-              value={word}
-              onChange={(e) => {
-                setWord(e.target.value);
-              }}
-            />
-          </Card.Text>
-        </Card.Body>
-      </Card>
-
-      <div className="d-md-inline ">
-        <ul
+        <Card
+          className="mx-auto mb-3 "
           style={{
-            display: 'flex',
-            margin: ' 20px 272px 20px 240px',
-            listStyle: 'none',
-            justifyContent: 'space-between',
+            minHeight: '450px',
+            width: '75%',
+            marginTop: '20px',
+            backgroundColor: noteColor,
           }}
         >
-          <li>
-            <Button variant="light"
-          style={{text: "black"}}
-           onClick={edit ? editNote : addNewNote}>
-              Save
-            </Button>
-          </li>
+          <Card.Body>
+            <Card.Title>
+              <input
+                style={{
+                  border: 'none',
+                  backgroundColor: 'transparent',
+                  resize: 'none',
+                  outline: 'none',
+                }}
+                size="lg"
+                id="title"
+                placeholder="Title"
+                type="title"
+                value={title}
+                onChange={(e) => {
+                  setTitle(e.target.value);
+                }}
+                onKeyPress={(e) => {
+                  if (e.key === 'Enter') {
+                    document.getElementById('text').focus();
+                  }
+                }}
+              />
+            </Card.Title>
+            <Card.Subtitle className="mb-2 text-muted"></Card.Subtitle>
+            <Card.Text style={{ whiteSpace: 'pre-wrap' }}>
+              <FormControl
+                as="textarea"
+                id="text"
+                style={{
+                  border: 'none',
+                  backgroundColor: 'transparent',
+                  resize: 'none',
+                  outline: 'none',
+                  height: '60vh',
+                  boxShadow: 'none',
+                }}
+                placeholder="Text"
+                aria-label="Text"
+                aria-describedby="basic-addon1"
+                value={word}
+                onChange={(e) => {
+                  setWord(e.target.value);
+                }}
+              />
+            </Card.Text>
+          </Card.Body>
+        </Card>
 
-          <li>
-            <ColorContext.Provider value={setCol}>
-              <ColorSelector />
-            </ColorContext.Provider>
-          </li>
+        <div className="d-md-inline ">
+          <ul
+            style={{
+              display: 'flex',
+              margin: ' 20px 272px 20px 240px',
+              listStyle: 'none',
+              justifyContent: 'space-between',
+            }}
+          >
+            <li>
+              <Button
+                variant="light"
+                style={{ text: 'black' }}
+                onClick={edit ? editNote : addNewNote}
+              >
+                Save
+              </Button>
+            </li>
 
-          <li>
-            <Button
-              variant="light"
-              style={{text: "black"}}
-              onClick={() => {
-                navigate('/home');
-              }}
-            >
-              Cancel
-            </Button>
-          </li>
-        </ul>
-      </div>
+            <li>
+              <ColorContext.Provider value={setCol}>
+                <ColorSelector />
+              </ColorContext.Provider>
+            </li>
+
+            <li>
+              <Button
+                variant="light"
+                style={{ text: 'black' }}
+                onClick={() => {
+                  navigate('/home');
+                }}
+              >
+                Cancel
+              </Button>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   );
