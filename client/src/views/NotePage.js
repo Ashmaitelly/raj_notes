@@ -19,6 +19,7 @@ function NotePage() {
   const [comments, setComments] = useState([]);
   //user
   const [user] = useState(localStorage.getItem('user'));
+  const [name, setName] = useState('');
   //functions
   const addComments = (comment) => {
     setComments([
@@ -65,6 +66,7 @@ function NotePage() {
       .then((response) => {
         if (response.data && response.status !== 403) {
           setNote(response.data);
+          setName(note.author);
         } else {
           throw new Error('You are not authorized to access this note');
         }

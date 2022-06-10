@@ -17,7 +17,10 @@ function PostComments() {
       }
       let response = await Axios.put(
         `http://localhost:3001/notes/comment/${searchParams.get('id')}`,
-        { username: user, comment: insertComments }
+        { comment: insertComments },
+        {
+          headers: { Authorization: `Bearer ${user}` },
+        }
       );
       console.log(200, response);
       addComment(insertComments);

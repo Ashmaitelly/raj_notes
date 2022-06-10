@@ -16,7 +16,10 @@ function Comments() {
     try {
       let response = await Axios.put(
         `http://localhost:3001/notes/removecomment/${searchParams.get('id')}`,
-        { id: commentId }
+        { id: commentId },
+        {
+          headers: { Authorization: `Bearer ${user}` },
+        }
       );
       console.log(200, response);
     } catch (err) {

@@ -122,14 +122,14 @@ router.put('/share/:id', (req, res) => {
 });
 
 // comments post functionality
-router.put('/comment/:id', (req, res) => {
+router.put('/comment/:id', authenticateToken, (req, res) => {
   const _id = req.params.id;
   const comment = req.body;
   const update = {
     $push: {
       comments: [
         {
-          username: comment.username,
+          username: req.user.name,
           comment: comment.comment,
           time: Date.now(),
         },
@@ -141,19 +141,19 @@ router.put('/comment/:id', (req, res) => {
       if (!result) {
         res.status(404).json();
       } else {
-        res.status(200).json('Comment posted');
+        res.status(200).json({ name: req.user.name });
       }
     })
     .catch((err) => res.status(500).json({ error: err }));
 });
 
 //delete a comment from homenotepage
-router.put('/removecomment/:id', (req, res) => {
+router.put('/removecomment/:id', authenticateToken, (req, res) => {
   const _id = req.params.id;
   const commentId = req.body.id;
   const update = {
     $pull: {
-      comments: { _id: commentId },
+      comments: { _id: commentId, username: req.user.name },
     },
   };
   NoteModel.findOneAndUpdate({ _id: _id }, update)

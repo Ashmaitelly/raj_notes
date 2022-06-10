@@ -23,7 +23,9 @@ function AddNotePage({ text }) {
 
   useEffect(() => {
     if (edit) {
-      Axios.get(`http://localhost:3001/notes/${searchParams.get('id')}`)
+      Axios.get(`http://localhost:3001/notes/${searchParams.get('id')}`, {
+        headers: { Authorization: `Bearer ${user}` },
+      })
         .then((response) => {
           let note = response.data;
           setNoteColor(note.bgc);
@@ -34,7 +36,7 @@ function AddNotePage({ text }) {
           alert('Error getting data');
         });
     }
-  }, [searchParams, edit]);
+  }, [searchParams, edit, user]);
 
   const addNewNote = async (e) => {
     try {
@@ -50,7 +52,7 @@ function AddNotePage({ text }) {
         }
       );
       console.log(200, response);
-      navigate('/home');
+      navigate(-1);
     } catch (err) {
       console.error(err);
     }
@@ -59,7 +61,10 @@ function AddNotePage({ text }) {
     try {
       let response = await Axios.put(
         `http://localhost:3001/notes/update/${searchParams.get('id')}`,
-        { title, text: word, bgc: noteColor }
+        { title, text: word, bgc: noteColor },
+        {
+          headers: { Authorization: `Bearer ${user}` },
+        }
       );
       console.log(200, response);
       navigate('/home');
@@ -159,7 +164,7 @@ function AddNotePage({ text }) {
                 variant="light"
                 style={{ text: 'black' }}
                 onClick={() => {
-                  navigate('/home');
+                  navigate(-1);
                 }}
               >
                 Cancel
