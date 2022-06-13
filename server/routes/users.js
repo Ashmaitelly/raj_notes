@@ -19,7 +19,7 @@ router.get('/signin', (req, res) => {
         if (bcrypt.compare(user.password, result.password)) {
           user = { name: result.username };
           const token = jwt.sign(user, process.env.ACCESS_TOKEN, {
-            expiresIn: '30m',
+            expiresIn: '1d',
           });
           res.json(token);
         } else {

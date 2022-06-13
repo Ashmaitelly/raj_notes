@@ -67,7 +67,7 @@ function AddNotePage({ text }) {
         }
       );
       console.log(200, response);
-      navigate('/home');
+      navigate(-1);
     } catch (err) {
       console.error(err);
     }

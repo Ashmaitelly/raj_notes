@@ -4,13 +4,14 @@ import { CommentsContext } from '../App';
 import Axios from 'axios';
 import { useSearchParams } from 'react-router-dom';
 import Moment from 'moment';
+import jwt_decode from 'jwt-decode';
 
 function Comments() {
   const comments = useContext(CommentsContext);
 
   const [searchParams] = useSearchParams();
 
-  const [user] = useState(localStorage.getItem('user'));
+  const [user] = useState(jwt_decode(localStorage.getItem('user')));
 
   const deleteComment = async (commentId) => {
     try {
@@ -52,7 +53,9 @@ function Comments() {
             >
               <Card.Subtitle
                 className="mb-2"
-                style={{ color: `${comment.username === user ? 'green' : ''}` }}
+                style={{
+                  color: `${comment.username === user.name ? 'green' : ''}`,
+                }}
               >
                 <h4>{`${comment.username}`}</h4>
               </Card.Subtitle>

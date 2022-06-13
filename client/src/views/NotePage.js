@@ -7,6 +7,7 @@ import { Button, Modal, InputGroup, FormControl } from 'react-bootstrap';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import Axios from 'axios';
 import { PostContext, CommentsContext, NotesContext } from '../App.js';
+import jwt_decode from 'jwt-decode';
 
 function NotePage() {
   const navigate = useNavigate();
@@ -19,12 +20,15 @@ function NotePage() {
   const [comments, setComments] = useState([]);
   //user
   const [user] = useState(localStorage.getItem('user'));
-  const [name, setName] = useState('');
+  const [username] = useState(jwt_decode(user).name);
+  const [header] = useState({
+    headers: { Authorization: `Bearer ${user}` },
+  });
   //functions
   const addComments = (comment) => {
     setComments([
       ...comments,
-      { username: user, comment: comment, time: Date.now() },
+      { username: username, comment: comment, time: Date.now() },
     ]);
   };
   const handleClose = () => setShow(false);
@@ -33,9 +37,9 @@ function NotePage() {
   const removeNote = async (e) => {
     try {
       let response = await Axios.put(
-        `http://localhost:3001/notes/delete/${searchParams.get('id')}`
+        `http://localhost:3001/notes/delete/${searchParams.get('id')}`,
+        header
       );
-      console.log(200, response);
       navigate('/home');
     } catch (err) {
       console.error(err);
@@ -47,10 +51,13 @@ function NotePage() {
     try {
       let response = await Axios.put(
         `http://localhost:3001/notes/share/${searchParams.get('id')}`,
-        { user: share }
+        { user: share },
+        header
       );
 
-      console.log(200, response);
+      if (response.status === 200 && !note.shared) {
+        navigate(0);
+      }
     } catch (err) {
       alert(err.response.data);
     } finally {
@@ -60,13 +67,10 @@ function NotePage() {
   };
 
   useEffect(() => {
-    Axios.get(`http://localhost:3001/notes/${searchParams.get('id')}`, {
-      headers: { Authorization: `Bearer ${user}` },
-    })
+    Axios.get(`http://localhost:3001/notes/${searchParams.get('id')}`, header)
       .then((response) => {
         if (response.data && response.status !== 403) {
           setNote(response.data);
-          setName(note.author);
         } else {
           throw new Error('You are not authorized to access this note');
         }

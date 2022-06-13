@@ -46,14 +46,14 @@ router.post('/create', authenticateToken, async (req, res) => {
     }
     const newNote = new NoteModel(note);
     const savedNote = await newNote.save();
-    return res.json(savedNote);
+    res.status(200).json('Successfully created note');
   } catch (err) {
     res.status(500).json({ error: err });
   }
 });
 
 // update note
-router.put('/update/:id', (req, res) => {
+router.put('/update/:id', authenticateToken, (req, res) => {
   const _id = req.params.id;
   const note = req.body;
   const update = {
@@ -62,7 +62,10 @@ router.put('/update/:id', (req, res) => {
     bgc: note.bgc,
     date_modified: Date.now(),
   };
-  NoteModel.findOneAndUpdate({ _id: _id, soft_deleted: false }, update)
+  NoteModel.findOneAndUpdate(
+    { _id: _id, soft_deleted: false, author: req.user.name },
+    update
+  )
     .then((result) => {
       if (!result) {
         res.status(404).json();
@@ -91,7 +94,7 @@ router.put('/delete/:id', (req, res) => {
     .catch((err) => res.status(500).json({ error: err }));
 });
 // share with button activation
-router.put('/share/:id', (req, res) => {
+router.put('/share/:id', authenticateToken, (req, res) => {
   const _id = req.params.id;
   const user = req.body.user;
   const update = {
@@ -106,7 +109,7 @@ router.put('/share/:id', (req, res) => {
         res.status(404).json('The User was Not Found... Try Again');
       } else {
         NoteModel.findOneAndUpdate(
-          { _id: _id, shared_users: { $ne: user } },
+          { _id: _id, author: req.user.name, shared_users: { $ne: user } },
           update
         ).then((result) => {
           if (!result) {
