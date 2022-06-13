@@ -1,12 +1,14 @@
-const router = require("express").Router();
+const router = require('express').Router();
 
-const NoteModel = require("../models/note");
+const NoteModel = require('../models/note');
+
+const authenticateToken = require('../authenticateToken');
 
 //get soft deleted user notes
-router.get("/", (req, res) => {
-  const author = req.query.author;
+router.get('/', authenticateToken, (req, res) => {
+  const author = req.user.name;
   NoteModel.find({ soft_deleted: true, author: author })
-    .sort({ date_modified: "desc" })
+    .sort({ date_modified: 'desc' })
     .then((result) => {
       res.json(result);
     })
@@ -14,9 +16,9 @@ router.get("/", (req, res) => {
 });
 
 //get specific note
-router.get("/:id", (req, res) => {
+router.get('/:id', authenticateToken, (req, res) => {
   const _id = req.params.id;
-  NoteModel.findOne({ _id: _id, soft_deleted: true })
+  NoteModel.findOne({ _id: _id, author: req.user.name, soft_deleted: true })
     .then((result) => {
       if (!result) {
         res.status(404).json();
@@ -28,16 +30,16 @@ router.get("/:id", (req, res) => {
 });
 
 //delete note
-router.delete("/delete/:id", async (req, res) => {
+router.delete('/delete/:id', authenticateToken, async (req, res) => {
   const _id = req.params.id;
-  NoteModel.deleteOne({ _id: _id, soft_deleted: true })
+  NoteModel.deleteOne({ _id: _id, author: req.user.name, soft_deleted: true })
     .then((result) => {
-      res.json("Sucessfully deleted");
+      res.json('Sucessfully deleted');
     })
     .catch((err) => res.status(500).json({ error: err }));
 });
 //restore the note
-router.put("/restore/:id", (req, res) => {
+router.put('/restore/:id', (req, res) => {
   const _id = req.params.id;
   NoteModel.findOneAndUpdate(
     { _id: _id, soft_deleted: true },

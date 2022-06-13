@@ -15,6 +15,9 @@ function DeletedNotePage() {
   const [searchParams] = useSearchParams();
   //trying context
   const [user] = useState(localStorage.getItem('user'));
+  const [header] = useState({
+    headers: { Authorization: `Bearer ${user}` },
+  });
 
   const restoreNote = async (e) => {
     try {
@@ -31,7 +34,8 @@ function DeletedNotePage() {
   const deleteNote = async (e) => {
     try {
       let response = await Axios.delete(
-        `http://localhost:3001/deleted/delete/${searchParams.get('id')}`
+        `http://localhost:3001/deleted/delete/${searchParams.get('id')}`,
+        header
       );
       console.log(200, response);
       navigate('/deleted');
@@ -41,7 +45,7 @@ function DeletedNotePage() {
   };
 
   useEffect(() => {
-    Axios.get(`http://localhost:3001/deleted/${searchParams.get('id')}`)
+    Axios.get(`http://localhost:3001/deleted/${searchParams.get('id')}`, header)
       .then((response) => {
         if (response.data && response.status !== 403) {
           setNote(response.data);
