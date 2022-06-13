@@ -11,7 +11,8 @@ function Comments() {
 
   const [searchParams] = useSearchParams();
 
-  const [user] = useState(jwt_decode(localStorage.getItem('user')));
+  const [user] = useState(localStorage.getItem('user'));
+  const [username] = useState(jwt_decode(user).name);
 
   const deleteComment = async (commentId) => {
     try {
@@ -32,70 +33,77 @@ function Comments() {
     <Stack gap={3}>
       <div className="bg-light border">Comment</div>
       <div className="backLayout">
-        {comments[0]
-          .map((comment, index) => (
-            <Card
-              key={index}
-              id={index}
-              style={{
-                margin: '2% 30.5%',
-                padding: '5px',
-                minHeight: '5px',
-                width: '500px',
-                verticalAlign: 'middle',
-              }}
-              onMouseOver={() => {
-                document.getElementById(`d-${index}`).style.display = '';
-              }}
-              onMouseOut={() => {
-                document.getElementById(`d-${index}`).style.display = 'none';
-              }}
-            >
-              <Card.Subtitle
-                className="mb-2"
+        {comments[0].length === 0 ? (
+          <center>
+            {' '}
+            <h3 className="text-light">No comments</h3>
+          </center>
+        ) : (
+          comments[0]
+            .map((comment, index) => (
+              <Card
+                key={index}
+                id={index}
                 style={{
-                  color: `${comment.username === user.name ? 'green' : ''}`,
+                  margin: '2% 30.5%',
+                  padding: '5px',
+                  minHeight: '5px',
+                  width: '500px',
+                  verticalAlign: 'middle',
+                }}
+                onMouseOver={() => {
+                  document.getElementById(`d-${index}`).style.display = '';
+                }}
+                onMouseOut={() => {
+                  document.getElementById(`d-${index}`).style.display = 'none';
                 }}
               >
-                <h4>{`${comment.username}`}</h4>
-              </Card.Subtitle>
+                <Card.Subtitle
+                  className="mb-2"
+                  style={{
+                    color: `${comment.username === user.name ? 'green' : ''}`,
+                  }}
+                >
+                  <h4>{`${comment.username}`}</h4>
+                </Card.Subtitle>
 
-              <Card.Subtitle>
-                <small>
-                  {`- ${Moment(comment.time).format(
-                    'MMMM Do YYYY, h:mm:ss a'
-                  )}`}
-                </small>
-              </Card.Subtitle>
-              <Card.Body>
-                <h5>{`${comment.comment}`}</h5>
-                {user === comment.username || comments[1] ? (
-                  <Button
-                    variant="danger"
-                    id={`d-${index}`}
-                    style={{
-                      float: 'right',
-                      borderRadius: '100%',
-                      display: 'none',
-                      paddingLeft: '12px',
-                      paddingRight: '12px',
-                      paddingBottom: '4.094px',
-                      paddingTop: '4.094px',
-                    }}
-                    onClick={() => {
-                      deleteComment(comment._id);
-                      document.getElementById(index).style.display = 'none';
-                    }}
-                  >
-                    x
-                  </Button>
-                ) : (
-                  ''
-                )}
-              </Card.Body>
-            </Card>
-          ))
-          .reverse()}
+                <Card.Subtitle>
+                  <small>
+                    {`- ${Moment(comment.time).format(
+                      'MMMM Do YYYY, h:mm:ss a'
+                    )}`}
+                  </small>
+                </Card.Subtitle>
+                <Card.Body>
+                  <h5>{`${comment.comment}`}</h5>
+                  {username === comment.username || comments[1] ? (
+                    <Button
+                      variant="danger"
+                      id={`d-${index}`}
+                      style={{
+                        float: 'right',
+                        borderRadius: '100%',
+                        display: 'none',
+                        paddingLeft: '12px',
+                        paddingRight: '12px',
+                        paddingBottom: '4.094px',
+                        paddingTop: '4.094px',
+                      }}
+                      onClick={() => {
+                        deleteComment(comment._id);
+                        document.getElementById(index).style.display = 'none';
+                      }}
+                    >
+                      x
+                    </Button>
+                  ) : (
+                    ''
+                  )}
+                </Card.Body>
+              </Card>
+            ))
+            .reverse()
+        )}
       </div>
     </Stack>
   );
