@@ -1,13 +1,16 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Card } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { NotesContext } from '../App.js';
 import Moment from 'moment';
+import jwt_decode from 'jwt-decode';
 
 function SmallNote({ url }) {
   const navigate = useNavigate();
 
   const note = useContext(NotesContext);
+  const [user] = useState(localStorage.getItem('user'));
+  const [username] = useState(jwt_decode(user).name);
 
   // to make a limit of letters in the typing and a colorful note.
   const truncString = (str, letter) => {
@@ -34,7 +37,7 @@ function SmallNote({ url }) {
       <Card.Body className="grid-container">
         <Card.Title>
           {truncString(note.title, 20)}{' '}
-          {note.author === localStorage.getItem('user') ? (
+          {note.author === username ? (
             ''
           ) : (
             <small>{`~by ${note.author}`}</small>

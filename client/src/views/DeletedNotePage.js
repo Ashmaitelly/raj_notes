@@ -43,7 +43,7 @@ function DeletedNotePage() {
   useEffect(() => {
     Axios.get(`http://localhost:3001/deleted/${searchParams.get('id')}`)
       .then((response) => {
-        if (response.data.author === user) {
+        if (response.data && response.status !== 403) {
           setNote(response.data);
         } else {
           throw new Error('You are not authorized to access this note');

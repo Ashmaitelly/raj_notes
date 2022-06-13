@@ -6,6 +6,7 @@ import Comments from '../components/Comments';
 import Axios from 'axios';
 import { PostContext, NotesContext, CommentsContext } from '../App';
 import { Navigate, useSearchParams } from 'react-router-dom';
+import jwt_decode from 'jwt-decode';
 
 export default function SharedNotePage() {
   //note state object
@@ -14,13 +15,17 @@ export default function SharedNotePage() {
   const [searchParams] = useSearchParams();
   //trying context
   const [user] = useState(localStorage.getItem('user'));
+  const [username] = useState(jwt_decode(user).name);
+  const [header] = useState({
+    headers: { Authorization: `Bearer ${user}` },
+  });
   //comments
   const [comments, setComments] = useState([]);
 
   useEffect(() => {
-    Axios.get(`http://localhost:3001/shared/${searchParams.get('id')}`)
+    Axios.get(`http://localhost:3001/shared/${searchParams.get('id')}`, header)
       .then((response) => {
-        if (response.data.shared_users.includes(user)) {
+        if (response.data && response.status !== 403) {
           setNote(response.data);
         } else {
           throw new Error('You are not authorized to access this note');
@@ -36,7 +41,7 @@ export default function SharedNotePage() {
   const addComments = (comment) => {
     setComments([
       ...comments,
-      { username: user, comment: comment, time: Date.now() },
+      { username: username, comment: comment, time: Date.now() },
     ]);
   };
   //render
@@ -45,14 +50,14 @@ export default function SharedNotePage() {
     <div>
       <NavBar />
       <div className="backLayout">
-      <NotesContext.Provider value={note}>
-        <Note />
-      </NotesContext.Provider>
-      {note.shared && (
-        <PostContext.Provider value={addComments}>
-          <PostComments />
-        </PostContext.Provider>
-      )}
+        <NotesContext.Provider value={note}>
+          <Note />
+        </NotesContext.Provider>
+        {note.shared && (
+          <PostContext.Provider value={addComments}>
+            <PostComments />
+          </PostContext.Provider>
+        )}
       </div>
       {note.shared && (
         <CommentsContext.Provider

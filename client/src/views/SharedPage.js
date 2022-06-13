@@ -4,6 +4,7 @@ import SearchBar from '../components/SearchBar';
 import SmallNote from '../components/SmallNote';
 import Axios from 'axios';
 import { NotesContext, SearchContext } from '../App.js';
+import jwt_decode from 'jwt-decode';
 
 export default function SharedPage() {
   //state for notes
@@ -12,6 +13,7 @@ export default function SharedPage() {
   const [search, setSearch] = useState('');
   //user
   const [user] = useState(localStorage.getItem('user'));
+  const [username] = useState(jwt_decode(user).name);
   const [message, setMessage] = useState('');
   //search function
   const searchBar = (searchString) => {
@@ -20,7 +22,7 @@ export default function SharedPage() {
   //get notes once
   useEffect(() => {
     Axios.get('http://localhost:3001/shared/', {
-      params: { viewer: user },
+      headers: { Authorization: `Bearer ${user}` },
     })
       .then((response) => {
         setNotes(response.data);
@@ -34,7 +36,7 @@ export default function SharedPage() {
   return (
     <div>
       <NavBar />
-      <h2 className="text-center">Shared with {user}</h2>
+      <h2 className="text-center">Shared with {username}</h2>
       <div style={{ width: '80%', margin: '0 auto' }}>
         <SearchContext.Provider value={searchBar}>
           <SearchBar />

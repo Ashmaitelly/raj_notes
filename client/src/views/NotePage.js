@@ -40,6 +40,7 @@ function NotePage() {
         `http://localhost:3001/notes/delete/${searchParams.get('id')}`,
         header
       );
+      console.log(200, response);
       navigate('/home');
     } catch (err) {
       console.error(err);
@@ -79,7 +80,7 @@ function NotePage() {
         alert(error.message);
         navigate('/home');
       });
-  }, [searchParams, user, navigate]);
+  }, [searchParams, user, navigate, header]);
 
   return (
     <div>
