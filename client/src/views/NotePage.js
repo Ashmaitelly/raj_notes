@@ -38,6 +38,7 @@ function NotePage() {
     try {
       let response = await Axios.put(
         `http://localhost:3001/notes/delete/${searchParams.get('id')}`,
+        {},
         header
       );
       console.log(200, response);

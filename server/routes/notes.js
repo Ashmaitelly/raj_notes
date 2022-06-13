@@ -76,14 +76,14 @@ router.put('/update/:id', authenticateToken, (req, res) => {
     .catch((err) => res.status(500).json({ error: err }));
 });
 //remove button functionality
-router.put('/delete/:id', (req, res) => {
+router.put('/delete/:id', authenticateToken, (req, res) => {
   const _id = req.params.id;
   const update = {
     soft_deleted: true,
     date_modified: Date.now(),
     expiresAt: Date.now(),
   };
-  NoteModel.findOneAndUpdate({ _id: _id }, update)
+  NoteModel.findOneAndUpdate({ _id: _id, author: req.user.name }, update)
     .then((result) => {
       if (!result) {
         res.status(404).json();

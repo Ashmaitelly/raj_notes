@@ -35,7 +35,7 @@ export default function SharedNotePage() {
         alert(error.message);
         Navigate('/home');
       });
-  }, [searchParams, user]);
+  }, [searchParams, user, header]);
 
   //add comments
   const addComments = (comment) => {

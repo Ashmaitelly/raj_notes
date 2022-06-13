@@ -8,7 +8,6 @@ function Note() {
   const note = useContext(NotesContext);
   const [user] = useState(localStorage.getItem('user'));
   const [username] = useState(jwt_decode(user).name);
-  console.log(username);
 
   return (
     <div>

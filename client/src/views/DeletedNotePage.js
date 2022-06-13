@@ -57,7 +57,7 @@ function DeletedNotePage() {
         alert(error.message);
         navigate('/home');
       });
-  }, [searchParams, user, navigate]);
+  }, [searchParams, user, navigate, header]);
 
   return (
     <div>
