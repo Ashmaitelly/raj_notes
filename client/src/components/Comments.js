@@ -61,7 +61,7 @@ function Comments() {
                 <Card.Subtitle
                   className="mb-2"
                   style={{
-                    color: `${comment.username === user.name ? 'green' : ''}`,
+                    color: `${comment.username === username ? 'green' : ''}`,
                   }}
                 >
                   <h4>{`${comment.username}`}</h4>
