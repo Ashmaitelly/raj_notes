@@ -6,7 +6,7 @@ const authenticateToken = require('../authenticateToken');
 
 //get soft deleted user notes
 router.get('/', authenticateToken, (req, res) => {
-  const author = req.user.name;
+  const author = req.auth.user.name;
   NoteModel.find({ soft_deleted: true, author: author })
     .sort({ date_modified: 'desc' })
     .then((result) => {
@@ -18,7 +18,11 @@ router.get('/', authenticateToken, (req, res) => {
 //get specific note
 router.get('/:id', authenticateToken, (req, res) => {
   const _id = req.params.id;
-  NoteModel.findOne({ _id: _id, author: req.user.name, soft_deleted: true })
+  NoteModel.findOne({
+    _id: _id,
+    author: req.auth.user.name,
+    soft_deleted: true,
+  })
     .then((result) => {
       if (!result) {
         res.status(404).json();
@@ -32,7 +36,11 @@ router.get('/:id', authenticateToken, (req, res) => {
 //delete note
 router.delete('/delete/:id', authenticateToken, async (req, res) => {
   const _id = req.params.id;
-  NoteModel.deleteOne({ _id: _id, author: req.user.name, soft_deleted: true })
+  NoteModel.deleteOne({
+    _id: _id,
+    author: req.auth.user.name,
+    soft_deleted: true,
+  })
     .then((result) => {
       res.json('Sucessfully deleted');
     })

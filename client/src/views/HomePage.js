@@ -14,7 +14,7 @@ export default function HomePage() {
   //filter string
   const [search, setSearch] = useState('');
   //user
-  const [user] = useState(localStorage.getItem('user'));
+  const [user, setUser] = useState(localStorage.getItem('user'));
   const [message, setMessage] = useState('');
   //search function
   const searchBar = (searchString) => {
@@ -29,7 +29,12 @@ export default function HomePage() {
       },
     })
       .then((response) => {
-        setNotes(response.data);
+        setNotes(response.data.result);
+        if (response.data.token) {
+          localStorage.setItem('user', response.data.token);
+          setUser(response.data.token);
+        }
+
         setMessage('You have no notes');
       })
       .catch((error) => {

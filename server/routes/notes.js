@@ -8,11 +8,11 @@ const authenticateToken = require('../authenticateToken');
 
 //get user notes
 router.get('/', authenticateToken, (req, res) => {
-  NoteModel.find({ soft_deleted: false, author: req.user.name })
+  NoteModel.find({ soft_deleted: false, author: req.auth.user.name })
     .sort({ date_modified: 'desc' })
     .select('title date_modified text bgc author')
     .then((result) => {
-      res.json(result);
+      res.json({ result: result, token: req.auth.token });
     })
     .catch((err) => res.status(500).json({ error: err }));
 });
@@ -20,7 +20,11 @@ router.get('/', authenticateToken, (req, res) => {
 //get specific note
 router.get('/:id', authenticateToken, (req, res) => {
   const _id = req.params.id;
-  NoteModel.findOne({ _id: _id, author: req.user.name, soft_deleted: false })
+  NoteModel.findOne({
+    _id: _id,
+    author: req.auth.user.name,
+    soft_deleted: false,
+  })
     .then((result) => {
       if (!result) {
         res.status(404).json();
@@ -38,7 +42,7 @@ router.post('/create', authenticateToken, async (req, res) => {
     text: req.body.text,
     bgc: req.body.bgc,
   };
-  note.author = req.user.name;
+  note.author = req.auth.user.name;
   note.date_modified = Date.now();
   try {
     if (note.author === null) {
@@ -63,7 +67,7 @@ router.put('/update/:id', authenticateToken, (req, res) => {
     date_modified: Date.now(),
   };
   NoteModel.findOneAndUpdate(
-    { _id: _id, soft_deleted: false, author: req.user.name },
+    { _id: _id, soft_deleted: false, author: req.auth.user.name },
     update
   )
     .then((result) => {
@@ -83,7 +87,7 @@ router.put('/delete/:id', authenticateToken, (req, res) => {
     date_modified: Date.now(),
     expiresAt: Date.now(),
   };
-  NoteModel.findOneAndUpdate({ _id: _id, author: req.user.name }, update)
+  NoteModel.findOneAndUpdate({ _id: _id, author: req.auth.user.name }, update)
     .then((result) => {
       if (!result) {
         res.status(404).json();
@@ -109,7 +113,7 @@ router.put('/share/:id', authenticateToken, (req, res) => {
         res.status(404).json('The User was Not Found... Try Again');
       } else {
         NoteModel.findOneAndUpdate(
-          { _id: _id, author: req.user.name, shared_users: { $ne: user } },
+          { _id: _id, author: req.auth.user.name, shared_users: { $ne: user } },
           update
         ).then((result) => {
           if (!result) {
@@ -131,7 +135,7 @@ router.put('/comment/:id', authenticateToken, (req, res) => {
     $push: {
       comments: [
         {
-          username: req.user.name,
+          username: req.auth.user.name,
           comment: comment.comment,
           time: Date.now(),
         },
@@ -143,7 +147,7 @@ router.put('/comment/:id', authenticateToken, (req, res) => {
       if (!result) {
         res.status(404).json();
       } else {
-        res.status(200).json({ name: req.user.name });
+        res.status(200).json({ name: req.auth.user.name });
       }
     })
     .catch((err) => res.status(500).json({ error: err }));
@@ -155,7 +159,7 @@ router.put('/removecomment/:id', authenticateToken, (req, res) => {
   const commentId = req.body.id;
   const update = {
     $pull: {
-      comments: { _id: commentId, username: req.user.name },
+      comments: { _id: commentId, username: req.auth.user.name },
     },
   };
   NoteModel.findOneAndUpdate({ _id: _id }, update)

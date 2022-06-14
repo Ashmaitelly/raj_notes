@@ -6,7 +6,7 @@ const authenticateToken = require('../authenticateToken');
 
 //get shared user notes
 router.get('/', authenticateToken, (req, res) => {
-  const viewer = req.user.name;
+  const viewer = req.auth.user.name;
   NoteModel.find({ shared: true, shared_users: viewer, soft_deleted: false })
     .select('title date_modified text bgc author')
     .sort({ date_modified: 'desc' })
@@ -23,7 +23,7 @@ router.get('/:id', authenticateToken, (req, res) => {
     _id: _id,
     shared: true,
     soft_deleted: false,
-    shared_users: { $in: req.user.name },
+    shared_users: { $in: req.auth.user.name },
   })
     .then((result) => {
       if (!result) {
