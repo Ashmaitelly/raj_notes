@@ -16,7 +16,8 @@ function SignIn() {
       params: { username: username, password: password },
     })
       .then((response) => {
-        localStorage.setItem('user', response.data);
+        localStorage.setItem('user', response.data[0]);
+        localStorage.setItem('refresh', response.data[1]);
         navigate('/home');
       })
       .catch((error) => {

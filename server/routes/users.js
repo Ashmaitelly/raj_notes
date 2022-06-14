@@ -19,10 +19,11 @@ router.get('/signin', (req, res) => {
         const auth = await bcrypt.compare(user.password, result.password);
         if (auth) {
           user = { name: result.username };
-          const token = jwt.sign(user, process.env.ACCESS_TOKEN, {
+          const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN, {
             expiresIn: '1d',
           });
-          res.json(token);
+          const refreshToken = jwt.sign(user, process.env.REFRESH_TOKEN);
+          res.json([accessToken, refreshToken]);
         } else {
           res.status(404).json('Invalid username or password');
         }
@@ -42,7 +43,13 @@ router.post('/signup', async (req, res) => {
         if (!result) {
           const newUser = new UserModel(user);
           await newUser.save();
-          res.status(201).json('User successfully');
+          //generate tokens
+          user = { name: user.username };
+          const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN, {
+            expiresIn: '1d',
+          });
+          const refreshToken = jwt.sign(user, process.env.REFRESH_TOKEN);
+          res.json([accessToken, refreshToken]);
         } else {
           //403 if user already exists
           res.status(403).json('User already exists');

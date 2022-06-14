@@ -15,7 +15,7 @@ function SignUp() {
       Axios.post('http://localhost:3001/signup', { username, password })
         .then((response) => {
           alert('User sucussefully created');
-          localStorage.setItem('user', response.data);
+          localStorage.setItem('user', response.data[0]);
           navigate('/home');
         })
         .catch((error) => {
