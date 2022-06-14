@@ -10,13 +10,14 @@ router.get('/signin', (req, res) => {
   let user = req.query;
 
   UserModel.findOne({ username: user.username })
-    .then((result) => {
+    .then(async (result) => {
       if (!result) {
         //404 if user not found
         res.status(404).json('Invalid username or password');
       } else {
         //compare password
-        if (bcrypt.compare(user.password, result.password)) {
+        const auth = await bcrypt.compare(user.password, result.password);
+        if (auth) {
           user = { name: result.username };
           const token = jwt.sign(user, process.env.ACCESS_TOKEN, {
             expiresIn: '1d',
