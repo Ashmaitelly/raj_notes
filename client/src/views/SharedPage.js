@@ -22,7 +22,9 @@ export default function SharedPage() {
   //get notes once
   useEffect(() => {
     Axios.get('http://localhost:3001/shared/', {
-      headers: { Authorization: `Bearer ${user}` },
+      headers: {
+        Authorization: `Bearer ${user} ${localStorage.getItem('refresh')}`,
+      },
     })
       .then((response) => {
         setNotes(response.data);

@@ -24,7 +24,9 @@ export default function HomePage() {
 
   useEffect(() => {
     Axios.get('http://localhost:3001/notes/', {
-      headers: { Authorization: `Bearer ${user}` },
+      headers: {
+        Authorization: `Bearer ${user} ${localStorage.getItem('refresh')}`,
+      },
     })
       .then((response) => {
         setNotes(response.data);

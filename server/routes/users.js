@@ -1,7 +1,10 @@
 const router = require('express').Router();
 const bcrypt = require('bcrypt');
 
+const authenticateToken = require('../authenticateToken');
+
 const UserModel = require('../models/user');
+const TokenModel = require('../models/token');
 
 const jwt = require('jsonwebtoken');
 
@@ -23,6 +26,11 @@ router.get('/signin', (req, res) => {
             expiresIn: '1d',
           });
           const refreshToken = jwt.sign(user, process.env.REFRESH_TOKEN);
+          const newToken = new TokenModel({
+            user: result.username,
+            token: refreshToken,
+          });
+          await newToken.save();
           res.json([accessToken, refreshToken]);
         } else {
           res.status(404).json('Invalid username or password');
@@ -49,6 +57,11 @@ router.post('/signup', async (req, res) => {
             expiresIn: '1d',
           });
           const refreshToken = jwt.sign(user, process.env.REFRESH_TOKEN);
+          const newToken = new TokenModel({
+            user: user.name,
+            token: refreshToken,
+          });
+          await newToken.save();
           res.json([accessToken, refreshToken]);
         } else {
           //403 if user already exists
@@ -57,6 +70,16 @@ router.post('/signup', async (req, res) => {
       })
       .catch((err) => res.status(500).json({ error: err }));
   }
+});
+
+router.delete('/logout/:token', authenticateToken, async (req, res) => {
+  const token = req.params.token;
+
+  TokenModel.deleteOne({ user: req.user.name, token: token })
+    .then((result) => {
+      res.json('Sucessfully logged out');
+    })
+    .catch((err) => res.status(500).json({ error: err }));
 });
 
 module.exports = router;

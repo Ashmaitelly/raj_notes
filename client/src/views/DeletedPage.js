@@ -22,7 +22,9 @@ export default function DeletedPage() {
   //get notes once
   useEffect(() => {
     Axios.get('http://localhost:3001/deleted/', {
-      headers: { Authorization: `Bearer ${user}` },
+      headers: {
+        Authorization: `Bearer ${user} ${localStorage.getItem('refresh')}`,
+      },
     })
       .then((response) => {
         setNotes(response.data);

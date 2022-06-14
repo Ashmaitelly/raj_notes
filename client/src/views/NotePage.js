@@ -22,7 +22,9 @@ function NotePage() {
   const [user] = useState(localStorage.getItem('user'));
   const [username] = useState(jwt_decode(user).name);
   const [header] = useState({
-    headers: { Authorization: `Bearer ${user}` },
+    headers: {
+      Authorization: `Bearer ${user} ${localStorage.getItem('refresh')}`,
+    },
   });
   //functions
   const addComments = (comment) => {

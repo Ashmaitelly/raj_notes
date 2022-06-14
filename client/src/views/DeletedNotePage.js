@@ -16,7 +16,9 @@ function DeletedNotePage() {
   //trying context
   const [user] = useState(localStorage.getItem('user'));
   const [header] = useState({
-    headers: { Authorization: `Bearer ${user}` },
+    headers: {
+      Authorization: `Bearer ${user} ${localStorage.getItem('refresh')}`,
+    },
   });
 
   const restoreNote = async (e) => {

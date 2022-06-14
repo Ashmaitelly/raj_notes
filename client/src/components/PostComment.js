@@ -19,7 +19,9 @@ function PostComments() {
         `http://localhost:3001/notes/comment/${searchParams.get('id')}`,
         { comment: insertComments },
         {
-          headers: { Authorization: `Bearer ${user}` },
+          headers: {
+            Authorization: `Bearer ${user} ${localStorage.getItem('refresh')}`,
+          },
         }
       );
       console.log(200, response);

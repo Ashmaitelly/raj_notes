@@ -20,7 +20,9 @@ function Comments() {
         `http://localhost:3001/notes/removecomment/${searchParams.get('id')}`,
         { id: commentId },
         {
-          headers: { Authorization: `Bearer ${user}` },
+          headers: {
+            Authorization: `Bearer ${user} ${localStorage.getItem('refresh')}`,
+          },
         }
       );
       console.log(200, response);

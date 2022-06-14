@@ -24,7 +24,9 @@ function AddNotePage({ text }) {
   useEffect(() => {
     if (edit) {
       Axios.get(`http://localhost:3001/notes/${searchParams.get('id')}`, {
-        headers: { Authorization: `Bearer ${user}` },
+        headers: {
+          Authorization: `Bearer ${user} ${localStorage.getItem('refresh')}`,
+        },
       })
         .then((response) => {
           let note = response.data;
@@ -48,7 +50,9 @@ function AddNotePage({ text }) {
           bgc: noteColor,
         },
         {
-          headers: { Authorization: `Bearer ${user}` },
+          headers: {
+            Authorization: `Bearer ${user} ${localStorage.getItem('refresh')}`,
+          },
         }
       );
       console.log(200, response);
@@ -63,7 +67,9 @@ function AddNotePage({ text }) {
         `http://localhost:3001/notes/update/${searchParams.get('id')}`,
         { title, text: word, bgc: noteColor },
         {
-          headers: { Authorization: `Bearer ${user}` },
+          headers: {
+            Authorization: `Bearer ${user} ${localStorage.getItem('refresh')}`,
+          },
         }
       );
       console.log(200, response);

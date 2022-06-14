@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import { useNavigate } from 'react-router-dom';
+import Axios from 'axios';
 
 function NavBar() {
   const navigate = useNavigate();
-  const [user, setUser] = useState(localStorage.getItem('user'));
+  const [user] = useState(localStorage.getItem('user'));
 
   useEffect(() => {
     if (!user) {
@@ -13,7 +14,14 @@ function NavBar() {
   }, [navigate, user]);
 
   const logOut = () => {
-    setUser('');
+    Axios.delete(
+      `http://localhost:3001/logout/${localStorage.getItem('refresh')}`,
+      {
+        headers: {
+          Authorization: `Bearer ${user} ${localStorage.getItem('refresh')}`,
+        },
+      }
+    );
     localStorage.clear();
     navigate('/');
   };
