@@ -23,7 +23,7 @@ router.get('/signin', (req, res) => {
         if (auth) {
           user = { name: result.username };
           const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN, {
-            expiresIn: '1d',
+            expiresIn: '15s',
           });
           const refreshToken = jwt.sign(user, process.env.REFRESH_TOKEN);
           const newToken = new TokenModel({
@@ -75,7 +75,7 @@ router.post('/signup', async (req, res) => {
 router.delete('/logout/:token', authenticateToken, async (req, res) => {
   const token = req.params.token;
 
-  TokenModel.deleteOne({ user: req.user.name, token: token })
+  TokenModel.deleteOne({ token: token })
     .then((result) => {
       res.json('Sucessfully logged out');
     })

@@ -5,14 +5,22 @@ mongoose.connect(process.env.MONGO_URI);
 
 function authenticateToken(req, res, next) {
   const authHeader = req.headers['authorization'];
-  const token = authHeader && authHeader.split(' ')[1];
-  if (token == null) return res.sendStatus(401);
+  const authArray = authHeader && authHeader.split(' ');
+  const accessToken = authArray[1];
+  const refreshToken = authArray[2];
 
-  jwt.verify(token, process.env.ACCESS_TOKEN, (err, user) => {
-    if (err) return res.status(403).json({ error: 'Error with token' });
-    req.user = user;
-    next();
+  if (accessToken == null) return res.sendStatus(401);
+
+  jwt.verify(accessToken, process.env.ACCESS_TOKEN, (err, user) => {
+    if (user) {
+      req.user = user;
+      next();
+    }
   });
+}
+
+function refreshToken(refreshToken, res) {
+  jwt.verify(refreshToken, process.env.REFRESH_TOKEN, (err, user) => {});
 }
 
 module.exports = authenticateToken;
