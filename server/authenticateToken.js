@@ -14,8 +14,18 @@ function authenticateToken(req, res, next) {
       auth = { user };
     }
     if (err) {
-      res.locals.refresh = refreshToken;
-      next();
+      jwt.verify(refreshToken, process.env.REFRESH_TOKEN, (err, user) => {
+        if (user) {
+          const token = jwt.sign(user, process.env.ACCESS_TOKEN, {
+            expiresIn: '30m',
+          });
+          auth = { user, token };
+          console.log(auth);
+        }
+        if (err) {
+          return res.sendStatus(401);
+        }
+      });
     }
     res.locals.auth = auth;
     next();
