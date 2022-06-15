@@ -10,7 +10,7 @@ router.get('/', authenticateToken, (req, res) => {
   NoteModel.find({ soft_deleted: true, author: author })
     .sort({ date_modified: 'desc' })
     .then((result) => {
-      res.json(result);
+      res.json({ result: result, token: res.locals.auth.token });
     })
     .catch((err) => res.status(500).json({ error: err }));
 });
@@ -27,7 +27,7 @@ router.get('/:id', authenticateToken, (req, res) => {
       if (!result) {
         res.status(404).json();
       } else {
-        res.json(result);
+        res.json({ result: result, token: res.locals.auth.token });
       }
     })
     .catch((err) => res.status(500).json({ error: err }));
@@ -61,7 +61,7 @@ router.put('/restore/:id', (req, res) => {
       if (!result) {
         res.status(404).json();
       } else {
-        res.json(result);
+        res.json({ result: result, token: res.locals.auth.token });
       }
     })
     .catch((err) => res.status(500).json({ error: err }));

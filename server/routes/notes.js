@@ -29,7 +29,7 @@ router.get('/:id', authenticateToken, (req, res) => {
       if (!result) {
         res.status(404).json();
       } else {
-        res.json(result);
+        res.json({ result: result, token: res.locals.auth.token });
       }
     })
     .catch((err) => res.status(500).json({ error: err }));
@@ -74,7 +74,7 @@ router.put('/update/:id', authenticateToken, (req, res) => {
       if (!result) {
         res.status(404).json();
       } else {
-        res.json(result);
+        res.json({ result: result, token: res.locals.auth.token });
       }
     })
     .catch((err) => res.status(500).json({ error: err }));
