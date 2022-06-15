@@ -23,7 +23,7 @@ router.get('/signin', (req, res) => {
         if (auth) {
           user = { name: result.username };
           const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN, {
-            expiresIn: '15s',
+            expiresIn: '30m',
           });
           const refreshToken = jwt.sign(user, process.env.REFRESH_TOKEN);
           const newToken = new TokenModel({
@@ -54,7 +54,7 @@ router.post('/signup', async (req, res) => {
           //generate tokens
           user = { name: user.username };
           const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN, {
-            expiresIn: '1d',
+            expiresIn: '30m',
           });
           const refreshToken = jwt.sign(user, process.env.REFRESH_TOKEN);
           const newToken = new TokenModel({

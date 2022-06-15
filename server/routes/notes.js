@@ -6,8 +6,6 @@ const UserModel = require('../models/user');
 
 const authenticateToken = require('../authenticateToken');
 
-const refToken = require('../refToken');
-
 //get user notes
 router.get('/', authenticateToken, (req, res) => {
   NoteModel.find({ soft_deleted: false, author: res.locals.auth.user.name })

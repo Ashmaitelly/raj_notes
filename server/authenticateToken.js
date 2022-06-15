@@ -1,5 +1,7 @@
 const jwt = require('jsonwebtoken');
 
+const TokenModel = require('./models/token');
+
 function authenticateToken(req, res, next) {
   const authHeader = req.headers['authorization'];
   const authArray = authHeader && authHeader.split(' ');
@@ -8,22 +10,27 @@ function authenticateToken(req, res, next) {
 
   if (accessToken == null) return res.sendStatus(401);
 
-  jwt.verify(accessToken, process.env.ACCESS_TOKEN, (err, user) => {
+  jwt.verify(accessToken, process.env.ACCESS_TOKEN, async (err, user) => {
     let auth = {};
     if (user) {
       auth = { user };
     }
     if (err) {
-      jwt.verify(refreshToken, process.env.REFRESH_TOKEN, (err, user) => {
+      let data;
+      try {
+        data = await TokenModel.findOne({ token: refreshToken });
+      } catch (err) {
+        return res.sendStatus(401);
+      }
+      jwt.verify(data.token, process.env.REFRESH_TOKEN, (err, user) => {
         if (user) {
           const token = jwt.sign(user, process.env.ACCESS_TOKEN, {
             expiresIn: '30m',
           });
           auth = { user, token };
-          console.log(auth);
         }
         if (err) {
-          return res.sendStatus(401);
+          return res.sendStatus(403);
         }
       });
     }
